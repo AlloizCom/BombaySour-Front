@@ -1,5 +1,13 @@
-<form [formGroup]="formGroup">
+<p>Community</p>
+<form [formGroup]="formGroup" (submit)="save()">
   <label>Text
-    <input type="text">
+    <input type="text" formControlName="text">
   </label>
+  <label>Title
+    <input type="text" formControlName="title">
+  </label>
+  <label>Image
+    <input type="file" accept="image/*" formControlName="image" (change)="readUrl($event)">
+  </label>
+  <img *ngIf="image&&image.length>0" [src]="image" alt="image">
 </form>
