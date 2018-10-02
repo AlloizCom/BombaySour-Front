@@ -1,6 +1,5 @@
 export class Community {
   image:string;
-  text1:string;
-  text2:string;
+  text:string;
   title:string;
 }
