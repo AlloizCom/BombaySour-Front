@@ -6,6 +6,7 @@ import { TeamComponent } from './team/team.component';
 import { CommunityComponent } from './community/community.component';
 import { PlatformComponent } from './platform/platform.component';
 import {GlobalImportsModule} from '../../shared/global-imports/global-imports.module';
+import { ContentComponent } from './content/content.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import {GlobalImportsModule} from '../../shared/global-imports/global-imports.mo
     StoryComponent,
     TeamComponent,
     CommunityComponent,
-    PlatformComponent],
+    PlatformComponent,
+    ContentComponent],
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ContentModule { }
