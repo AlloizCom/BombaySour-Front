@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {readUrl, validateImages} from "../../../../../shared/utils";
 
 @Component({
   selector: 'app-story-one',
@@ -7,9 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StoryOneComponent implements OnInit {
 
-  constructor() { }
+  formGroup: FormGroup;
+  image: string;
 
-  ngOnInit() {
+  constructor() {
   }
 
+  ngOnInit() {
+    this.formGroup = new FormGroup({
+      video: new FormControl(null, [validateImages]),
+      name: new FormControl('', [Validators.required])
+    });
+  }
+
+  readUrl(event) {
+    readUrl(event, (ev) => this.image = ev.target.result);
+  }
+
+  save() {
+    console.log(this.formGroup.getRawValue());
+  }
 }

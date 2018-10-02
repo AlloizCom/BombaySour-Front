@@ -4,6 +4,7 @@ import {BrowserModule} from "@angular/platform-browser";
 import {RouterModule} from "@angular/router";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import {DirectivesModule} from "../directives/directives.module";
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import {HttpClientModule} from "@angular/common/http";
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    DirectivesModule,
   ], schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class GlobalImportsModule {

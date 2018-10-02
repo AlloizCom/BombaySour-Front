@@ -1,3 +1,10 @@
-<p>
-  platform-one works!
-</p>
+<p>Platform</p>
+<form [formGroup]="formGroup" (submit)="save()">
+  <label>Text
+    <input type="text" formControlName="text">
+  </label>
+  <label>Image
+    <input type="file" accept="image/*" formControlName="image" (change)="readUrl($event)">
+  </label>
+  <img *ngIf="image&&image.length>0" [src]="image" alt="image">
+</form>

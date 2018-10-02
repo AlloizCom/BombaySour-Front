@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {readUrl, validateImages} from "../../../../../shared/utils";
 
 @Component({
   selector: 'app-team-one',
@@ -7,9 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TeamOneComponent implements OnInit {
 
-  constructor() { }
+  formGroup: FormGroup;
+  image: string;
 
-  ngOnInit() {
+  constructor() {
   }
 
+  ngOnInit() {
+    this.formGroup = new FormGroup({
+      image: new FormControl(null, [validateImages]),
+      text: new FormControl('', [Validators.required]),
+      title: new FormControl('', [Validators.required])
+    });
+  }
+
+  readUrl(event) {
+    readUrl(event, (ev) => this.image = ev.target.result);
+  }
+
+  save() {
+    console.log(this.formGroup.getRawValue());
+  }
 }

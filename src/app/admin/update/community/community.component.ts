@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Community} from "../../../../shared/models/community";
 
 @Component({
@@ -8,11 +8,23 @@ import {Community} from "../../../../shared/models/community";
 })
 export class CommunityComponent implements OnInit {
 
-  communities:Community[]=[];
+  communities: Community[] = [];
 
-  constructor() { }
+  constructor() {
+    this.test();
+  }
 
   ngOnInit() {
+  }
+
+  test() {
+    for (let i = 0; i < 10; i++) {
+      let com = new Community();
+      com.id = i;
+      com.title = `${i}  title  ${i}`;
+      com.text = `${i}  text  ${i}`;
+      this.communities.push(com);
+    }
   }
 
 }

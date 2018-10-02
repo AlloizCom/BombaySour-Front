@@ -1,4 +1,4 @@
-<div class="container" *ngFor="let one of communities">
+<div class="container" divImage [id]="one.id" *ngFor="let one of communities">
   <p>{{one.text}}</p>
   <p>{{one.title}}</p>
 </div>

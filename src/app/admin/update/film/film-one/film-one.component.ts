@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {readUrl, validateImages} from "../../../../../shared/utils";
 
 @Component({
   selector: 'app-film-one',
@@ -7,9 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FilmOneComponent implements OnInit {
 
-  constructor() { }
+  formGroup: FormGroup;
+  image: string;
 
-  ngOnInit() {
+  constructor() {
   }
 
+  ngOnInit() {
+    this.formGroup = new FormGroup({
+      video: new FormControl(null, [validateImages]),
+      name: new FormControl('', [Validators.required]),
+      director: new FormControl('', [Validators.required]),
+      id: new FormControl(null, [Validators.required])
+    });
+  }
+
+  readUrl(event) {
+    readUrl(event, (ev) => this.image = ev.target.result);
+  }
+
+  save() {
+    console.log(this.formGroup.getRawValue());
+  }
 }

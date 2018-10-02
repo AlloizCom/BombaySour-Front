@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Platform} from "../../../../shared/models/platform";
 
 @Component({
   selector: 'app-platform',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlatformComponent implements OnInit {
 
-  constructor() { }
+  platforms: Platform[] = [];
+
+  constructor() {
+    this.test();
+  }
 
   ngOnInit() {
+  }
+
+  test() {
+    for (let i = 0; i < 10; i++) {
+      let plat = new Platform();
+      plat.id = i;
+      plat.text = `${i}  text  ${i}`;
+      this.platforms.push(plat);
+    }
   }
 
 }
