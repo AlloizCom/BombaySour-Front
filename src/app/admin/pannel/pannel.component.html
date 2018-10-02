@@ -1,0 +1,18 @@
+<div class="side-pannel">
+  <div>
+    <p>Current action : {{action?action:'none'}}</p>
+  </div>
+  <hr>
+  <div>
+    <p [routerLink]="['add']">Add</p>
+    <p [routerLink]="['update']">Update</p>
+  </div>
+  <hr>
+  <div #nextRoutes [ngClass]="{'hide':!action,'show':action}">
+    <p [routerLink]="[action,'community']">Community</p>
+    <p [routerLink]="[action,'film']">Film</p>
+    <p [routerLink]="[action,'platform']">Platform</p>
+    <p [routerLink]="[action,'story']">Story</p>
+    <p [routerLink]="[action,'team']">Team</p>
+  </div>
+</div>
