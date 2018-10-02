@@ -7,7 +7,7 @@ export const adminRoutes: Routes = [
   {
     path: '', component: AdminComponent, children: [
       {path: 'add', children: adminAddRoutes},
-      {path: 'update', children: adminUpdateRoutes},
+      {path: 'update', children: adminUpdateRoutes}
     ]
   }
 ];

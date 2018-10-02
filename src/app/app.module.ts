@@ -5,6 +5,8 @@ import {mainRoutes} from "./routes";
 import {RouterModule} from "@angular/router";
 import {GlobalImportsModule} from "../shared/global-imports/global-imports.module";
 import {AdminModule} from "./admin/admin.module";
+import {SharedModule} from "./shared/shared.module";
+import {ContentModule} from './content/content.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +15,9 @@ import {AdminModule} from "./admin/admin.module";
   imports: [
     GlobalImportsModule,// add all necessary imports there, if they are useful in different modules
     RouterModule.forRoot(mainRoutes, {useHash: true}),
-    AdminModule
+    AdminModule,
+    SharedModule,
+    ContentModule
   ],
   providers: [],
   bootstrap: [AppComponent],
