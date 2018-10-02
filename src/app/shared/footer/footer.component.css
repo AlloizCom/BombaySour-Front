@@ -1,0 +1,8 @@
+footer{
+  width: 100%;
+}
+footer p{
+  margin: auto;
+  text-align: center;
+  color: #666666;
+}
