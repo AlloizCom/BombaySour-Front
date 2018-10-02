@@ -5,3 +5,7 @@
 li{
   text-transform: uppercase;
 }
+header{
+  width: 100%;
+  display: flex;
+}
