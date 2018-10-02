@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {readUrl, validateImages} from "../../../../../shared/utils";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-community-one',
@@ -12,7 +13,7 @@ export class CommunityOneComponent implements OnInit {
   formGroup: FormGroup;
   image: string;
 
-  constructor() {
+  constructor(private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -22,6 +23,7 @@ export class CommunityOneComponent implements OnInit {
       title: new FormControl('', [Validators.required]),
       id: new FormControl('')
     });
+    this.activatedRoute.params.subscribe(value => this.load(value['id']));
   }
 
   readUrl(event) {
@@ -30,6 +32,11 @@ export class CommunityOneComponent implements OnInit {
 
   save() {
     console.log(this.formGroup.getRawValue());
+  }
+
+  load(id: number) {
+      console.log('set value');
+      this.formGroup.patchValue({id: id, text: `${id}  text  ${id}`, title: `${id}  title  ${id}`});
   }
 
 }

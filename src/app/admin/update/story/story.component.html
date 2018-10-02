@@ -1,3 +1,4 @@
-<p>
-  story works!
-</p>
+<div class="container" *ngFor="let one of stories">
+  <p>{{one.name}}</p>
+  <input type="button" value="Edit" [routerLink]="[one.id]">
+</div>

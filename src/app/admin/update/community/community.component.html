@@ -1,4 +1,6 @@
-<div class="container" divImage [id]="one.id" *ngFor="let one of communities">
-  <p>{{one.text}}</p>
-  <p>{{one.title}}</p>
-</div>
+  <div class="container" divImage [id]="one.id" *ngFor="let one of communities">
+    <p>{{one.text}}</p>
+    <hr>
+    <p>{{one.title}}</p>
+    <input type="button" value="Edit" [routerLink]="[one.id]">
+  </div>

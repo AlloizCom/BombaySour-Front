@@ -22,6 +22,7 @@ export class StoryComponent implements OnInit {
       let stor = new Story();
       stor.id = i;
       stor.name = `${i}  name  ${i}`;
+      this.stories.push(stor);
     }
   }
 
