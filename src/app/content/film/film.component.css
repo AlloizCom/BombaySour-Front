@@ -4,14 +4,50 @@
     left: 50%;
     margin: -180px 0 0 -240px;
 }
-.video-background {
+.wrapper{
+  position: relative;
+  height: 600px;
+  width: 1067px;
+  overflow: hidden;
+}
+.block{
+  position: absolute;
+  height: 600px;
+  width: 1067px;
+  overflow: hidden;
+  background-color: red;
+}
+.block1{
+  z-index: 20;
+}
+.block2{
+  z-index: 19;
+}
+.block3{
+  z-index: 18;
+}
+.block4{
+   z-index: 17;
+ }
+.block5{
+  z-index: 16;
+}
+.video-background1 {
     /*  making the video fullscreen  */
-      position: fixed;
-      right: 0; 
+      right: 0;
       bottom: 0;
-      min-width: 100%; 
+      min-width: 100%;
       min-height: 100%;
-      width: auto; 
-      height: auto;
+      height: 100%;
       z-index: -100;
     }
+.video-background2 {
+  /*  making the video fullscreen  */
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  height: 100%;
+  z-index: -100;
+}
+
