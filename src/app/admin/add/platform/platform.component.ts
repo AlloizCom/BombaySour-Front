@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {readUrl, validateImages} from "../../../../shared/utils";
+import {validateImages} from "../../../../shared/utils";
 
 @Component({
   selector: 'app-platform',
@@ -17,14 +17,15 @@ export class PlatformComponent implements OnInit {
 
   ngOnInit() {
     this.formGroup = new FormGroup({
-      image: new FormControl(null, [validateImages]),
+      image: new FormControl('', [Validators.required]),
       text: new FormControl('', [Validators.required]),
       title: new FormControl('', [Validators.required])
     });
   }
 
   readUrl(event) {
-    readUrl(event, (ev) => this.image = ev.target.result);
+    this.formGroup.patchValue({image: event});
+    this.image = event;
   }
 
   save() {
