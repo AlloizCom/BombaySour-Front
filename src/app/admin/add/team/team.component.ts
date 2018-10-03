@@ -18,8 +18,8 @@ export class TeamComponent implements OnInit {
   ngOnInit() {
     this.formGroup = new FormGroup({
       image: new FormControl(null, [Validators.required]),
-      text: new FormControl('', [Validators.required]),
-      title: new FormControl('', [Validators.required])
+      biography: new FormControl('', [Validators.required]),
+      name: new FormControl('', [Validators.required])
     });
   }
 

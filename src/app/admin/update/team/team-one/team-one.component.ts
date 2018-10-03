@@ -20,9 +20,9 @@ export class TeamOneComponent implements OnInit {
 
   ngOnInit() {
     this.formGroup = new FormGroup({
-      image: new FormControl(null, [validateImages]),
-      text: new FormControl('', [Validators.required]),
-      title: new FormControl('', [Validators.required])
+      image: new FormControl(null, [Validators.required]),
+      biography: new FormControl('', [Validators.required]),
+      name: new FormControl('', [Validators.required])
     });
     this.activatedRoute.params.subscribe(value => this.load(value['id']));
   }
@@ -38,7 +38,7 @@ export class TeamOneComponent implements OnInit {
   }
 
   load(id: number) {
-    this.formGroup.patchValue({id: id, text: `${id}  text  ${id}`, title: `${id}  title  ${id}`});
+    this.formGroup.patchValue({id: id, biography: `${id}  text  ${id}`, name: `${id}  title  ${id}`});
     this.service.findOne(id).subscribe(value => this.formGroup.patchValue(value));
   }
 }

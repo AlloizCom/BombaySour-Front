@@ -19,7 +19,7 @@ export class FilmComponent implements OnInit {
   ngOnInit() {
     this.formGroup = new FormGroup({
       video: new FormControl(null, [validateImages]),
-      name: new FormControl('', [Validators.required]),
+      filmTitle: new FormControl('', [Validators.required]),
       director: new FormControl('', [Validators.required])
     });
   }

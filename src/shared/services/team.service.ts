@@ -31,6 +31,6 @@ export class TeamService {
   }
 
   delete(id: number): Observable<boolean> {
-    return this._httpClient.delete<boolean>(`${this.controller}/find-one/${id}`);
+    return this._httpClient.get<boolean>(`${this.controller}/find-one/${id}`);
   }
 }

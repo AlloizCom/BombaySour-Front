@@ -1,6 +1,6 @@
-<div class="container" divImage [id]="one.id" *ngFor="let one of teams">
-  <p>{{one.title}}</p>
-  <p>{{one.text}}</p>
+<div class="container" divImage [id]="one.id" [controller]="'team'" *ngFor="let one of teams">
+  <p>{{one.name}}</p>
+  <p>{{one.biography}}</p>
   <input type="button" value="Edit" [routerLink]="[one.id]">
   <input type="button" value="Delete" (click)="delete(one.id)">
 </div>

@@ -24,7 +24,7 @@ export class FilmComponent implements OnInit {
       let com = new Film();
       com.id = i;
       com.director = `${i}  director  ${i}`;
-      com.name = `${i}  name  ${i}`;
+      com.filmTitle = `${i}  name  ${i}`;
       this.films.push(com);
     }
   }

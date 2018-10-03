@@ -21,7 +21,7 @@ export class FilmOneComponent implements OnInit {
   ngOnInit() {
     this.formGroup = new FormGroup({
       video: new FormControl(null, [validateImages]),
-      name: new FormControl('', [Validators.required]),
+      filmTitle: new FormControl('', [Validators.required]),
       director: new FormControl('', [Validators.required]),
       id: new FormControl(null, [Validators.required])
     });
@@ -38,7 +38,10 @@ export class FilmOneComponent implements OnInit {
   }
 
   load(id: number) {
-    this.formGroup.patchValue({id: id, name: `${id}  name  ${id}`, director: `${id}  director  ${id}`});
-    this.service.findOne(id).subscribe(value => this.formGroup.patchValue(value));
+    this.formGroup.patchValue({id: id, filmTitle: `${id}  name  ${id}`, director: `${id}  director  ${id}`});
+    this.service.findOne(id).subscribe(value => {
+      this.formGroup.patchValue(value);
+      this.image = value.videoUrl;
+    });
   }
 }

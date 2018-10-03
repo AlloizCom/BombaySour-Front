@@ -23,8 +23,8 @@ export class TeamComponent implements OnInit {
     for (let i = 0; i < 10; i++) {
       let team = new Team();
       team.id = i;
-      team.text = `${i}  text  ${i}`;
-      team.title = `${i}  title  ${i}`;
+      team.biography = `${i}  text  ${i}`;
+      team.name = `${i}  title  ${i}`;
       this.teams.push(team);
     }
   }

@@ -1,4 +1,4 @@
-<div class="container" divImage [id]="one.id" *ngFor="let one of platforms">
+<div class="container" divImage [id]="one.id" [controller]="'platform'" *ngFor="let one of platforms">
   <p>{{one.text}}</p>
   <input type="button" value="Edit" [routerLink]="[one.id]">
   <input type="button" value="Delete" (click)="delete(one.id)">

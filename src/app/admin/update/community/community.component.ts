@@ -12,8 +12,8 @@ export class CommunityComponent implements OnInit {
   communities: Community[] = [];
 
   constructor(private service: CommunityService) {
-    // service.findAll().subscribe(value => this.communities = value);
-    this.test();
+    service.findAll().subscribe(value => this.communities = value);
+    // this.test();
   }
 
   ngOnInit() {
@@ -23,7 +23,7 @@ export class CommunityComponent implements OnInit {
     for (let i = 0; i < 10; i++) {
       let com = new Community();
       com.id = i;
-      com.title = `${i}  title  ${i}`;
+      com.articleTitle = `${i}  title  ${i}`;
       com.text = `${i}  text  ${i}`;
       this.communities.push(com);
     }

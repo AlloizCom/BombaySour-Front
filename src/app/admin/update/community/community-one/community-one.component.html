@@ -4,10 +4,6 @@
     <input type="text" formControlName="text">
   </label>
   <label>Title
-    <input type="text" formControlName="title">
+    <input type="text" formControlName="articleTitle">
   </label>
-  <label>Image
-    <input type="file" accept="image/*" appBase64AndProgressFile (file)="readUrl($event)">
-  </label>
-  <img *ngIf="image&&image.length>0" [src]="image" alt="image">
 </form>
