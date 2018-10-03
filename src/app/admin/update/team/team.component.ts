@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Team} from "../../../../shared/models/team";
+import {TeamService} from "../../../../shared/services/team.service";
 
 @Component({
   selector: 'app-team',
@@ -7,9 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TeamComponent implements OnInit {
 
-  constructor() { }
+  teams: Team[] = [];
+
+  constructor(private service: TeamService) {
+    this.test();
+    service.findAll().subscribe(value => this.teams = value);
+  }
 
   ngOnInit() {
+  }
+
+  test() {
+    for (let i = 0; i < 10; i++) {
+      let team = new Team();
+      team.id = i;
+      team.text = `${i}  text  ${i}`;
+      team.title = `${i}  title  ${i}`;
+      this.teams.push(team);
+    }
+  }
+
+  delete(id: number) {
+    this.service.delete(id).subscribe(value => console.log(value));
   }
 
 }

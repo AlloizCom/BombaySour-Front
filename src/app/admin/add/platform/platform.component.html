@@ -4,7 +4,7 @@
     <input type="text" formControlName="text">
   </label>
   <label>Image
-    <input type="file" accept="image/*" formControlName="image" (change)="readUrl($event)">
+    <input type="file" accept="image/*" appBase64AndProgressFile (file)="readUrl($event)">
   </label>
   <img *ngIf="image&&image.length>0" [src]="image" alt="image">
 </form>

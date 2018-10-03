@@ -1,7 +1,7 @@
 .side-pannel{
-  height: 100vh;
+  /*height: 100vh;*/
   width: 20vw;
-  border: 1px solid black ;
+  /*border: 1px solid black ;*/
 }
 
 .hide{
@@ -10,4 +10,11 @@
 
 .show{
   display: block;
+}
+p{
+  cursor: pointer;
+  outline: none;
+}
+.header p{
+  cursor: default;
 }

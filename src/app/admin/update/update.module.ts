@@ -11,12 +11,13 @@ import { FilmOneComponent } from './film/film-one/film-one.component';
 import { PlatformOneComponent } from './platform/platform-one/platform-one.component';
 import { StoryOneComponent } from './story/story-one/story-one.component';
 import { TeamOneComponent } from './team/team-one/team-one.component';
+import { UpdateComponent } from './update/update.component';
 
 @NgModule({
   imports: [
     GlobalImportsModule
   ],
-  declarations: [FilmComponent, StoryComponent, TeamComponent, CommunityComponent, PlatformComponent, CommunityOneComponent, FilmOneComponent, PlatformOneComponent, StoryOneComponent, TeamOneComponent],
+  declarations: [FilmComponent, StoryComponent, TeamComponent, CommunityComponent, PlatformComponent, CommunityOneComponent, FilmOneComponent, PlatformOneComponent, StoryOneComponent, TeamOneComponent, UpdateComponent],
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class UpdateModule { }

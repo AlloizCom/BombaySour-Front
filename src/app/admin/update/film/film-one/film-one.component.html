@@ -1,3 +1,13 @@
-<p>
-  film-one works!
-</p>
+<p>Film</p>
+<form [formGroup]="formGroup" (submit)="save()">
+  <label>Name
+    <input type="text" formControlName="name">
+  </label>
+  <label>Director
+    <input type="text" formControlName="director">
+  </label>
+  <label>Video
+    <input type="file" accept="video/*" formControlName="video" name="multipartFile" (change)="readUrl($event)">
+  </label>
+  <video *ngIf="image&&image.length>0" [src]="image"></video>
+</form>

@@ -1,0 +1,8 @@
+.container{
+  width: 18vw;
+  margin: 0 1vw 1vh;
+  border: 1px solid black;
+}
+.container > p{
+  margin: 0;
+}

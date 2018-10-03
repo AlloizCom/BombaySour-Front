@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {readUrl, validateImages} from "../../../../shared/utils";
+import {CommunityService} from "../../../../shared/services/community.service";
 
 @Component({
   selector: 'app-community',
@@ -12,23 +12,25 @@ export class CommunityComponent implements OnInit {
   formGroup: FormGroup;
   image: string;
 
-  constructor() {
+  constructor(private service: CommunityService) {
   }
 
   ngOnInit() {
     this.formGroup = new FormGroup({
-      image: new FormControl(null, [validateImages]),
+      image: new FormControl(null, [Validators.required]),
       text: new FormControl('', [Validators.required]),
       title: new FormControl('', [Validators.required])
     });
   }
 
   readUrl(event) {
-    readUrl(event, (ev) => this.image = ev.target.result);
+    this.formGroup.patchValue({image: event});
+    this.image = event;
   }
 
   save() {
     console.log(this.formGroup.getRawValue());
+    this.service.save(this.formGroup.getRawValue()).subscribe(value => console.log(value));
   }
 
 }

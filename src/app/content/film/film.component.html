@@ -1,0 +1,6 @@
+<!-- <video id='v' src="../../../shared/video/video.mp4" type="video/webm" autoplay loop muted preload="auto" playsinline>
+</video> -->
+<video autoplay (click)="toggleVideo()"  src="{{videoSource}}" #videoPlayer class="video-background" muted plays-inline loop>
+    <source src="{{videoSource}}"/>
+</video>
+<canvas #canvasEl width=400 height=400></canvas>
