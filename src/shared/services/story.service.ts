@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Story} from "../models/story";
 
@@ -25,16 +25,16 @@ export class StoryService {
   save(obj: Story,form): Observable<Story> {
     let data = new FormData(form);
     data.append('storyJson',JSON.stringify(obj));
-    return this._httpClient.post<Story>(`${this.controller}/save`, data);
+    return this._httpClient.post<Story>(`${this.controller}/save`, data,{headers:new HttpHeaders().append('enctype','enctype')});
   }
 
   update(obj: Story,form): Observable<Story> {
     let data = new FormData(form);
     data.append('storyJson',JSON.stringify(obj));
-    return this._httpClient.post<Story>(`${this.controller}/update`, data);
+    return this._httpClient.post<Story>(`${this.controller}/update`, data,{headers:new HttpHeaders().append('enctype','enctype')});
   }
 
   delete(id: number): Observable<boolean> {
-    return this._httpClient.get<boolean>(`${this.controller}/find-one/${id}`);
+    return this._httpClient.get<boolean>(`${this.controller}/delete/${id}`);
   }
 }

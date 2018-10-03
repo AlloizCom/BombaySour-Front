@@ -12,8 +12,8 @@ export class StoryComponent implements OnInit {
   stories: Story[] = [];
 
   constructor(private service: StoryService) {
-    this.test();
-    // service.findAll().subscribe(value => this.stories = value);
+    // this.test();
+    service.findAll().subscribe(value => this.stories = value);
   }
 
   ngOnInit() {
@@ -23,13 +23,16 @@ export class StoryComponent implements OnInit {
     for (let i = 0; i < 10; i++) {
       let stor = new Story();
       stor.id = i;
-      stor.filmTitle = `${i}  name  ${i}`;
+      stor.name = `${i}  name  ${i}`;
       this.stories.push(stor);
     }
   }
 
   delete(id: number) {
-    this.service.delete(id).subscribe(value => console.log(value));
+    this.service.delete(id).subscribe(value => {
+      if (value)
+        this.stories = this.stories.filter(value1 => value1.id != id);
+    });
   }
 
 }

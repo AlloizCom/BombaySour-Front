@@ -30,7 +30,10 @@ export class CommunityComponent implements OnInit {
   }
 
   delete(id: number) {
-    this.service.delete(id).subscribe(value => console.log(value));
+    this.service.delete(id).subscribe(value => {
+      if (value)
+        this.communities = this.communities.filter(value1 => value1.id != id);
+    });
   }
 
 }

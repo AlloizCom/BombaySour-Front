@@ -12,8 +12,8 @@ export class FilmComponent implements OnInit {
   films: Film[] = [];
 
   constructor(private service: FilmService) {
-    // service.findAll().subscribe(value => this.films = value);
-    this.test();
+    service.findAll().subscribe(value => this.films = value);
+    // this.test();
   }
 
   ngOnInit() {
@@ -30,7 +30,10 @@ export class FilmComponent implements OnInit {
   }
 
   delete(id: number) {
-    this.service.delete(id).subscribe(value => console.log(value));
+    this.service.delete(id).subscribe(value => {
+      if (value)
+        this.films = this.films.filter(value1 => value1.id != id);
+    });
   }
 
 }

@@ -7,4 +7,5 @@
     <input type="file" accept="image/*" formControlName="image" appBase64AndProgressFile (file)="readUrl($event)">
   </label>
   <img *ngIf="image&&image.length>0" [src]="image" alt="image">
+  <input type="submit" value="Update">
 </form>

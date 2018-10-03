@@ -19,7 +19,6 @@ export class PlatformComponent implements OnInit {
     this.formGroup = new FormGroup({
       image: new FormControl('', [Validators.required]),
       text: new FormControl('', [Validators.required]),
-      title: new FormControl('', [Validators.required])
     });
   }
 
@@ -29,7 +28,7 @@ export class PlatformComponent implements OnInit {
   }
 
   save() {
-    console.log(this.formGroup.getRawValue());
+    // console.log(this.formGroup.getRawValue());
     this.service.save(this.formGroup.getRawValue()).subscribe(value => console.log(value));
   }
 

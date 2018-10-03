@@ -7,4 +7,5 @@
     <input type="file" accept="video/*" formControlName="video" name="multipartFile" (change)="readUrl($event)">
   </label>
   <video *ngIf="image&&image.length>0" [src]="image"></video>
+  <input type="submit" value="Update">
 </form>

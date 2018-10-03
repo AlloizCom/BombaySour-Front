@@ -12,7 +12,7 @@ export class TeamComponent implements OnInit {
   teams: Team[] = [];
 
   constructor(private service: TeamService) {
-    this.test();
+    // this.test();
     service.findAll().subscribe(value => this.teams = value);
   }
 
@@ -30,7 +30,10 @@ export class TeamComponent implements OnInit {
   }
 
   delete(id: number) {
-    this.service.delete(id).subscribe(value => console.log(value));
+    this.service.delete(id).subscribe(value => {
+      if (value)
+        this.teams = this.teams.filter(value1 => value1.id != id);
+    });
   }
 
 }

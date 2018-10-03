@@ -12,8 +12,8 @@ export class PlatformComponent implements OnInit {
   platforms: Platform[] = [];
 
   constructor(private service: PlatformService) {
-    this.test();
-    // service.findAll().subscribe(value => this.platforms = value);
+    // this.test();
+    service.findAll().subscribe(value => this.platforms = value);
   }
 
   ngOnInit() {
@@ -29,7 +29,10 @@ export class PlatformComponent implements OnInit {
   }
 
   delete(id: number) {
-    this.service.delete(id).subscribe(value => console.log(value));
+    this.service.delete(id).subscribe(value => {
+      if (value)
+        this.platforms = this.platforms.filter(value1 => value1.id != id);
+    });
   }
 
 }

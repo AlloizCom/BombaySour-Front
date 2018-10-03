@@ -23,14 +23,18 @@ export class PlatformService {
   }
 
   save(obj: Platform): Observable<Platform> {
+    // let data = new FormData();
+    // data.append('platformJson',JSON.stringify(obj));
     return this._httpClient.post<Platform>(`${this.controller}/save`, obj);
   }
 
   update(obj: Platform): Observable<Platform> {
+    // let data = new FormData();
+    // data.append('platformJson',JSON.stringify(obj));
     return this._httpClient.post<Platform>(`${this.controller}/update`, obj);
   }
 
   delete(id: number): Observable<boolean> {
-    return this._httpClient.get<boolean>(`${this.controller}/find-one/${id}`);
+    return this._httpClient.get<boolean>(`${this.controller}/delete/${id}`);
   }
 }

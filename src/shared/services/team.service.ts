@@ -23,14 +23,18 @@ export class TeamService {
   }
 
   save(obj: Team): Observable<Team> {
+    // let data = new FormData();
+    // data.append('teamJson', JSON.stringify(obj));
     return this._httpClient.post<Team>(`${this.controller}/save`, obj);
   }
 
   update(obj: Team): Observable<Team> {
+    // let data = new FormData();
+    // data.append('teamJson', JSON.stringify(obj));
     return this._httpClient.post<Team>(`${this.controller}/update`, obj);
   }
 
   delete(id: number): Observable<boolean> {
-    return this._httpClient.get<boolean>(`${this.controller}/find-one/${id}`);
+    return this._httpClient.get<boolean>(`${this.controller}/delete/${id}`);
   }
 }
