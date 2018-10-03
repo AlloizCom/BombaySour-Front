@@ -1,4 +1,5 @@
 <div class="container" *ngFor="let one of stories">
   <p>{{one.name}}</p>
   <input type="button" value="Edit" [routerLink]="[one.id]">
+  <input type="button" value="Delete" (click)="delete(one.id)">
 </div>

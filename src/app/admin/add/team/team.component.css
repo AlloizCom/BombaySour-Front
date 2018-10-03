@@ -1,0 +1,9 @@
+img{
+  display: block;
+  width: 20vw;
+  height: 20vh;
+}
+form>label{
+  display: block;
+  margin-bottom: 1vh;
+}

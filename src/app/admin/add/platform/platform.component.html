@@ -7,4 +7,5 @@
     <input type="file" accept="image/*" appBase64AndProgressFile (file)="readUrl($event)">
   </label>
   <img *ngIf="image&&image.length>0" [src]="image" alt="image">
+  <button type="submit" [disabled]="formGroup.invalid">Save</button>
 </form>

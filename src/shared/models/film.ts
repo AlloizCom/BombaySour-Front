@@ -1,6 +1,6 @@
 export class Film {
   id:number;
-  name:string;
-  video:string;
+  filmTitle:string;
+  videoUrl:string;
   director:string;
 }
