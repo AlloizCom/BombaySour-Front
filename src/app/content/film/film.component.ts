@@ -8,9 +8,11 @@ import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/
 export class FilmComponent implements OnInit, AfterViewInit{
   /** Template reference to the canvas element */
   @ViewChild('canvasEl') canvasEl: ElementRef;
+  @ViewChild('videoPlayer') videoplayer: any;
 
   /** Canvas 2d context */
   private context: CanvasRenderingContext2D;
+  videoSource: string = "https://player.vimeo.com/external/158148793.hd.mp4?s=8e8741dbee251d5c35a759718d4b0976fbf38b6f&profile_id=119&oauth2_token_id=57447761";
 
   constructor() {}
 
@@ -29,6 +31,10 @@ export class FilmComponent implements OnInit, AfterViewInit{
     this.context.lineTo(300,150);
     this.context.stroke();
   }
+
+  toggleVideo(event: any) {
+    this.videoplayer.nativeElement.play();
+}
 
   ngOnInit(): void {
   }
