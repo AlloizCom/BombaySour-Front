@@ -1,6 +1,53 @@
 <!-- <video id='v' src="../../../shared/video/video.mp4" type="video/webm" autoplay loop muted preload="auto" playsinline>
 </video> -->
-<video autoplay (click)="toggleVideo()"  src="{{videoSource}}" #videoPlayer class="video-background" muted plays-inline loop>
-    <source src="{{videoSource}}"/>
-</video>
-<canvas #canvasEl width=400 height=400></canvas>
+<div class="wrapper">
+  <div class="block block1" [@openClose1]="isOpen ? 'open' : 'closed'" >
+    <video autoplay (click)="toggle()"
+           src="{{videoSource}}"
+           #videoPlayer
+           class="video-background1"
+           muted plays-inline loop>
+      <source src="{{videoSource}}"/>
+    </video>
+  </div>
+  <div class="block block2" [@openClose2]="isOpen ? 'open' : 'closed'" >
+    <video autoplay (click)="toggle()"
+           src="{{videoSource}}"
+           #videoPlayer
+           class="video-background2"
+           muted plays-inline loop>
+      <source src="{{videoSource}}"/>
+    </video>
+  </div>
+  <div class="block block3" [@openClose3]="isOpen ? 'open' : 'closed'" >
+    <video autoplay (click)="toggle()"
+           src="{{videoSource}}"
+           #videoPlayer
+           class="video-background2"
+           muted plays-inline loop>
+      <source src="{{videoSource}}"/>
+    </video>
+  </div>
+  <div class="block block4" [@openClose4]="isOpen ? 'open' : 'closed'" >
+    <video autoplay (click)="toggle()"
+           src="{{videoSource}}"
+           #videoPlayer
+           class="video-background2"
+           muted plays-inline loop>
+      <source src="{{videoSource}}"/>
+    </video>
+  </div>
+  <div class="block block5" [@openClose5]="isOpen ? 'open' : 'closed'" >
+    <video autoplay (click)="toggle()"
+           src="{{videoSource}}"
+           #videoPlayer
+           class="video-background2"
+           muted plays-inline loop>
+      <source src="{{videoSource}}"/>
+    </video>
+  </div>
+
+</div>
+
+
+<!--<canvas #canvasEl width=400 height=400></canvas>-->

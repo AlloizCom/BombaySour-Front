@@ -6,13 +6,14 @@ import {TeamComponent} from './team/team.component';
 import {CommunityComponent} from './community/community.component';
 import {PlatformComponent} from './platform/platform.component';
 import {GlobalImportsModule} from '../../shared/global-imports/global-imports.module';
-import {ContentComponent} from './content/content.component';
-import {SharedModule} from "../shared/shared.module";
+import { ContentComponent } from './content/content.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
     CommonModule,
-    GlobalImportsModule, SharedModule
+    GlobalImportsModule,
+    BrowserAnimationsModule
   ],
   declarations: [
     FilmComponent,
