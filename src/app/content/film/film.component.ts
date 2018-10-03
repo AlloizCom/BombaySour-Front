@@ -101,10 +101,10 @@ import {trigger, state, style, animate, transition} from '@angular/animations';
         transform: 'translate(0px)'
       })),
       transition('open => closed', [
-        animate('1.2s ease')
+        animate('1s ease')
       ]),
       transition('closed => open', [
-        animate('1.2s ease')
+        animate('1s ease')
       ]),
     ]),
     trigger('openClose22', [
@@ -118,10 +118,10 @@ import {trigger, state, style, animate, transition} from '@angular/animations';
         transform: 'translate(0px)'
       })),
       transition('open => closed', [
-        animate('0.6s ease')
+        animate('1.2s ease')
       ]),
       transition('closed => open', [
-        animate('0.6s ease')
+        animate('1.2s ease')
       ]),
     ]),
     trigger('openClose33', [
@@ -135,10 +135,10 @@ import {trigger, state, style, animate, transition} from '@angular/animations';
         transform: 'translate(0px)'
       })),
       transition('open => closed', [
-        animate('1.2s ease')
+        animate('1s ease')
       ]),
       transition('closed => open', [
-        animate('1.2s ease')
+        animate('1s ease')
       ]),
     ]),
     trigger('openClose44', [
@@ -152,10 +152,10 @@ import {trigger, state, style, animate, transition} from '@angular/animations';
         transform: 'translate(0px)'
       })),
       transition('open => closed', [
-        animate('1.1s ease')
+        animate('1.2s ease')
       ]),
       transition('closed => open', [
-        animate('1.1s ease')
+        animate('1.2s ease')
       ]),
     ]),
     trigger('openClose55', [
@@ -188,7 +188,7 @@ export class FilmComponent implements OnInit, AfterViewInit{
   /** Canvas 2d context */
   private context: CanvasRenderingContext2D;
   videoSource: string = "https://player.vimeo.com/external/158148793.hd.mp4?s=8e8741dbee251d5c35a759718d4b0976fbf38b6f&profile_id=119&oauth2_token_id=57447761";
-  videoSource1: string = "http://clips.vorwaerts-gmbh.de/VfE_html5.mp4";
+  videoSource1: string = "http://techslides.com/demos/sample-videos/small.mp4";
   constructor() {}
 
   ngAfterViewInit() {
