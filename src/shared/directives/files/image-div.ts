@@ -23,7 +23,7 @@ export class DivMainImageDirective implements OnInit {
     // }
     this.service.findOne(this.id, this.controller).subscribe(next => {
       this.element.nativeElement.style.backgroundSize = 'cover';
-      this.element.nativeElement.style.backgroundImage = `url(${next})`;
+      this.element.nativeElement.style.backgroundImage = `url(${next.body})`;
     }, err => {
       console.error(err);
     });

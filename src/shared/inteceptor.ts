@@ -56,7 +56,7 @@ export class MyInterceptor implements HttpInterceptor {
         }
       }
     }
-    headers = headers.append('Accept', 'application/json');
+    // headers = headers.append('Accept', 'application/json');
     return headers;
   }
 }
