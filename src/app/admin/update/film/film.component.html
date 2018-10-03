@@ -2,4 +2,5 @@
   <p>{{one.name}}</p>
   <p>{{one.director}}</p>
   <input type="button" value="Edit" [routerLink]="[one.id]">
+  <input type="button" value="Delete" (click)="delete(one.id)">
 </div>

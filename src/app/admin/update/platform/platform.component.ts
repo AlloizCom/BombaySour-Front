@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Platform} from "../../../../shared/models/platform";
+import {PlatformService} from "../../../../shared/services/platform.service";
 
 @Component({
   selector: 'app-platform',
@@ -10,8 +11,9 @@ export class PlatformComponent implements OnInit {
 
   platforms: Platform[] = [];
 
-  constructor() {
+  constructor(private service: PlatformService) {
     this.test();
+    // service.findAll().subscribe(value => this.platforms = value);
   }
 
   ngOnInit() {
@@ -24,6 +26,10 @@ export class PlatformComponent implements OnInit {
       plat.text = `${i}  text  ${i}`;
       this.platforms.push(plat);
     }
+  }
+
+  delete(id: number) {
+    this.service.delete(id).subscribe(value => console.log(value));
   }
 
 }

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {readUrl, validateImages} from "../../../../shared/utils";
+import {FilmService} from "../../../../shared/services/film.service";
 
 @Component({
   selector: 'app-film',
@@ -12,7 +13,7 @@ export class FilmComponent implements OnInit {
   formGroup: FormGroup;
   image: string;
 
-  constructor() {
+  constructor(private service: FilmService) {
   }
 
   ngOnInit() {
@@ -27,8 +28,9 @@ export class FilmComponent implements OnInit {
     readUrl(event, (ev) => this.image = ev.target.result);
   }
 
-  save() {
+  save(form) {
     console.log(this.formGroup.getRawValue());
+    this.service.save(this.formGroup.getRawValue(), form).subscribe(value => console.log(value));
   }
 
 }

@@ -5,6 +5,7 @@ import {RouterModule} from "@angular/router";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {DirectivesModule} from "../directives/directives.module";
+import {serviceProvider} from "../services/service.provider";
 
 @NgModule({
   imports: [
@@ -19,7 +20,9 @@ import {DirectivesModule} from "../directives/directives.module";
     FormsModule,
     ReactiveFormsModule,
     DirectivesModule,
-  ], schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  ],
+  providers: [...serviceProvider],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class GlobalImportsModule {
 }

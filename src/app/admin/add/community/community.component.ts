@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {validateImages} from "../../../../shared/utils";
+import {CommunityService} from "../../../../shared/services/community.service";
 
 @Component({
   selector: 'app-community',
@@ -12,7 +12,7 @@ export class CommunityComponent implements OnInit {
   formGroup: FormGroup;
   image: string;
 
-  constructor() {
+  constructor(private service: CommunityService) {
   }
 
   ngOnInit() {
@@ -30,6 +30,7 @@ export class CommunityComponent implements OnInit {
 
   save() {
     console.log(this.formGroup.getRawValue());
+    this.service.save(this.formGroup.getRawValue()).subscribe(value => console.log(value));
   }
 
 }

@@ -4,7 +4,7 @@
     <input type="text" formControlName="name">
   </label>
   <label>Video
-    <input type="file" accept="video/*" formControlName="video" (change)="readUrl($event)">
+    <input type="file" accept="video/*" formControlName="video" name="multipartFile" (change)="readUrl($event)">
   </label>
   <video *ngIf="image&&image.length>0" [src]="image"></video>
 </form>

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {readUrl, validateImages} from "../../../../shared/utils";
+import {StoryService} from "../../../../shared/services/story.service";
 
 @Component({
   selector: 'app-story',
@@ -12,7 +13,7 @@ export class StoryComponent implements OnInit {
   formGroup: FormGroup;
   image: string;
 
-  constructor() {
+  constructor(private service: StoryService) {
   }
 
   ngOnInit() {
@@ -26,8 +27,9 @@ export class StoryComponent implements OnInit {
     readUrl(event, (ev) => this.image = ev.target.result);
   }
 
-  save() {
+  save(form) {
     console.log(this.formGroup.getRawValue());
+    this.service.save(this.formGroup.getRawValue(), form).subscribe(value => console.log(value));
   }
 
 }

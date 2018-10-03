@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Community} from "../../../../shared/models/community";
+import {CommunityService} from "../../../../shared/services/community.service";
 
 @Component({
   selector: 'app-community',
@@ -10,7 +11,8 @@ export class CommunityComponent implements OnInit {
 
   communities: Community[] = [];
 
-  constructor() {
+  constructor(private service: CommunityService) {
+    // service.findAll().subscribe(value => this.communities = value);
     this.test();
   }
 
@@ -25,6 +27,10 @@ export class CommunityComponent implements OnInit {
       com.text = `${i}  text  ${i}`;
       this.communities.push(com);
     }
+  }
+
+  delete(id: number) {
+    this.service.delete(id).subscribe(value => console.log(value));
   }
 
 }

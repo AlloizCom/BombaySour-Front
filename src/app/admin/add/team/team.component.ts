@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {validateImages} from "../../../../shared/utils";
+import {TeamService} from "../../../../shared/services/team.service";
 
 @Component({
   selector: 'app-team',
@@ -12,7 +12,7 @@ export class TeamComponent implements OnInit {
   formGroup: FormGroup;
   image: string;
 
-  constructor() {
+  constructor(private service: TeamService) {
   }
 
   ngOnInit() {
@@ -30,6 +30,7 @@ export class TeamComponent implements OnInit {
 
   save() {
     console.log(this.formGroup.getRawValue());
+    this.service.save(this.formGroup.getRawValue()).subscribe(value => console.log(value));
   }
 
 }
