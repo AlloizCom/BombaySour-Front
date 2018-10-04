@@ -1,3 +1,7 @@
-<p>
-  team works!
-</p>
+<div *ngFor="let one of teams; let i = index" class="container">
+  <div *ngIf="i%2==0" class="text left">{{one.biography}}</div>
+  <div divImage [id]="one.id" [controller]="'team'" class="image">
+    <p>{{one.name}}</p>
+  </div>
+  <div *ngIf="i%2==1" class="text right">{{one.biography}}</div>
+</div>

@@ -8,20 +8,25 @@ import {PlatformComponent} from './platform/platform.component';
 import {GlobalImportsModule} from '../../shared/global-imports/global-imports.module';
 import { ContentComponent } from './content/content.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NavigatorComponent} from "./navigator/navigator.component";
+import {SharedModule} from "../shared/shared.module";
 
 @NgModule({
   imports: [
     CommonModule,
     GlobalImportsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    SharedModule
   ],
   declarations: [
+    NavigatorComponent,
     FilmComponent,
     StoryComponent,
     TeamComponent,
     CommunityComponent,
     PlatformComponent,
-    ContentComponent],
+    ContentComponent
+  ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ContentModule {

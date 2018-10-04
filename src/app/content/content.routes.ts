@@ -5,10 +5,12 @@ import {PlatformComponent} from './platform/platform.component';
 import {Routes} from '@angular/router';
 import {CommunityComponent} from './community/community.component';
 import {ContentComponent} from "./content/content.component";
+import {NavigatorComponent} from "./navigator/navigator.component";
 
 export const contentRoutes: Routes = [
   {
     path: '', component: ContentComponent, children: [
+      {path: '', component: NavigatorComponent},
       {path: 'film', component: FilmComponent},
       {path: 'story', component: StoryComponent},
       {path: 'platform', component: PlatformComponent},
