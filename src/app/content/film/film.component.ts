@@ -8,171 +8,171 @@ import {trigger, state, style, animate, transition} from '@angular/animations';
   animations: [ trigger('openClose1', [
     // ...
     state('open', style({
-      width: '100px',
-      transform: 'translate(1059px)'
+      width: '0px',
+      transform: 'translate(100vw)'
     })),
     state('closed', style({
-      width: '212px',
+      width: '20vw',
       transform: 'translate(0px)'
     })),
     transition('open => closed', [
-      animate('1s ease')
+      animate('1.1s ease-in-out')
     ]),
     transition('closed => open', [
-      animate('1s ease')
+      animate('1.1s 200ms ease-in-out')
     ]),
   ]),
     trigger('openClose2', [
       // ...
       state('open', style({
-        width: '100px',
-        transform: 'translate(1059px)'
+        width: '0px',
+        transform: 'translate(100vw)'
       })),
       state('closed', style({
-        width: '424px',
+        width: '40vw',
         transform: 'translate(0px)'
       })),
       transition('open => closed', [
-        animate('1.1s ease')
+        animate('1s ease-in-out')
       ]),
       transition('closed => open', [
-        animate('1.1s ease')
+        animate('1s 200ms ease-in-out')
       ]),
     ]),
     trigger('openClose3', [
       // ...
       state('open', style({
-        width: '100px',
-        transform: 'translate(1059px)'
+        width: '0px',
+        transform: 'translate(100vw)'
       })),
       state('closed', style({
-        width: '636px',
+        width: '60vw',
         transform: 'translate(0px)'
       })),
       transition('open => closed', [
-        animate('1s ease')
+        animate('1.1s ease-in-out')
       ]),
       transition('closed => open', [
-        animate('1s ease')
+        animate('1.1s 200ms ease-in-out')
       ]),
     ]),
     trigger('openClose4', [
       // ...
       state('open', style({
-        width: '100px',
-        transform: 'translate(1059px)'
+        width: '0px',
+        transform: 'translate(100vw)'
       })),
       state('closed', style({
-        width: '848px',
+        width: '80vw',
         transform: 'translate(0px)'
       })),
       transition('open => closed', [
-        animate('1.1s ease')
+        animate('1s ease-in-out')
       ]),
       transition('closed => open', [
-        animate('1.1s ease')
+        animate('1s 200ms ease-in-out')
       ]),
     ]),
     trigger('openClose5', [
       // ...
       state('open', style({
-        width: '100px',
-        transform: 'translate(1059px)'
+        width: '0px',
+        transform: 'translate(100vw)'
       })),
       state('closed', style({
-        width: '1060px',
+        width: '100vw',
         transform: 'translate(0px)'
       })),
       transition('open => closed', [
-        animate('1s ease')
+        animate('1.1s ease-in-out')
       ]),
       transition('closed => open', [
-        animate('1s ease')
+        animate('1.1s 400ms ease-in-out')
       ]),
     ]),
     trigger('openClose11', [
       // ...
       state('open', style({
-        width: '212px',
-        transform: 'translate(-205px)'
+        width: '0px',
+        transform: 'translate(-20vw)'
       })),
       state('closed', style({
-        width: '212px',
+        width: '20vw',
         transform: 'translate(0px)'
       })),
       transition('open => closed', [
-        animate('1s ease')
+        animate('1s ease-in-out')
       ]),
       transition('closed => open', [
-        animate('1s ease')
+        animate('1s 200ms ease-in-out')
       ]),
     ]),
     trigger('openClose22', [
       // ...
       state('open', style({
-        width: '424px',
-        transform: 'translate(-417px)'
+        width: '0px',
+        transform: 'translate(-40vw)'
       })),
       state('closed', style({
-        width: '424px',
+        width: '40vw',
         transform: 'translate(0px)'
       })),
       transition('open => closed', [
-        animate('1.2s ease')
+        animate('1.1s ease-in-out')
       ]),
       transition('closed => open', [
-        animate('1.2s ease')
+        animate('1.1s 200ms ease-in-out')
       ]),
     ]),
     trigger('openClose33', [
       // ...
       state('open', style({
-        width: '636px',
-        transform: 'translate(-630px)'
+        width: '0px',
+        transform: 'translate(-60vw)'
       })),
       state('closed', style({
-        width: '636px',
+        width: '60vw',
         transform: 'translate(0px)'
       })),
       transition('open => closed', [
-        animate('1s ease')
+        animate('1s ease-in-out')
       ]),
       transition('closed => open', [
-        animate('1s ease')
+        animate('1s 200ms ease-in-out')
       ]),
     ]),
     trigger('openClose44', [
       // ...
       state('open', style({
-        width: '848px',
-        transform: 'translate(-842px)'
+        width: '0px',
+        transform: 'translate(-80vw)'
       })),
       state('closed', style({
-        width: '848px',
+        width: '80vw',
         transform: 'translate(0px)'
       })),
       transition('open => closed', [
-        animate('1.2s ease')
+        animate('1.1s ease-in-out')
       ]),
       transition('closed => open', [
-        animate('1.2s ease')
+        animate('1.1s 200ms ease-in-out')
       ]),
     ]),
     trigger('openClose55', [
       // ...
       state('open', style({
-        width: '1060px',
-        transform: 'translate(-1053px)'
+        width: '0px',
+        transform: 'translate(-100vw)'
       })),
       state('closed', style({
-        width: '1060px',
+        width: '100vw',
         transform: 'translate(0px)'
       })),
       transition('open => closed', [
-        animate('1s ease')
+        animate('1s ease-in-out')
       ]),
       transition('closed => open', [
-        animate('1s ease')
+        animate('1s 400ms ease-in-out')
       ]),
     ])]
 })
@@ -189,6 +189,7 @@ export class FilmComponent implements OnInit, AfterViewInit{
   private context: CanvasRenderingContext2D;
   videoSource: string = "https://player.vimeo.com/external/158148793.hd.mp4?s=8e8741dbee251d5c35a759718d4b0976fbf38b6f&profile_id=119&oauth2_token_id=57447761";
   videoSource1: string = "http://techslides.com/demos/sample-videos/small.mp4";
+  videoSource2: string ="https://www.w3schools.com/howto/rain.mp4";
   constructor() {}
 
   ngAfterViewInit() {
