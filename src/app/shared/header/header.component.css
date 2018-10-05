@@ -37,6 +37,7 @@ header {
   justify-content: space-between;
   width: 100%;
   display: flex;
+  z-index: 20;
 }
 
 a {

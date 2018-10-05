@@ -33,3 +33,13 @@
   margin-right: auto;
   margin-left: 0;
 }
+
+.main-container {
+  overflow: hidden;
+  height: calc(100vh - 40px);
+}
+
+.scrollable {
+  margin-top: 70px;
+  transform: translate3d(0, 0, 0);
+}

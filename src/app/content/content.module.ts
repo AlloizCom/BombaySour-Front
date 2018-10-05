@@ -6,8 +6,7 @@ import {TeamComponent} from './team/team.component';
 import {CommunityComponent} from './community/community.component';
 import {PlatformComponent} from './platform/platform.component';
 import {GlobalImportsModule} from '../../shared/global-imports/global-imports.module';
-import { ContentComponent } from './content/content.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ContentComponent} from './content/content.component';
 import {NavigatorComponent} from "./navigator/navigator.component";
 import {SharedModule} from "../shared/shared.module";
 
@@ -15,8 +14,7 @@ import {SharedModule} from "../shared/shared.module";
   imports: [
     CommonModule,
     GlobalImportsModule,
-    BrowserAnimationsModule,
-    SharedModule
+    SharedModule,
   ],
   declarations: [
     NavigatorComponent,
