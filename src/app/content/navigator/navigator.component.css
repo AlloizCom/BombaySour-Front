@@ -69,22 +69,45 @@ main{
   background-size:cover ;
 }
 .wrapper:hover{
+  transition: 1.2s;
+  transform: scale(1.15);
+  filter:blur(2.5px);
+}
+
+
+
+.wrapper:hover ~  button{
+  display: flex;
+}
+button{
+  margin: auto;
+  display: flex;
+  position: relative;
+  top:-200px;
+  display: none;
+  transition: 1.2s;
+}
+button:hover {
+   display: flex;
+
+}
+button:hover ~  .wrapper{
   transition: 0.7s;
-  transform: scale(1.2);
-  filter:blur(2.5);
+  transform: scale(1.15);
+  filter:blur(2.5px);
+
 }
 
-button:hover{
-  opacity: 1;
-}
-
-.wrapper button{
-  height: 10%;
+ button{
+  height: 40px;
   border-radius: 20px;
   width: 120px;
   border: none;
   font-weight: bold;
-  background-color: #e51c4f;
+  background-color: #000000;
   color: white;
   margin: auto;
+   text-align: center;
+   justify-content: center;
+   opacity: 0.7;
 }
