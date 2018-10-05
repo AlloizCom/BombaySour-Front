@@ -1,11 +1,13 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {trigger, state, style, animate, transition} from '@angular/animations';
+import {st} from '@angular/core/src/render3';
+import {el} from '@angular/platform-browser/testing/src/browser_util';
 
 @Component({
   selector: 'app-film',
   templateUrl: './film.component.html',
   styleUrls: ['./film.component.css'],
-  animations: [ trigger('openClose1', [
+  animations: [trigger('openClose1', [
     // ...
     state('open', style({
       width: '0px',
@@ -176,21 +178,31 @@ import {trigger, state, style, animate, transition} from '@angular/animations';
       ]),
     ])]
 })
-export class FilmComponent implements OnInit, AfterViewInit{
+export class FilmComponent implements OnInit, AfterViewInit {
   isOpen = true;
   isOpen1 = false;
+  displayNone1: boolean = false;
+  displayNone2: boolean = false;
+  videoSource: string = 'https://player.vimeo.com/external/158148793.hd.mp4?s=8e8741dbee251d5c35a759718d4b0976fbf38b6f&profile_id=119&oauth2_token_id=57447761';
+  videoSource1: string = 'http://techslides.com/demos/sample-videos/small.mp4';
+  videoSource2: string = 'https://www.w3schools.com/howto/rain.mp4';
+
+  constructor() {
+  }
 
   toggle() {
     this.isOpen = !this.isOpen;
     this.isOpen1 = !this.isOpen1;
-  }
+    this.displayNone1 =false;
+    this.displayNone2 = false;
 
-  /** Canvas 2d context */
-  private context: CanvasRenderingContext2D;
-  videoSource: string = "https://player.vimeo.com/external/158148793.hd.mp4?s=8e8741dbee251d5c35a759718d4b0976fbf38b6f&profile_id=119&oauth2_token_id=57447761";
-  videoSource1: string = "http://techslides.com/demos/sample-videos/small.mp4";
-  videoSource2: string ="https://www.w3schools.com/howto/rain.mp4";
-  constructor() {}
+      setTimeout(() => {
+        this.displayNone1 =true;
+        this.displayNone2 = true;
+      }, 1100);
+
+
+  }
 
   ngAfterViewInit() {
 
