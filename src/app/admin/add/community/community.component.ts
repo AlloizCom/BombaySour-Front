@@ -17,6 +17,7 @@ export class CommunityComponent implements OnInit {
 
   ngOnInit() {
     this.formGroup = new FormGroup({
+      image: new FormControl('', [Validators.required]),
       text: new FormControl('', [Validators.required]),
       articleTitle: new FormControl('', [Validators.required])
     });
