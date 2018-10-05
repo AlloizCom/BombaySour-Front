@@ -18,8 +18,8 @@ li {
 
 .logo {
   width: 20%;
-  background: #000;
   height: 70px;
+  background-image: url('.././../../assets/img/bg.psd');
 }
 
 img {
