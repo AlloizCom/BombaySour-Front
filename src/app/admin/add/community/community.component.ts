@@ -23,6 +23,10 @@ export class CommunityComponent implements OnInit {
     });
   }
 
+  readUrl(event) {
+    this.formGroup.patchValue({image: event});
+    this.image = event;
+  }
   save() {
     console.log(this.formGroup.getRawValue());
     this.service.save(this.formGroup.getRawValue()).subscribe(value => console.log(value),err=>console.error(err));

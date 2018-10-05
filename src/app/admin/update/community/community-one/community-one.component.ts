@@ -26,6 +26,11 @@ export class CommunityOneComponent implements OnInit {
     this.activatedRoute.params.subscribe(value => this.load(value['id']));
   }
 
+  readUrl(event) {
+    this.formGroup.patchValue({image: event});
+    this.image = event;
+  }
+
   save() {
     console.log(this.formGroup.getRawValue());
     this.service.update(this.formGroup.getRawValue()).subscribe(value => console.log(value));
@@ -33,7 +38,10 @@ export class CommunityOneComponent implements OnInit {
 
   load(id: number) {
     console.log('set value');
-    this.service.findOne(id).subscribe(value => this.formGroup.patchValue(value));
+    this.service.findOne(id).subscribe(value => {
+      this.formGroup.patchValue(value);
+      this.image = value.image
+    });
     // this.formGroup.patchValue({id: id, text: `${id}  text  ${id}`, articleTitle: `${id}  articleTitle  ${id}`});
   }
 
