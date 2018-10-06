@@ -51,3 +51,22 @@ a {
   background-color: #1a1a1a;
   margin: 0 3px 0 8px;
 }
+a{
+  -webkit-transition: width 0.7s, ease-in;
+  -moz-transition: width 0.7s, ease-in;
+  -o-transition: width 0.7s, ease-in;
+  transition: width 0.7s, ease-in;
+}
+
+.underscore {
+  width: 0;
+  height: 3px;
+  background: black;
+}
+li a:hover .underscore{
+  width: auto;
+  -webkit-transition: all 0.7s, ease-in;
+  -moz-transition: all 0.7s, ease-in;
+  -o-transition: all 0.7s, ease-in;
+  transition: all 0.7s, ease-in;
+}
