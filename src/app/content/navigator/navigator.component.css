@@ -1,0 +1,113 @@
+*{
+  font-family: sans-serif;
+}
+
+main{
+  display: flex;
+  width: 92%;
+  margin: auto;
+  justify-content: space-between;
+}
+.wrapper{
+  width: 100%;
+  height: 300px;
+  display: flex;
+  transition: 0.75s ease-in-out;
+
+  background-color: rosybrown;
+}
+.navigate{
+  width: 18%;
+  margin-top: 10%;
+}
+.navigate-community{
+  margin-top: 20%;
+}
+.navigate-platform{
+  margin-top: 15%;
+}
+.navigate-team{
+  margin-top: 20%;
+}
+.navigate-films{
+
+}
+.navigate-story{
+  margin-top: 15%;
+}
+.title{
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 20px;
+}
+.wrapper{
+  margin-top: 8%;
+}
+.wrapper-platform{
+  background-image: url(https://instagram.flwo1-1.fna.fbcdn.net/vp/b78d48b9f70017e6fd96ceddbff455ae/5C3DA431/t51.2885-15/sh0.08/e35/p750x750/16583689_591069374416552_3978437272960761856_n.jpg);
+  background-position: center;
+  background-size:cover ;
+}
+.wrapper-story{
+  background-image: url(https://uznayvse.ru/images/content/2017/4/uzn_14926923861.jpg);
+  background-position: center;
+  background-size:cover ;
+}
+.wrapper-team{
+  background-image: url(https://24smi.org/public/media/235x307/celebrity/2016/10/06/H0suPlCm8H5s_kaia-skodelario.jpg);
+  background-position: center;
+  background-size:cover ;
+}
+.wrapper-community{
+  background-image: url(https://phillystylemag.com/get/files/image/galleries/Elizabeth-Olsen-philadelphia-style-1.jpg);
+  background-position: center;
+  background-size:cover ;
+}
+.wrapper-films{
+  background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Natalie_Dormer_by_FameFlynet.jpg/220px-Natalie_Dormer_by_FameFlynet.jpg);
+  background-position: center;
+  background-size:cover ;
+}
+.wrapper:hover{
+  transition: 1.2s;
+  transform: scale(1.15);
+  filter:blur(2.5px);
+}
+
+
+
+.wrapper:hover ~  button{
+  display: flex;
+}
+button{
+  margin: auto;
+  display: flex;
+  position: relative;
+  top:-200px;
+  display: none;
+  transition: 1.2s;
+}
+button:hover {
+   display: flex;
+
+}
+button:hover ~  .wrapper{
+  transition: 0.7s;
+  transform: scale(1.15);
+  filter:blur(2.5px);
+
+}
+
+ button{
+  height: 40px;
+  border-radius: 20px;
+  width: 120px;
+  border: none;
+  font-weight: bold;
+  background-color: #000000;
+  color: white;
+  margin: auto;
+   text-align: center;
+   justify-content: center;
+   opacity: 0.7;
+}

@@ -1,4 +1,4 @@
-  <div class="container" *ngFor="let one of communities">
+  <div class="container" *ngFor="let one of communities" divImage [id]="one.id" [controller]="'community'">
     <p>{{one.text}}</p>
     <hr>
     <p>{{one.articleTitle}}</p>

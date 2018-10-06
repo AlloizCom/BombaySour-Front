@@ -18,11 +18,17 @@ export class CommunityOneComponent implements OnInit {
 
   ngOnInit() {
     this.formGroup = new FormGroup({
+      image: new FormControl('', [Validators.required]),
       text: new FormControl('', [Validators.required]),
       articleTitle: new FormControl('', [Validators.required]),
       id: new FormControl('')
     });
     this.activatedRoute.params.subscribe(value => this.load(value['id']));
+  }
+
+  readUrl(event) {
+    this.formGroup.patchValue({image: event});
+    this.image = event;
   }
 
   save() {
@@ -32,7 +38,10 @@ export class CommunityOneComponent implements OnInit {
 
   load(id: number) {
     console.log('set value');
-    this.service.findOne(id).subscribe(value => this.formGroup.patchValue(value));
+    this.service.findOne(id).subscribe(value => {
+      this.formGroup.patchValue(value);
+      this.image = value.image
+    });
     // this.formGroup.patchValue({id: id, text: `${id}  text  ${id}`, articleTitle: `${id}  articleTitle  ${id}`});
   }
 

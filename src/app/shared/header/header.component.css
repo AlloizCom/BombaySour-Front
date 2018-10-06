@@ -1,42 +1,51 @@
-*{
+* {
   padding: 0;
   margin: 0;
   font-family: sans-serif;
 }
-ul{
+
+ul {
   display: flex;
   line-height: 1;
 }
-li{
+
+li {
   display: flex;
   text-transform: uppercase;
   list-style-type: none;
   padding: 0 2px 0 2px;
 }
-.logo{
+
+.logo {
   width: 20%;
-  background: #000;
   height: 70px;
+  background-image: url('.././../../assets/img/bg.psd');
 }
-img{
+
+img {
   width: 200px;
 }
 
-nav{
-  padding-top:10px;
+nav {
+  padding-top: 10px;
   width: auto;
 }
 
-header{
+header {
+  position: fixed;
+  top: 0;
   justify-content: space-between;
   width: 100%;
   display: flex;
+  z-index: 20;
 }
-a{
+
+a {
   text-decoration: none;
   color: #1a1a1a;
 }
-.vertical{
+
+.vertical {
   width: 2px;
   height: 14px;
   background-color: #1a1a1a;

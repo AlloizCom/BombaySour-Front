@@ -7,6 +7,8 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {DirectivesModule} from "../directives/directives.module";
 import {serviceProvider} from "../services/service.provider";
 import {MyInterceptor} from "../inteceptor";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {PipesModule} from "../pipes/pipes.module";
 
 @NgModule({
   imports: [
@@ -21,6 +23,8 @@ import {MyInterceptor} from "../inteceptor";
     FormsModule,
     ReactiveFormsModule,
     DirectivesModule,
+    BrowserAnimationsModule,
+    PipesModule
   ],
   providers: [
     ...serviceProvider,
