@@ -179,10 +179,20 @@ import {el} from '@angular/platform-browser/testing/src/browser_util';
     ])]
 })
 export class FilmComponent implements OnInit, AfterViewInit {
+  @ViewChild('videoPlayer1') videoPlayer1: ElementRef;
+  @ViewChild('videoPlayer2') videoPlayer2: ElementRef;
+  @ViewChild('videoPlayer3') videoPlayer3: ElementRef;
+  @ViewChild('videoPlayer4') videoPlayer4: ElementRef;
+  @ViewChild('videoPlayer5') videoPlayer5: ElementRef;
+  @ViewChild('videoPlayer6') videoPlayer6: ElementRef;
+  @ViewChild('videoPlayer7') videoPlayer7: ElementRef;
+  @ViewChild('videoPlayer8') videoPlayer8: ElementRef;
+  @ViewChild('videoPlayer9') videoPlayer9: ElementRef;
+  @ViewChild('videoPlayer10') videoPlayer10: ElementRef;
   isOpen = true;
   isOpen1 = false;
-  displayNone1: boolean = false;
-  displayNone2: boolean = false;
+  displayNone1: boolean = true;
+  displayNone2: boolean = true;
   videoSource: string = 'https://player.vimeo.com/external/158148793.hd.mp4?s=8e8741dbee251d5c35a759718d4b0976fbf38b6f&profile_id=119&oauth2_token_id=57447761';
   videoSource1: string = 'http://techslides.com/demos/sample-videos/small.mp4';
   videoSource2: string = 'https://www.w3schools.com/howto/rain.mp4';
@@ -199,13 +209,12 @@ export class FilmComponent implements OnInit, AfterViewInit {
       setTimeout(() => {
         this.displayNone1 =true;
         this.displayNone2 = true;
-      }, 1100);
+      }, 1300);
 
 
   }
 
   ngAfterViewInit() {
-
   }
 
   ngOnInit(): void {
