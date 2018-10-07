@@ -1,32 +1,12 @@
 <!-- <video id='v' src="../../../shared/video/video.mp4" type="video/webm" autoplay loop muted preload="auto" playsinline>
 </video> -->
 <div class="wrapper">
-  <div class="block block1"
-       [@openClose1]="isOpen ? 'open' : 'closed'"
-       [ngClass]="{'displayNone': displayNone1}">
-    <video autoplay (click)="toggle()"
-           src="{{videoSource}}"
-           #videoPlayer1
-           class="video-background1"
-           muted plays-inline loop>
-    </video>
-  </div>
   <div class="block block2"
        [@openClose2]="isOpen ? 'open' : 'closed'"
        [ngClass]="{'displayNone': displayNone1}">
     <video autoplay (click)="toggle()"
            src="{{videoSource}}"
            #videoPlayer2
-           class="video-background1"
-           muted plays-inline loop>
-    </video>
-  </div>
-  <div class="block block3"
-       [@openClose3]="isOpen ? 'open' : 'closed'"
-       [ngClass]="{'displayNone': displayNone1}">
-    <video autoplay (click)="toggle()"
-           src="{{videoSource}}"
-           #videoPlayer3
            class="video-background1"
            muted plays-inline loop>
     </video>
@@ -47,7 +27,7 @@
            src="{{videoSource}}"
            #videoPlayer5
            class="video-background1"
-           muted="muted" plays-inline loop
+           muted plays-inline loop
            #video1>
     </video>
   </div>
@@ -55,16 +35,7 @@
 
 
 
-  <div class="block block11"
-       [@openClose11]="isOpen1 ? 'open' : 'closed'"
-       [ngClass]="{'displayNone': displayNone2}">
-    <video autoplay (click)="toggle()"
-           src="{{videoSource2}}"
-           #videoPlayer6
-           class="video-background2"
-           muted plays-inline loop>
-    </video>
-  </div>
+
   <div class="block block22"
        [@openClose22]="isOpen1 ? 'open' : 'closed'"
        [ngClass]="{'displayNone': displayNone2}">
@@ -75,16 +46,7 @@
            muted plays-inline loop>
     </video>
   </div>
-  <div class="block block33"
-       [@openClose33]="isOpen1 ? 'open' : 'closed'"
-       [ngClass]="{'displayNone': displayNone2}">
-    <video autoplay (click)="toggle()"
-           src="{{videoSource2}}"
-           #videoPlayer8
-           class="video-background2"
-           muted plays-inline loop>
-    </video>
-  </div>
+
   <div class="block block44"
        [@openClose44]="isOpen1 ? 'open' : 'closed'"
        [ngClass]="{'displayNone': displayNone2}">
@@ -101,8 +63,8 @@
            src="{{videoSource2}}"
            #videoPlayer10
            class="video-background2"
-           muted="muted" plays-inline loop
-           #video2>
+           muted plays-inline loop
+            >
     </video>
   </div>
 
