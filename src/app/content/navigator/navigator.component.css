@@ -77,21 +77,21 @@ main{
 
 
 .wrapper:hover ~  button{
-  display: flex;
+  opacity: 0.7;
 }
 button{
   margin: auto;
   display: flex;
   position: relative;
   top:-200px;
-  display: none;
+  opacity: 0;
   transition: 1.2s;
 }
 button:hover {
-   display: flex;
+   opacity: 1;
 
 }
-button:hover ~  .wrapper{
+button:hover   .wrapper{
   transition: 0.7s;
   transform: scale(1.15);
   filter:blur(2.5px);
@@ -109,5 +109,4 @@ button:hover ~  .wrapper{
   margin: auto;
    text-align: center;
    justify-content: center;
-   opacity: 0.7;
 }
