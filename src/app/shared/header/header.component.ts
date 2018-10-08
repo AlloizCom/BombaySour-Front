@@ -5,6 +5,9 @@ import {trigger, state, style, animate, transition} from '@angular/animations';
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
+  host: {
+    '(document:click)': 'onClick($event)',
+  },
   animations: [
     trigger('openClose', [
       state('open', style({
@@ -28,9 +31,15 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
   }
+  toggle(){
+    this.isOpen =!this.isOpen;
+  }
 
-  toggle() {
-    this.isOpen = !this.isOpen;
+  onClick(e){
+    console.log(e.path[1].id);
+    if(e.path[1].id != 'burger' ){
+      this.isOpen = false;
+    }
   }
 
 }
