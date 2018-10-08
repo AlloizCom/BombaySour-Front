@@ -15,8 +15,13 @@
   width: 270px;
   height: 80px;
   z-index: 28;
-  cursor: pointer;
   outline:0;
+}
+​path {
+  fill: blue;
+}​
+svg{
+  cursor: pointer;
 }
 .logoBlock{
   position: relative;
