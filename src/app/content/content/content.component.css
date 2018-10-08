@@ -1,6 +1,12 @@
 .container {
-  min-height: calc(100vh - 40px);
+  position: relative;
+  height: 100vh;
+  width: 100vw;
   overflow: hidden;
+  background-image: url('../../../shared/img/background.jpg') ;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom center;
 }
 .logo{
   position: absolute;
@@ -9,4 +15,56 @@
   width: 270px;
   height: 80px;
   z-index: 100;
+  cursor: pointer;
+  outline:0;
+}
+.logoBlock{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+.black{
+  position: absolute;
+  right: 0;
+  height: 100vh;
+  width: 0vw;
+  overflow: hidden;
+  background-color: black;
+  z-index: 1;
+}
+.center{
+  width: 271px;
+  height: 77px;
+  position: absolute;
+}
+h1{
+  position: absolute;
+  font-family: sans-serif;
+  font-weight: 700;
+  color: white;
+  text-transform: uppercase;
+  left: 15px;
+  font-size: 34px;
+  transform: scale(1);
+  top: 0px;
+  z-index: 110;
+}
+.wight{
+  width: 270px;
+  height: 77px;
+  background-color: white;
+  left: 0px;
+  z-index: 110;
+}
+.InCenter{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  right: 0;
+  z-index: 110;
 }

@@ -8,41 +8,42 @@
   position: absolute;
   width: 100vw;
   overflow: hidden;
-  background-color: red;
+  background-color: black;
 }
 .block11, .block22, .block33, .block44, .block55{
   position: absolute;
   width: 100vw;
   height: 100%;
   overflow: hidden;
-  background-color: red;
+  background-color: black;
 }
-.block1{
-   z-index: 20;
- }
+
 .block2{
   z-index: 19;
 }
-.block3{
-  z-index: 18;
+.block2>video{
+  margin-left: -20vw;
 }
 .block4{
   z-index: 17;
 }
+.block4>video{
+  margin-left: -60vw;
+}
 .block5{
   z-index: 16;
-}
-.block11{
-  z-index: 20;
 }
 .block22{
   z-index: 19;
 }
-.block33{
-  z-index: 18;
+.block22>video{
+  margin-left: -20vw;
 }
 .block44{
   z-index: 17;
+}
+.block44>video{
+  margin-left: -60vw;
 }
 .block55{
   z-index: 16;
@@ -52,7 +53,7 @@
       right: 0;
       bottom: 0;
       min-width: 100%;
-      min-height: 100%;
+      min-height: 120%;
       z-index: -100;
       overflow: hidden;
     }
@@ -60,12 +61,12 @@
   /*  making the video fullscreen  */
   position: absolute;
   min-width: 100%;
-  min-height: 100%;
+  min-height: 120%;
   width: auto;
   z-index: -1000;
   overflow: hidden;
 }
 
 .displayNone{
-  display: none;
+  opacity: 0.01;
 }

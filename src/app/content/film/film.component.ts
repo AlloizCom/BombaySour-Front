@@ -1,29 +1,11 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {trigger, state, style, animate, transition} from '@angular/animations';
-import {st} from '@angular/core/src/render3';
-import {el} from '@angular/platform-browser/testing/src/browser_util';
 
 @Component({
   selector: 'app-film',
   templateUrl: './film.component.html',
   styleUrls: ['./film.component.css'],
-  animations: [trigger('openClose1', [
-    // ...
-    state('open', style({
-      width: '0px',
-      transform: 'translate(100vw)'
-    })),
-    state('closed', style({
-      width: '20vw',
-      transform: 'translate(0px)'
-    })),
-    transition('open => closed', [
-      animate('1.1s ease-in-out')
-    ]),
-    transition('closed => open', [
-      animate('1.1s 200ms ease-in-out')
-    ]),
-  ]),
+  animations: [,
     trigger('openClose2', [
       // ...
       state('open', style({
@@ -31,31 +13,14 @@ import {el} from '@angular/platform-browser/testing/src/browser_util';
         transform: 'translate(100vw)'
       })),
       state('closed', style({
-        width: '40vw',
-        transform: 'translate(0px)'
-      })),
-      transition('open => closed', [
-        animate('1s ease-in-out')
-      ]),
-      transition('closed => open', [
-        animate('1s 200ms ease-in-out')
-      ]),
-    ]),
-    trigger('openClose3', [
-      // ...
-      state('open', style({
-        width: '0px',
-        transform: 'translate(100vw)'
-      })),
-      state('closed', style({
-        width: '60vw',
-        transform: 'translate(0px)'
+        width: '20vw',
+        transform: 'translate(20vw)'
       })),
       transition('open => closed', [
         animate('1.1s ease-in-out')
       ]),
       transition('closed => open', [
-        animate('1.1s 200ms ease-in-out')
+        animate('1.1s  ease-in-out')
       ]),
     ]),
     trigger('openClose4', [
@@ -65,14 +30,14 @@ import {el} from '@angular/platform-browser/testing/src/browser_util';
         transform: 'translate(100vw)'
       })),
       state('closed', style({
-        width: '80vw',
-        transform: 'translate(0px)'
+        width: '20vw',
+        transform: 'translate(60vw)'
       })),
       transition('open => closed', [
         animate('1s ease-in-out')
       ]),
       transition('closed => open', [
-        animate('1s 200ms ease-in-out')
+        animate('1s  ease-in-out')
       ]),
     ]),
     trigger('openClose5', [
@@ -86,78 +51,48 @@ import {el} from '@angular/platform-browser/testing/src/browser_util';
         transform: 'translate(0px)'
       })),
       transition('open => closed', [
-        animate('1.1s ease-in-out')
+        animate('1.1s  ease-out')
       ]),
       transition('closed => open', [
-        animate('1.1s 400ms ease-in-out')
-      ]),
-    ]),
-    trigger('openClose11', [
-      // ...
-      state('open', style({
-        width: '0px',
-        transform: 'translate(-20vw)'
-      })),
-      state('closed', style({
-        width: '20vw',
-        transform: 'translate(0px)'
-      })),
-      transition('open => closed', [
-        animate('1s ease-in-out')
-      ]),
-      transition('closed => open', [
-        animate('1s 200ms ease-in-out')
+        animate('1.1s 300ms ease-in')
       ]),
     ]),
     trigger('openClose22', [
       // ...
       state('open', style({
         width: '0px',
-        transform: 'translate(-40vw)'
+        transform: 'translate(-40vw)',
+        marginLeft: '0vw'
       })),
       state('closed', style({
-        width: '40vw',
-        transform: 'translate(0px)'
+        width: '20vw',
+        transform: 'translate(0px)',
+        marginLeft: '20vw'
       })),
       transition('open => closed', [
         animate('1.1s ease-in-out')
       ]),
       transition('closed => open', [
-        animate('1.1s 200ms ease-in-out')
-      ]),
-    ]),
-    trigger('openClose33', [
-      // ...
-      state('open', style({
-        width: '0px',
-        transform: 'translate(-60vw)'
-      })),
-      state('closed', style({
-        width: '60vw',
-        transform: 'translate(0px)'
-      })),
-      transition('open => closed', [
-        animate('1s ease-in-out')
-      ]),
-      transition('closed => open', [
-        animate('1s 200ms ease-in-out')
+        animate('1.1s  ease-in-out')
       ]),
     ]),
     trigger('openClose44', [
       // ...
       state('open', style({
         width: '0px',
-        transform: 'translate(-80vw)'
+        transform: 'translate(-80vw)',
+        marginLeft: '0vw'
       })),
       state('closed', style({
-        width: '80vw',
-        transform: 'translate(0px)'
+        width: '20vw',
+        transform: 'translate(0px)',
+        marginLeft: '60vw'
       })),
       transition('open => closed', [
-        animate('1.1s ease-in-out')
+        animate('1s ease-in-out')
       ]),
       transition('closed => open', [
-        animate('1.1s 200ms ease-in-out')
+        animate('1s  ease-in-out')
       ]),
     ]),
     trigger('openClose55', [
@@ -171,22 +106,18 @@ import {el} from '@angular/platform-browser/testing/src/browser_util';
         transform: 'translate(0px)'
       })),
       transition('open => closed', [
-        animate('1s ease-in-out')
+        animate('1.1s ease-out')
       ]),
       transition('closed => open', [
-        animate('1s 400ms ease-in-out')
+        animate('1.1s 300ms ease-in')
       ]),
     ])]
 })
 export class FilmComponent implements OnInit, AfterViewInit {
-  @ViewChild('videoPlayer1') videoPlayer1: ElementRef;
   @ViewChild('videoPlayer2') videoPlayer2: ElementRef;
-  @ViewChild('videoPlayer3') videoPlayer3: ElementRef;
   @ViewChild('videoPlayer4') videoPlayer4: ElementRef;
   @ViewChild('videoPlayer5') videoPlayer5: ElementRef;
-  @ViewChild('videoPlayer6') videoPlayer6: ElementRef;
   @ViewChild('videoPlayer7') videoPlayer7: ElementRef;
-  @ViewChild('videoPlayer8') videoPlayer8: ElementRef;
   @ViewChild('videoPlayer9') videoPlayer9: ElementRef;
   @ViewChild('videoPlayer10') videoPlayer10: ElementRef;
   isOpen = true;
@@ -194,8 +125,8 @@ export class FilmComponent implements OnInit, AfterViewInit {
   displayNone1: boolean = true;
   displayNone2: boolean = true;
   videoSource: string = 'https://player.vimeo.com/external/158148793.hd.mp4?s=8e8741dbee251d5c35a759718d4b0976fbf38b6f&profile_id=119&oauth2_token_id=57447761';
-  videoSource1: string = 'http://techslides.com/demos/sample-videos/small.mp4';
-  videoSource2: string = 'https://www.w3schools.com/howto/rain.mp4';
+  videoSource1: string = 'https://player.vimeo.com/external/158148793.hd.mp4?s=8e8741dbee251d5c35a759718d4b0976fbf38b6f&profile_id=119&oauth2_token_id=57447761';
+  videoSource2: string = 'https://player.vimeo.com/external/158148793.hd.mp4?s=8e8741dbee251d5c35a759718d4b0976fbf38b6f&profile_id=119&oauth2_token_id=57447761';
 
   constructor() {
   }
@@ -209,7 +140,10 @@ export class FilmComponent implements OnInit, AfterViewInit {
       setTimeout(() => {
         this.displayNone1 =true;
         this.displayNone2 = true;
-      }, 1300);
+        this.videoPlayer7.nativeElement.valume = 0;
+        this.videoPlayer9.nativeElement.valume = 0;
+        this.videoPlayer10.nativeElement.valume = 0;
+      }, 1500);
 
 
   }

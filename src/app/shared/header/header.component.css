@@ -2,6 +2,7 @@
   padding: 0;
   margin: 0;
   font-family: sans-serif;
+  color: black;
 }
 
 ul {
@@ -27,8 +28,9 @@ img {
 }
 
 nav {
-  padding-top: 10px;
+  margin: auto 30px auto 10px;
   width: auto;
+  height: 16px;
 }
 
 header {
@@ -37,7 +39,6 @@ header {
   justify-content: space-between;
   width: 100%;
   display: flex;
-  z-index: 20;
 }
 
 a {
@@ -48,10 +49,11 @@ a {
 .vertical {
   width: 2px;
   height: 14px;
-  background-color: #1a1a1a;
+  background-color: black;
   margin: 0 3px 0 8px;
 }
-a{
+
+a {
   -webkit-transition: width 0.7s, ease-in;
   -moz-transition: width 0.7s, ease-in;
   -o-transition: width 0.7s, ease-in;
@@ -63,10 +65,60 @@ a{
   height: 3px;
   background: black;
 }
-li a:hover .underscore{
+
+li a:hover .underscore {
   width: auto;
   -webkit-transition: all 0.7s, ease-in;
   -moz-transition: all 0.7s, ease-in;
   -o-transition: all 0.7s, ease-in;
   transition: all 0.7s, ease-in;
+}
+
+.tablet {
+  display: none;
+  width: 38px;
+  height: 38px;
+  position: fixed;
+  right: 34px;
+  z-index: 34;
+  top: 34px;
+  padding: 20px;
+}
+.ulTablet{
+  display: none;
+}
+@media only screen and (min-device-width : 320px) and (max-device-width : 1024px) {
+  ul{
+    display: none;
+  }
+  .tablet{
+    display: block;
+  }
+  .navTab{
+    position: absolute;
+    z-index: 35;
+    top: 0px;
+    right: 0px;
+    overflow: hidden;
+    height: 100vh;
+    width: 70vw;
+    background-color: white;
+  }
+  .tabletClose{
+    display: flex;
+    flex-direction: column;
+  }
+  .tabletClose>svg{
+    align-items: flex-end;
+    width: 38px;
+    height: 38px;
+    padding: 54px;
+    padding-left: 60vw;
+
+  }
+  .ulTablet{
+    display: block;
+  }
+
+
 }
