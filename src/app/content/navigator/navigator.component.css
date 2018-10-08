@@ -108,9 +108,6 @@ main{
   opacity: 1;
 }
 @media only screen and (min-device-width : 320px) and (max-device-width : 1024px) {
-
-<<<<<<< HEAD
-=======
   main{
     flex-wrap: wrap;
   }
@@ -126,4 +123,3 @@ main{
 
 
 
->>>>>>> 40a38533e568125ea8816615f9f4e283eafb553d
