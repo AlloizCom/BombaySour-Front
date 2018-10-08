@@ -14,10 +14,10 @@ import {trigger, state, style, animate, transition} from '@angular/animations';
         width: '70vw'
       })),
       transition('open => closed', [
-        animate('700ms cubic-bezier(0.16, 1.08, 0.38, 0.98)')
+        animate('400ms cubic-bezier(0.16, 1.08, 0.38, 0.98)')
       ]),
       transition('closed => open', [
-        animate('700ms  cubic-bezier(0,.49,.41,.67)')
+        animate('400ms  cubic-bezier(0,.49,.41,.67)')
       ]),
     ])]
 })

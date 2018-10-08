@@ -14,7 +14,7 @@
   left: 0;
   width: 270px;
   height: 80px;
-  z-index: 100;
+  z-index: 28;
   cursor: pointer;
   outline:0;
 }
@@ -34,7 +34,7 @@
   width: 0vw;
   overflow: hidden;
   background-color: black;
-  z-index: 1;
+  z-index: 30;
 }
 .center{
   width: 271px;

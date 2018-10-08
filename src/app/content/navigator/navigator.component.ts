@@ -19,6 +19,7 @@ import {animate, style, transition, trigger} from '@angular/animations';
       transition(':enter', [style({transform: 'translate(-110vw)'}), animate('1200ms 4200ms ease')])])]
 })
 export class NavigatorComponent implements OnInit {
+  delay:number = 4200;
 
   constructor() { }
 
