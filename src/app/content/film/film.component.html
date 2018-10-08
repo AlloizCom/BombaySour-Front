@@ -5,7 +5,7 @@
        [@openClose2]="isOpen ? 'open' : 'closed'"
        [ngClass]="{'displayNone': displayNone1}">
     <video autoplay (click)="toggle()"
-           src="{{videoSource}}"
+           src="{{videoSource1}}"
            #videoPlayer2
            class="video-background1"
            muted plays-inline loop>
@@ -15,25 +15,22 @@
        [@openClose4]="isOpen ? 'open' : 'closed'"
        [ngClass]="{'displayNone': displayNone1}">
     <video autoplay (click)="toggle()"
-           src="{{videoSource}}"
+           src="{{videoSource1}}"
            #videoPlayer4
            class="video-background1"
            muted plays-inline loop>
     </video>
   </div>
   <div class="block block5"
-       [@openClose5]="isOpen ? 'open' : 'closed'" >
+       [@openClose5]="isOpen ? 'open' : 'closed'">
     <video autoplay (click)="toggle()"
-           src="{{videoSource}}"
+           src="{{videoSource1}}"
            #videoPlayer5
            class="video-background1"
            muted plays-inline loop
            #video1>
     </video>
   </div>
-
-
-
 
 
   <div class="block block22"
@@ -58,19 +55,18 @@
     </video>
   </div>
   <div class="block block55"
-       [@openClose55]="isOpen1 ? 'open' : 'closed'" >
+       [@openClose55]="isOpen1 ? 'open' : 'closed'">
     <video autoplay (click)="toggle()"
            src="{{videoSource2}}"
            #videoPlayer10
            class="video-background2"
            muted plays-inline loop
-            >
+    >
     </video>
   </div>
 
 
 </div>
-
 
 
 <!--<canvas #canvasEl width=400 height=400></canvas>-->

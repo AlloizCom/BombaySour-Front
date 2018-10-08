@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import {divTrigger} from "./navigator.animations";
+import {Component, OnInit} from '@angular/core';
 import {animate, style, transition, trigger} from '@angular/animations';
 
 @Component({
@@ -8,20 +7,19 @@ import {animate, style, transition, trigger} from '@angular/animations';
   styleUrls: ['./navigator.component.css'],
   animations: [
     trigger('team', [
-      transition(':enter', [style({transform: 'translate(-30vw)'}), animate('1200ms 4200ms ease')])]),
+      transition(':enter', [style({transform: 'translate(-30vw)'}), animate('1200ms {{delay}} ease')], {params: {delay: '0ms'}})]),
     trigger('story', [
-      transition(':enter', [style({transform: 'translate(-50vw)'}), animate('1200ms 4200ms ease')])]),
+      transition(':enter', [style({transform: 'translate(-50vw)'}), animate('1200ms {{delay}} ease')], {params: {delay: '0ms'}})]),
     trigger('films', [
-      transition(':enter', [style({transform: 'translate(-70vw)'}), animate('1200ms 4200ms ease')])]),
+      transition(':enter', [style({transform: 'translate(-70vw)'}), animate('1200ms {{delay}} ease')], {params: {delay: '0ms'}})]),
     trigger('platform', [
-      transition(':enter', [style({transform: 'translate(-90vw)'}), animate('1200ms 4200ms ease')])]),
+      transition(':enter', [style({transform: 'translate(-90vw)'}), animate('1200ms {{delay}} ease')], {params: {delay: '0ms'}})]),
     trigger('community', [
-      transition(':enter', [style({transform: 'translate(-110vw)'}), animate('1200ms 4200ms ease')])])]
+      transition(':enter', [style({transform: 'translate(-110vw)'}), animate('1200ms {{delay}} ease')], {params: {delay: '0ms'}})])]
 })
 export class NavigatorComponent implements OnInit {
-  delay:number = 4200;
-
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
