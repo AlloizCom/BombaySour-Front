@@ -17,6 +17,14 @@
   z-index: 28;
   outline:0;
 }
+/deep/.logo:focus{
+  outline: none!important;
+  border: none!important;
+}
+/deep/.logo:active{
+  outline: none!important;
+  border: none!important;
+}
 ​path {
   fill: blue;
 }​
