@@ -45,6 +45,23 @@ header {
 a {
   text-decoration: none;
   color: #1a1a1a;
+  cursor: pointer;
+}
+/deep/a:focus{
+  outline: none!important;
+  border: none!important;
+}
+/deep/a:active{
+  outline: none!important;
+  border: none!important;
+}
+/deep/h3:focus{
+  outline: none!important;
+  border: none!important;
+}
+/deep/h3:active{
+  outline: none!important;
+  border: none!important;
 }
 
 .vertical {
