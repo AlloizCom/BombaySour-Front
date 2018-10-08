@@ -5,7 +5,7 @@ import {trigger, state, style, animate, transition} from '@angular/animations';
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
-  animations: [,
+  animations: [
     trigger('openClose', [
       state('open', style({
         width: '0px'

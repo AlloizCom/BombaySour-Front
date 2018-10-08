@@ -28,8 +28,9 @@ img {
 }
 
 nav {
-  padding-top: 10px;
+  margin: auto 30px auto 10px;
   width: auto;
+  height: 16px;
 }
 
 header {
@@ -38,7 +39,6 @@ header {
   justify-content: space-between;
   width: 100%;
   display: flex;
-  z-index: 20;
 }
 
 a {
@@ -119,6 +119,6 @@ li a:hover .underscore {
   .ulTablet{
     display: block;
   }
-  
+
 
 }
