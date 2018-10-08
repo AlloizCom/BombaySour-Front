@@ -35,13 +35,13 @@ export class ContentComponent implements OnInit, AfterViewChecked {
   constructor() { }
 
   ngOnInit() {
-    setTimeout(()=>{this.end=true; 
+    setTimeout(()=>{this.end=true;
       this.endSecond =true;}, 3000);
-    setTimeout(()=>{this.finish =false;}, 5000);
+    setTimeout(()=>{this.finish =false;}, 4500);
     }
   ngAfterViewChecked(): void {
 
-    
+
   }
 
 }

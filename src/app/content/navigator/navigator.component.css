@@ -19,6 +19,7 @@ main{
 .navigate{
   width: 18%;
   margin-top: 10%;
+  transform: translate(0vw);
 }
 .navigate-community{
   margin-top: 20%;
@@ -39,6 +40,8 @@ main{
   text-transform: uppercase;
   text-align: center;
   font-size: 20px;
+  font-weight: 600;
+  color: white;
 }
 .wrapper{
   margin-top: 8%;
