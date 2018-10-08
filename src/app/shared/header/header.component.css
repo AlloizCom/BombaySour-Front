@@ -11,7 +11,7 @@ ul {
 }
 
 li {
-  /*display: flex;*/
+  display: flex;
   text-transform: uppercase;
   list-style-type: none;
   padding: 0 2px 0 2px;
@@ -68,7 +68,7 @@ a {
   width: 2px;
   height: 17px;
   background-color: white;
-  margin: 0 3px 0 4px;
+  margin: 0 3px 0 8px;
 }
 h3 > a {
   position: relative;
@@ -79,21 +79,21 @@ h3 > a {
 h3 > a:hover {
   color: white;
 }
-/*h3 > a:before {*/
-  /*content: "";*/
-  /*position: absolute;*/
-  /*width: 100%;*/
-  /*height: 3px;*/
-  /*bottom: 0;*/
-  /*top: 20px;*/
-  /*left: 0;*/
-  /*background-color: white;*/
-  /*visibility: hidden;*/
-  /*-webkit-transform: scaleX(0);*/
-  /*transform: scaleX(0);*/
-  /*-webkit-transition: all 0.3s ease-in-out 0s;*/
-  /*transition: all 0.3s ease-in-out 0s;*/
-/*}*/
+h3 > a:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  bottom: 0;
+  top: 20px;
+  left: 0;
+  background-color: white;
+  visibility: hidden;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transition: all 0.3s ease-in-out 0s;
+  transition: all 0.3s ease-in-out 0s;
+}
 
 h3 > a:hover:before {
   visibility: visible;
@@ -116,16 +116,6 @@ h3 > a:hover:before {
 .ulTablet{
   display: none;
 }
-.under{
-  width: 0;
-  height: 3px;
-  background-color: white;
-  transition: 0.7s;
-}
-h3:hover + .under{
-  width: 100%;
-}
-
 @media only screen and (min-device-width : 320px) and (max-device-width : 1024px) {
   ul{
     display: none;
@@ -143,8 +133,8 @@ h3:hover + .under{
     top: 0px;
     right: 0px;
     overflow: hidden;
-    height: 70vh;
-    width: 100vw;
+    height: 100vh;
+    width: 0px;
     background-color: white;
   }
   .tabletClose{
@@ -153,14 +143,31 @@ h3:hover + .under{
   }
   .tabletClose>svg{
     align-items: flex-end;
-    width: 38px;
-    height: 38px;
-    padding: 54px;
-    padding-left: 60vw;
+    width: 30px;
+    height: 30px;
+    padding: 27px;
+    padding-left: 92vw;
 
   }
   .ulTablet{
     display: block;
+    padding-top: 30vw;
+    padding-left: 5vh;
+  }
+  li{
+    padding: 20px 2px 0 2px;
+  }
+  a{
+    font-size: 34px;
   }
 
+  @media only screen and (min-device-width : 320px) and (max-device-width : 640px) {
+    .tabletClose>svg{
+      padding-left: 84vw;
+       }
+    .tablet{
+      width: 30px;
+      padding: 7px;
+    }
+  }
 }

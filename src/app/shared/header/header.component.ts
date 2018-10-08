@@ -5,41 +5,32 @@ import {trigger, state, style, animate, transition} from '@angular/animations';
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
-  host: {
-    '(document:click)': 'onClick($event)',
-  },
   animations: [
     trigger('openClose', [
-      state('open', style({
+      state('close', style({
         width: '0px'
       })),
-      state('closed', style({
-        width: '70vw'
+      state('open', style({
+        width: '100vw'
       })),
       transition('open => closed', [
-        animate('400ms cubic-bezier(0.16, 1.08, 0.38, 0.98)')
+        animate('1000ms cubic-bezier(0.16, 1.08, 0.38, 0.98)')
       ]),
       transition('closed => open', [
-        animate('400ms  cubic-bezier(0,.49,.41,.67)')
+        animate('1000ms  cubic-bezier(0.16, 1.08, 0.38, 0.98)')
       ]),
     ])]
 })
 export class HeaderComponent implements OnInit {
-  isOpen = true;
+  isOpen = false;
 
   constructor() { }
 
   ngOnInit() {
   }
-  toggle(){
-    this.isOpen =!this.isOpen;
-  }
 
-  onClick(e){
-    console.log(e.path[1].id);
-    if(e.path[1].id != 'burger' ){
-      this.isOpen = false;
-    }
+  toggle() {
+    this.isOpen = !this.isOpen;
   }
 
 }
