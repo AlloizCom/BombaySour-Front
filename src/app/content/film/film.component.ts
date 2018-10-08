@@ -1,11 +1,12 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {trigger, state, style, animate, transition} from '@angular/animations';
+import {animate, state, style, transition, trigger} from '@angular/animations';
+import {ImageService} from "../../../shared/services/image.service";
 
 @Component({
   selector: 'app-film',
   templateUrl: './film.component.html',
   styleUrls: ['./film.component.css'],
-  animations: [,
+  animations: [
     trigger('openClose2', [
       // ...
       state('open', style({
@@ -125,25 +126,37 @@ export class FilmComponent implements OnInit, AfterViewInit {
   displayNone1: boolean = true;
   displayNone2: boolean = true;
   videoSource: string = 'https://player.vimeo.com/external/158148793.hd.mp4?s=8e8741dbee251d5c35a759718d4b0976fbf38b6f&profile_id=119&oauth2_token_id=57447761';
-  videoSource1: string = 'https://player.vimeo.com/external/158148793.hd.mp4?s=8e8741dbee251d5c35a759718d4b0976fbf38b6f&profile_id=119&oauth2_token_id=57447761';
+  videoSource1;
   videoSource2: string = 'https://player.vimeo.com/external/158148793.hd.mp4?s=8e8741dbee251d5c35a759718d4b0976fbf38b6f&profile_id=119&oauth2_token_id=57447761';
 
-  constructor() {
+  constructor(private _service: ImageService) {
+    _service.loadVideo('/resources/video/67cc5f86-37c2-49df-8ef0-8fa59e84cb9f.mp4').subscribe(image => {
+      let reader = new FileReader();
+      reader.addEventListener("load", () => {
+        this.videoSource1 = reader.result;
+      }, false);
+
+      if (image) {
+        reader.readAsDataURL(image);
+      }
+    }, err => {
+      console.error(err);
+    });
   }
 
   toggle() {
     this.isOpen = !this.isOpen;
     this.isOpen1 = !this.isOpen1;
-    this.displayNone1 =false;
+    this.displayNone1 = false;
     this.displayNone2 = false;
 
-      setTimeout(() => {
-        this.displayNone1 =true;
-        this.displayNone2 = true;
-        this.videoPlayer7.nativeElement.valume = 0;
-        this.videoPlayer9.nativeElement.valume = 0;
-        this.videoPlayer10.nativeElement.valume = 0;
-      }, 1500);
+    setTimeout(() => {
+      this.displayNone1 = true;
+      this.displayNone2 = true;
+      this.videoPlayer7.nativeElement.valume = 0;
+      this.videoPlayer9.nativeElement.valume = 0;
+      this.videoPlayer10.nativeElement.valume = 0;
+    }, 1500);
 
 
   }

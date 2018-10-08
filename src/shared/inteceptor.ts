@@ -6,14 +6,14 @@ import {isNull} from 'util';
 import {Observable} from "rxjs";
 
 @Injectable()
-
 export class MyInterceptor implements HttpInterceptor {
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
   }
 
   intercept<T>(req: HttpRequest<T>, next: HttpHandler): Observable<HttpEvent<T>> {
-    req = req.clone({url: url + req.url});
+    if (!req.url.includes('http'))
+      req = req.clone({url: url + req.url});
     if (isPlatformBrowser(this.platformId)) {
       req = req.clone({headers: this.getHeaders(req)});
     }
