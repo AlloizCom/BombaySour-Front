@@ -5,7 +5,10 @@
   flex-direction: column-reverse;
   background-position: center;
   transition: 1.5s;
-
+}
+.title{
+  height: 80%;
+  margin-top: 8%;
 }
 
 .image > p {
@@ -26,12 +29,19 @@
 }
 .text p{
   width: 90%;
+  margin: auto;
 }
 .container p {
   font-size: 46px;
-  font-family: sans-serif;
+  font-weight: 400;
 }
-
+.read-more  {
+  position: relative;
+}
+.read-more  > p  {
+  font-family: Arial,sans-serif!important;
+  font-size: 28px;
+}
 
 .left {
   margin-right: 0;
