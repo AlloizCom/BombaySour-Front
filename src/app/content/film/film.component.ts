@@ -42,14 +42,12 @@ export class FilmComponent implements OnInit {
   }
 
   changeCurrentId(way: number) {
-    console.log(way);
     if (this.playing)
       return;
     if (this.currentId + way < -1 || this.currentId + way == this.films.length + 1)
       return;
     this.currentId += way;
     this.playing = true;
-    console.log('playing');
     setTimeout(() => this.playing = false, 1000);
   }
 

@@ -1,0 +1,23 @@
+<div class="container-main container-video" [@slider]="_animationState"
+     *ngIf="_src">
+  <video class="video-main" autoplay
+         loop #mainVideo>
+    <source [src]="_src.source">
+  </video>
+</div>
+<div class="container-first container-video"
+     [@slider]="{value:_animationState,params:{middlePos:20}}"
+     *ngIf="_src">
+  <video class="video-first" autoplay
+         loop #leftVideo>
+    <source [src]="_src.source">
+  </video>
+</div>
+<div class="container-second container-video"
+     [@slider]="{value:_animationState,params:{middlePos:60}}"
+     *ngIf="_src">
+  <video class="video-second" autoplay
+         loop #rightVideo>
+    <source [src]="_src.source">
+  </video>
+</div>
