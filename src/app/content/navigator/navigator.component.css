@@ -128,7 +128,7 @@ main{
     margin-top: 17%;
   }
 
-  .navigate:nth-child(2), .navigate:nth-child(3), .navigate:nth-child(4) {
+  .navigate:nth-child(2), .navigate:nth-child(3), .navigate:nth-child(4), .navigate:nth-child(5) {
     margin-top: 6% !important;
   }
 
@@ -144,7 +144,7 @@ main{
       width: 98%;
       margin-top: 22%;
     }
-    .navigate:nth-child(2), .navigate:nth-child(3), .navigate:nth-child(4){
+    .navigate:nth-child(2), .navigate:nth-child(3), .navigate:nth-child(4), .navigate:nth-child(5){
       margin-top: 6%!important;
     }
     .wrapper{
@@ -182,7 +182,7 @@ main{
     width: 98%;
     margin-top: 22%;
   }
-  .navigate:nth-child(2), .navigate:nth-child(3), .navigate:nth-child(4){
+  .navigate:nth-child(2), .navigate:nth-child(3), .navigate:nth-child(4), .navigate:nth-child(5){
     margin-top: 6%!important;
   }
   .wrapper{
