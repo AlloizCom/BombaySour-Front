@@ -53,11 +53,10 @@ main{
   text-align: center;
   font-size: 20px;
   font-weight: 600;
-  color: white;
+  color: black;
 }
 .wrapper{
   margin-top: 8%;
-  border-radius: 10px;
 }
 .wrapper-platform{
   background-image: url(https://avatars.mds.yandex.net/get-pdb/38069/ca8d0570-ebe8-4bd9-a0d8-7dde2cbe5113/s1200);
