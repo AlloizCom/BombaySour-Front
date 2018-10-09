@@ -1,7 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: HelveticaBold;
+  font-weight: bold;
+  src: url("shared/fonts/9206.otf") format("opentype");
+}
+@font-face {
+  font-family: HelveticaNeue;
+  font-weight: bold;
+  src: url("shared/fonts/HelveticaNeue.ttf") format("opentype");
+}
+
 body{
   margin: 0;
-  overflow: hidden;
+  font-family: HelveticaBold!important;
+}
+*{
+  margin: 0;
+  font-family: HelveticaBold!important;
 }
 
 @font-face {

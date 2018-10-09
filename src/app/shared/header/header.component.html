@@ -8,32 +8,42 @@
         <h3 [routerLink]="['/','film']">
           <a class="sukabliat">FILM</a>
         </h3>
-        <div class="vertical"></div>
+        <div class="under"></div>
+
       </li>
+      <div class="vertical"></div>
+
       <li>
         <h3 [routerLink]="['/','platform']">
           <a>platform</a>
         </h3>
-        <div class="vertical"></div>
-
+        <div class="under"></div>
       </li>
+      <div class="vertical"></div>
+
       <li>
         <h3 [routerLink]="['/','story']">
           <a>story</a>
         </h3>
-        <div class="vertical"></div>
+        <div class="under"></div>
+
       </li>
+      <div class="vertical"></div>
+
       <li>
         <h3 [routerLink]="['/','team']">
           <a>team</a>
         </h3>
-        <div class="vertical"></div>
+        <div class="under"></div>
+
       </li>
+      <div class="vertical"></div>
+
       <li>
         <h3 [routerLink]="['/','community']">
           <a>community</a>
         </h3>
-        <!--<div class="vertical"></div>-->
+        <div class="under"></div>
       </li>
 
     </ul>
@@ -41,7 +51,7 @@
 
     <span class="tablet" (click)="toggle()">
       <svg viewBox="0 0 43 38" id="burger" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-        <path fill="white" class="dcls-1" d="M0 31h43v7H0zM0 15h43v7H0zM0 0h43v7H0z"></path>
+        <path fill="black" class="dcls-1" d="M0 31h43v7H0zM0 15h43v7H0zM0 0h43v7H0z"></path>
       </svg>
     </span>
     <div class="navTab" [@openClose]="isOpen ? 'open' : 'closed'">
@@ -57,7 +67,6 @@
             Films
             <div class="underscore"></div>
           </a>
-          <div class="vertical"></div>
         </li>
         <li>
           <a [routerLink]="['/','platform']" (click)="toggle()">
@@ -65,7 +74,6 @@
             <div class="underscore"></div>
 
           </a>
-          <div class="vertical"></div>
         </li>
         <li>
           <a [routerLink]="['/','story']" (click)="toggle()">
@@ -73,7 +81,6 @@
             <div class="underscore"></div>
 
           </a>
-          <div class="vertical"></div>
         </li>
         <li>
           <a [routerLink]="['/','team']" (click)="toggle()">
@@ -81,7 +88,6 @@
             <div class="underscore"></div>
 
           </a>
-          <div class="vertical"></div>
         </li>
         <li>
           <a [routerLink]="['/','community']" (click)="toggle()">
