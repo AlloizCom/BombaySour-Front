@@ -1,11 +1,12 @@
 <header>
   <div class="logo" [routerLink]="['/']">
+    <h3>Bombay sour</h3>
   </div>
   <nav>
     <ul>
       <li>
-        <h3  [routerLink]="['/','film']">
-          <a >FILM</a>
+        <h3 [routerLink]="['/','film']">
+          <a class="sukabliat">FILM</a>
         </h3>
         <div class="under"></div>
 
@@ -13,25 +14,16 @@
       <div class="vertical"></div>
 
       <li>
-        <h3  [routerLink]="['/','platform']">
-          <a >platform</a>
+        <h3 [routerLink]="['/','platform']">
+          <a>platform</a>
         </h3>
         <div class="under"></div>
       </li>
       <div class="vertical"></div>
 
       <li>
-        <h3  [routerLink]="['/','story']">
-          <a >story</a>
-        </h3>
-        <div class="under"></div>
-
-      </li>
-      <div class="vertical"></div>
-
-      <li>
-        <h3  [routerLink]="['/','team']">
-          <a >team</a>
+        <h3 [routerLink]="['/','story']">
+          <a>story</a>
         </h3>
         <div class="under"></div>
 
@@ -39,9 +31,17 @@
       <div class="vertical"></div>
 
       <li>
+        <h3 [routerLink]="['/','team']">
+          <a>team</a>
+        </h3>
+        <div class="under"></div>
 
-        <h3  [routerLink]="['/','community']">
-          <a >community</a>
+      </li>
+      <div class="vertical"></div>
+
+      <li>
+        <h3 [routerLink]="['/','community']">
+          <a>community</a>
         </h3>
         <div class="under"></div>
       </li>
@@ -57,7 +57,8 @@
     <div class="navTab" [@openClose]="isOpen ? 'open' : 'closed'">
       <span class="tabletClose" (click)="toggle()">
         <svg viewBox="0 0 43 43" id="close" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-          <path fill-rule="evenodd" d="M42.997 5.724L26.546 21.511l16.355 15.765-4.126 5.728L21.5 26.353 4.148 43.004.003 37.276l16.451-15.787L.099 5.724 4.225-.004 21.5 16.647 38.852-.004l4.145 5.728z"></path>
+          <path fill-rule="evenodd"
+                d="M42.997 5.724L26.546 21.511l16.355 15.765-4.126 5.728L21.5 26.353 4.148 43.004.003 37.276l16.451-15.787L.099 5.724 4.225-.004 21.5 16.647 38.852-.004l4.145 5.728z"></path>
         </svg>
       </span>
       <ul class="ulTablet">
@@ -76,21 +77,21 @@
         </li>
         <li>
           <a [routerLink]="['/','story']" (click)="toggle()">
-             Story
+            Story
             <div class="underscore"></div>
 
           </a>
         </li>
         <li>
           <a [routerLink]="['/','team']" (click)="toggle()">
-             Team
+            Team
             <div class="underscore"></div>
 
           </a>
         </li>
         <li>
           <a [routerLink]="['/','community']" (click)="toggle()">
-             Community
+            Community
             <div class="underscore"></div>
 
           </a>

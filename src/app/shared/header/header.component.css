@@ -20,7 +20,21 @@ li {
 .logo {
   width: 20%;
   height: 70px;
-  background-image: url('.././../../assets/img/bg.psd');
+  background-color: #fff;
+  mix-blend-mode: multiply;
+}
+
+.logo > h3 {
+  width: 100%;
+  height: 3vw;
+  padding-top: .8vw;
+  background-color: #000;
+  font-family: HelveticaBold;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 2vw;
+  color: #fff;
+  mix-blend-mode: multiply;
 }
 
 img {
@@ -40,6 +54,8 @@ header {
   width: 100%;
   display: flex;
   z-index: 29;
+  background-color: white;
+  mix-blend-mode: multiply;
 }
 
 a {
@@ -47,21 +63,25 @@ a {
   color: #1a1a1a;
   cursor: pointer;
 }
-/deep/a:focus{
-  outline: none!important;
-  border: none!important;
+
+/deep/ a:focus {
+  outline: none !important;
+  border: none !important;
 }
-/deep/a:active{
-  outline: none!important;
-  border: none!important;
+
+/deep/ a:active {
+  outline: none !important;
+  border: none !important;
 }
-/deep/h3:focus{
-  outline: none!important;
-  border: none!important;
+
+/deep/ h3:focus {
+  outline: none !important;
+  border: none !important;
 }
-/deep/h3:active{
-  outline: none!important;
-  border: none!important;
+
+/deep/ h3:active {
+  outline: none !important;
+  border: none !important;
 }
 
 .vertical {
@@ -70,6 +90,7 @@ a {
   background-color: black;
   margin: 0 3px 0 8px;
 }
+
 h3 > a {
   position: relative;
   color: black;
@@ -79,6 +100,7 @@ h3 > a {
 h3 > a:hover {
   color: black;
 }
+
 h3 > a:before {
   content: "";
   position: absolute;
@@ -113,9 +135,11 @@ h3 > a:hover:before {
   top: 34px;
   padding: 20px;
 }
-.ulTablet{
+
+.ulTablet {
   display: none;
 }
+
 .tabletClose{
   display: none;
 }
@@ -123,14 +147,16 @@ h3 > a:hover:before {
   ul{
     display: none;
   }
-  .tablet{
+
+  .tablet {
     display: block;
     width: 34px;
     height: 38px;
     right: 20px;
     top: 6px;
   }
-  .navTab{
+
+  .navTab {
     position: absolute;
     z-index: 35;
     top: 0px;
@@ -140,11 +166,13 @@ h3 > a:hover:before {
     width: 0px;
     background-color: white;
   }
-  .tabletClose{
+
+  .tabletClose {
     display: flex;
     flex-direction: column;
   }
-  .tabletClose>svg{
+
+  .tabletClose > svg {
     align-items: flex-end;
     width: 30px;
     height: 30px;
@@ -152,9 +180,10 @@ h3 > a:hover:before {
     padding-left: 92vw;
 
   }
-  .ulTablet{
+
+  .ulTablet {
     display: block;
-    padding-top: 30vw;
+    padding-top: 20vw;
     padding-left: 5vh;
   }
   li{
