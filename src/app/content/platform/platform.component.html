@@ -2,10 +2,17 @@
   <div class="scrollable" smoothAutoScroll *ngIf="teams.length>0" [begin]="0" [end]="finish" [time]="timeRemaining"
        [scrollLength]="30" [scrollTime]="1000" [delay]="1000" [initialDelay]="2000">
     <div *ngFor="let one of teams; let i = index" class="container">
-      <div *ngIf="i%2==0" class="text left">{{one.text}}</div>
-      <div divImage [id]="one.id" [controller]="'platform'" class="image">
+      <div *ngIf="i%2==0" class="text left">
+        <p>
+          {{one.text}}
+        </p>
       </div>
-      <div *ngIf="i%2==1" class="text right">{{one.text}}</div>
+      <div divImage [id]="one.id" [controller]="'platform'" class="image"></div>
+      <div *ngIf="i%2==1" class="text right">
+        <p>
+          {{one.text}}
+        </p>
+      </div>
     </div>
   </div>
 </div>

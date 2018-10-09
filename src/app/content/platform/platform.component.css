@@ -1,9 +1,11 @@
 .image {
-  border: 1px solid black;
-  width: 30%;
+  width: 60%;
   height: 100%;
   display: flex;
   flex-direction: column-reverse;
+  background-position: center;
+  transition: 1.5s;
+
 }
 
 .image > p {
@@ -18,11 +20,18 @@
 }
 
 .text {
-  border: 1px solid black;
   height: 100%;
-  width: 30%;
+  width: 40%;
   text-align: center;
 }
+.text p{
+  width: 90%;
+}
+.container p {
+  font-size: 46px;
+  font-family: sans-serif;
+}
+
 
 .left {
   margin-right: 0;
@@ -40,6 +49,11 @@
 }
 
 .scrollable {
-  margin-top: 70px;
+  width: 90%;
+  margin: 90px auto;
   transform: translate3d(0, 0, 0);
+}
+.image:hover {
+  transition: 1.5s;
+  transform: scale(1.05);
 }
