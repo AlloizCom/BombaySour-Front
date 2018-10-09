@@ -45,7 +45,7 @@ svg{
   height: 100vh;
   width: 0vw;
   overflow: hidden;
-  background-color: black;
+  background: #082330;
   z-index: 30;
 }
 .center{

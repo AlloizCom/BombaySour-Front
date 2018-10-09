@@ -9,7 +9,7 @@ import {trigger, state, style, animate, transition} from '@angular/animations';
     trigger('whightBlock', [
         transition(':enter', [style({width: '0px'}), animate('600ms 2000ms ease')])]),
     trigger('background', [
-      transition(':enter', [style({width: '100vw'}), animate('1500ms 3000ms ease')])]),
+      transition(':enter', [style({width: '100vw'}), animate('1000ms 500ms ease')])]),
     trigger('header', [
     transition(':enter', [style({transform: 'scaleX(0.9) scaleY(0.9)', opacity: '0'}), animate('600ms 500ms ease')])]),
         trigger('openClose2', [
@@ -37,7 +37,7 @@ export class ContentComponent implements OnInit, AfterViewChecked {
   ngOnInit() {
     setTimeout(()=>{this.end=true;
       this.endSecond =true;}, 3000);
-    setTimeout(()=>{this.finish =false;}, 4500);
+    setTimeout(()=>{this.finish =false;}, 1500);
     }
   ngAfterViewChecked(): void {
 
