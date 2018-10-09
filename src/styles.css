@@ -4,3 +4,7 @@ body{
   overflow: hidden;
 }
 
+@font-face {
+  font-family: HelveticaBold;
+  src: url('assets/fonts/9206.otf');
+}
