@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {ImageService} from "../../../shared/services/image.service";
 import {Film} from "../../../shared/models/film";
 import {FilmService} from "../../../shared/services/film.service";
-import {animate, state, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-film',
@@ -19,22 +18,27 @@ export class FilmComponent implements OnInit {
   constructor(private _service: ImageService, private _filmServie: FilmService) {
     _filmServie.findAllAvailable().subscribe(value => {
       this.films = value;
-      for (let one of this.films) {
-        _service.loadVideo(one.videoUrl).subscribe(image => {
-          let reader = new FileReader();
-          reader.addEventListener("load", () => {
-            let src: { id: number, source: any } = {} as { id: number, source: any };
-            src.id = one.id;
-            src.source = reader.result;
-            this.sources.push(src);
-          }, false);
-          if (image) {
-            reader.readAsDataURL(image);
-          }
-        }, err => {
-          console.error(err);
-        });
-      }
+      let i = 0;
+      let loader = setInterval(() => {
+        if (this.films.length <= i)
+          clearInterval(loader);
+        else {
+          _service.loadVideo(this.films[i].videoUrl).subscribe(image => {
+            let reader = new FileReader();
+            reader.addEventListener("load", () => {
+              let src: { id: number, source: any } = {} as { id: number, source: any };
+              src.source = reader.result;
+              this.sources.push(src);
+            }, false);
+            if (image) {
+              reader.readAsDataURL(image);
+            }
+          }, err => {
+            console.error(err);
+          });
+          i++;
+        }
+      }, 2000);
       this.playing = false;
     }, err => {
       console.error(err);

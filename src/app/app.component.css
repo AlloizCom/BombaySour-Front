@@ -8,6 +8,7 @@ body {
   width: 100vw;
   font: 16em/1 Arial;
   background: #082330;
+  z-index: 1000;
 }
 
 

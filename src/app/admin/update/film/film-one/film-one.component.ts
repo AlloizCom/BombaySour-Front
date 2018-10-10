@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {readUrl, validateImages} from "../../../../../shared/utils";
 import {ActivatedRoute} from "@angular/router";
 import {FilmService} from "../../../../../shared/services/film.service";
+import {url} from "../../../../../shared/config/url";
 
 @Component({
   selector: 'app-film-one',
@@ -38,10 +39,10 @@ export class FilmOneComponent implements OnInit {
   }
 
   load(id: number) {
-    this.formGroup.patchValue({id: id, filmTitle: `${id}  name  ${id}`, director: `${id}  director  ${id}`});
+    // this.formGroup.patchValue({id: id, filmTitle: `${id}  name  ${id}`, director: `${id}  director  ${id}`});
     this.service.findOne(id).subscribe(value => {
       this.formGroup.patchValue(value);
-      this.image = value.videoUrl;
+      this.image = url + value.videoUrl;
     });
   }
 }

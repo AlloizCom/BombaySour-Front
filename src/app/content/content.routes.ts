@@ -10,7 +10,7 @@ import {NavigatorComponent} from "./navigator/navigator.component";
 export const contentRoutes: Routes = [
   {
     path: '', component: ContentComponent, children: [
-      {path: '', component: NavigatorComponent},
+      {path: '', pathMatch:'full',redirectTo:'film'},
       {path: 'film', component: FilmComponent},
       {path: 'story', component: StoryComponent},
       {path: 'platform', component: PlatformComponent},

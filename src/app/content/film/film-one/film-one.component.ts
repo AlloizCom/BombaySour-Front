@@ -1,5 +1,6 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {animate, state, style, transition, trigger} from "@angular/animations";
+import {AppComponent} from "../../../app.component";
 
 @Component({
   selector: 'app-film-one',
@@ -86,7 +87,12 @@ export class FilmOneComponent implements OnInit {
   ngOnInit() {
     this._inited = true;
     if (this._animationState != 'middle') {
-      this.pause();
+      if (AppComponent.animationService.open)
+        this.pause();
+      else
+        AppComponent.animationService.open$.subscribe(value => {
+          if (value) this.pause();
+        })
     }
   }
 }

@@ -38,7 +38,7 @@ export class TeamOneComponent implements OnInit {
   }
 
   load(id: number) {
-    this.formGroup.patchValue({id: id, biography: `${id}  text  ${id}`, name: `${id}  title  ${id}`});
+    // this.formGroup.patchValue({id: id, biography: `${id}  text  ${id}`, name: `${id}  title  ${id}`});
     this.service.findOne(id).subscribe(value => this.formGroup.patchValue(value));
   }
 }

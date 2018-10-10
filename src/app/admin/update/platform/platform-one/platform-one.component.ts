@@ -38,7 +38,7 @@ export class PlatformOneComponent implements OnInit {
   }
 
   load(id: number) {
-    this.formGroup.patchValue({id: id, text: `${id}  text  ${id}`, title: `${id}  title  ${id}`});
+    // this.formGroup.patchValue({id: id, text: `${id}  text  ${id}`, title: `${id}  title  ${id}`});
     this.service.findOne(id).subscribe(value => this.formGroup.patchValue(value));
   }
 }

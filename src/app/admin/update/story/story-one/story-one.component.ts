@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {readUrl, validateImages} from "../../../../../shared/utils";
 import {ActivatedRoute} from "@angular/router";
 import {StoryService} from "../../../../../shared/services/story.service";
+import {url} from "../../../../../shared/config/url";
 
 @Component({
   selector: 'app-story-one',
@@ -36,10 +37,10 @@ export class StoryOneComponent implements OnInit {
   }
 
   load(id: number) {
-    this.formGroup.patchValue({id: id, text: `${id}  text  ${id}`, title: `${id}  title  ${id}`});
+    // this.formGroup.patchValue({id: id, text: `${id}  text  ${id}`, title: `${id}  title  ${id}`});
     this.service.findOne(id).subscribe(value => {
       this.formGroup.patchValue(value);
-      this.image = value.videoUrl
+      this.image = url+value.videoUrl
     });
   }
 }
