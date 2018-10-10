@@ -17,40 +17,35 @@ export class FilmComponent implements OnInit {
   width = window.innerWidth;
   loadedFirst = false;
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event) {
-    this.width = window.innerWidth;
-    console.log('resize');
-  }
-
   constructor(private _service: ImageService, private _filmServie: FilmService) {
     _filmServie.findAllAvailable().subscribe(value => {
       this.films = value;
-      let i = 0;
-      let loader = setInterval(() => {
-        if (this.films.length <= i)
-          clearInterval(loader);
-        else {
-          _service.loadVideo(this.films[i].videoUrl).subscribe(image => {
-            let reader = new FileReader();
-            reader.addEventListener("load", () => {
-              let src: { id: number, source: any } = {} as { id: number, source: any };
-              src.source = reader.result;
-              this.sources.push(src);
-            }, false);
-            if (image) {
-              reader.readAsDataURL(image);
-            }
-          }, err => {
-            console.error(err);
-          });
-          i++;
-        }
-      }, 2000);
+      for (let one of this.films) {
+        _service.loadVideo(one.videoUrl).subscribe(image => {
+          let reader = new FileReader();
+          reader.addEventListener("load", () => {
+            let src: { id: number, source: any } = {} as { id: number, source: any };
+            src.id = one.id;
+            src.source = reader.result;
+            this.sources.push(src);
+          }, false);
+          if (image) {
+            reader.readAsDataURL(image);
+          }
+        }, err => {
+          console.error(err);
+        });
+      }
       this.playing = false;
     }, err => {
       console.error(err);
     });
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.width = window.innerWidth;
+    console.log('resize');
   }
 
   changeCurrentId(way: number) {
@@ -63,7 +58,7 @@ export class FilmComponent implements OnInit {
     setTimeout(() => this.playing = false, 1000);
   }
 
-  loaded(event){
+  loaded(event) {
     this.loadedFirst = event;
   }
 
