@@ -144,7 +144,7 @@ h3 > a:hover:before {
   display: none;
 }
 @media only screen and (min-device-width : 320px) and (max-device-width : 1024px) {
-  ul{
+  ul {
     display: none;
   }
 
@@ -186,13 +186,15 @@ h3 > a:hover:before {
     padding-top: 20vw;
     padding-left: 5vh;
   }
-  li{
+
+  li {
     padding: 20px 2px 0 2px;
   }
-  a{
+
+  a {
     font-size: 34px;
   }
-
+}
   @media only screen and (min-device-width : 320px) and (max-device-width : 640px) {
     .tabletClose>svg{
       padding-left: 84vw;
@@ -202,4 +204,4 @@ h3 > a:hover:before {
       padding: 7px;
     }
   }
-}
+

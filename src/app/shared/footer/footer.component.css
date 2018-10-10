@@ -43,3 +43,33 @@ img{
   margin-top: 25px;
   margin-bottom: 50px;
 }
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 640px) {
+  h6 {
+    color: white;
+    margin: auto;
+    width: 140px;
+    padding-top: 40px;
+    padding-bottom: 18px;
+    font: normal normal normal 12px/1.4em helvetica-w01-roman, helvetica-w02-roman, helvetica-lt-w10-roman, sans-serif !important;
+  }
+  .font_9{
+    font: normal normal normal 8px/1.4em helvetica-w01-light,helvetica-w02-light,sans-serif!important;
+    margin: 5px 20px 5px 20px;
+  }
+  svg{
+    height: 22px;
+  }
+  .font_7{
+    font: normal normal normal 13px/1.4em helvetica-w01-roman,helvetica-w02-roman,helvetica-lt-w10-roman,sans-serif!important;
+    padding-top: 10px;
+  }
+  .font_8{
+    font: normal normal normal 7px/1.4em helvetica-w01-light,helvetica-w02-light,sans-serif!important;
+  }
+  .social{
+    margin-top: 15px;
+    margin-bottom: 30px;
+  }
+}
+
