@@ -43,7 +43,7 @@ export class AppComponent implements AfterViewInit {
     setTimeout(() => {
       this.open = true;
       AppComponent.animationService.open = this.open;
-    }, 4500)
+    }, 1800)
 
   }
 }

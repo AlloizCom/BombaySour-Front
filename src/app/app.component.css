@@ -10,7 +10,11 @@ body {
   background: #082330;
   z-index: 1000;
 }
-
+.black{
+  background-color: black;
+  width: 100vw;
+  height: 100vh;
+}
 
 .text--line {
   font-size: .5em;
