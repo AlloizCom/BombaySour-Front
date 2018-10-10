@@ -20,7 +20,7 @@ li {
 .logo {
   width: 270px;
   height: 70px;
-  background-color: #fff;
+  /*background-color: #fff;*/
   mix-blend-mode: multiply;
 }
 
