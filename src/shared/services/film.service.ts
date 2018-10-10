@@ -31,6 +31,8 @@ export class FilmService {
   update(obj: Film,form): Observable<Film> {
     let data = new FormData(form);
     data.append('filmJson',JSON.stringify(obj));
+    console.log(form);
+    console.log(data);
     return this._httpClient.post<Film>(`${this.controller}/update`, data,{headers:new HttpHeaders().append('enctype','enctype')});
   }
 

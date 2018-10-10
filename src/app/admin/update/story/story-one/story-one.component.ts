@@ -41,7 +41,7 @@ export class StoryOneComponent implements OnInit {
     // this.formGroup.patchValue({id: id, text: `${id}  text  ${id}`, title: `${id}  title  ${id}`});
     this.service.findOne(id).subscribe(value => {
       this.formGroup.patchValue(value);
-      this.image = url+value.videoUrl
+      this.image =url+ value.videoUrl
     });
   }
 }

@@ -9,7 +9,7 @@ export class LoginService {
   constructor(private _httpClient:HttpClient,private router:Router){}
 
   sendCredentials(credentials:{username:string,password:string}){
-    this._httpClient.post(`/login/login`,credentials).subscribe(value => {AppComponent.isAuthorized = value;this.router.navigateByUrl('/admin/add')});
+    this._httpClient.post<boolean>(`/login/login`,credentials).subscribe(value => {AppComponent.isAuthorized = value;this.router.navigateByUrl('/admin/add')});
   }
 
 }

@@ -1,5 +1,5 @@
 <p>Film</p>
-<form [formGroup]="formGroup" (submit)="save()">
+<form [formGroup]="formGroup" (submit)="save(form)" #form>
   <label>Name
     <input type="text" formControlName="filmTitle">
   </label>
@@ -9,6 +9,6 @@
   <label>Video
     <input type="file" accept="video/*" formControlName="video" name="multipartFile" (change)="readUrl($event)">
   </label>
-  <video *ngIf="image&&image.length>0" [src]="image|video" autoplay controls></video>
+  <video *ngIf="image&&image.length>0" [src]="image" autoplay controls></video>
   <input type="submit" value="Update">
 </form>
