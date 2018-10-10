@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {validateImages} from "../../../../../shared/utils";
 import {ActivatedRoute} from "@angular/router";
 import {PlatformService} from "../../../../../shared/services/platform.service";
+import {ImageService} from "../../../../../shared/services/image.service";
 
 @Component({
   selector: 'app-platform-one',
@@ -14,7 +14,7 @@ export class PlatformOneComponent implements OnInit {
   formGroup: FormGroup;
   image: string;
 
-  constructor(private activatedRoute: ActivatedRoute, private service: PlatformService) {
+  constructor(private activatedRoute: ActivatedRoute, private service: PlatformService, private _imageService: ImageService) {
   }
 
   ngOnInit() {
@@ -39,6 +39,12 @@ export class PlatformOneComponent implements OnInit {
 
   load(id: number) {
     // this.formGroup.patchValue({id: id, text: `${id}  text  ${id}`, title: `${id}  title  ${id}`});
-    this.service.findOne(id).subscribe(value => this.formGroup.patchValue(value));
+    this.service.findOne(id).subscribe(value => {
+      this.formGroup.patchValue(value);
+      this._imageService.findOne(id, 'platform').subscribe(value1 => {
+        this.image = value1.body;
+        this.formGroup.patchValue({image: value1.body})
+      });
+    });
   }
 }

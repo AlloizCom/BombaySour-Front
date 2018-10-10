@@ -19,6 +19,7 @@ export class ImageService {
     if (found) {
       let sub = new Subject<Blob>();
       setTimeout(() => sub.next(found.val), 100);
+      console.log('from cahce');
       return sub.asObservable();
     }
     let obs = this.loadVideoS(url, params);
