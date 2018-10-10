@@ -1,9 +1,14 @@
 .image {
-  border: 1px solid black;
-  width: 30%;
+  width: 60%;
   height: 100%;
   display: flex;
   flex-direction: column-reverse;
+  background-position: center;
+  transition: 1.5s;
+}
+.title{
+  height: 80%;
+  margin-top: 8%;
 }
 
 .image > p {
@@ -18,10 +23,24 @@
 }
 
 .text {
-  border: 1px solid black;
   height: 100%;
-  width: 30%;
+  width: 40%;
   text-align: center;
+}
+.text p{
+  width: 90%;
+  margin: auto;
+}
+.container p {
+  font-size: 46px;
+  font-weight: 400;
+}
+.read-more  {
+  position: relative;
+}
+.read-more  > p  {
+  font-family: Arial,sans-serif!important;
+  font-size: 28px;
 }
 
 .left {
@@ -40,6 +59,11 @@
 }
 
 .scrollable {
-  margin-top: 70px;
+  width: 90%;
+  margin: 90px auto;
   transform: translate3d(0, 0, 0);
+}
+.image:hover {
+  transition: 1.5s;
+  transform: scale(1.05);
 }
