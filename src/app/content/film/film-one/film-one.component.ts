@@ -1,5 +1,5 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
-import {animate, state, style, transition, trigger} from "@angular/animations";
+import {animate, group, state, style, transition, trigger} from "@angular/animations";
 import {AppComponent} from "../../../app.component";
 
 @Component({
@@ -9,24 +9,34 @@ import {AppComponent} from "../../../app.component";
   animations: [
     trigger('slider', [
       state('left', style({
-        // width: '0',
         transform: 'translate(-100vw)',
-        // opacity: '.0001'
       }), {params: {}}),
       state('middle', style({
-        // width: '100vw',
         transform: 'translate({{middlePos}}vw)',
-        // opacity: '1',
       }), {params: {middlePos: 0}}),
       state('right', style({
-        // width: '0',
         transform: 'translate(100vw)',
-        // opacity: '.0001'
       }), {params: {}}),
-      transition('*<=>*', [
+      transition('*=>*', [
         animate('1s ease-in-out')
       ])
-    ])]
+    ]),
+    trigger('child', [
+      state('left', style({
+        opacity: '1',
+      }), {params: {}}),
+      state('middle', style({
+        opacity: '.0001',
+      }), {params: {}}),
+      state('right', style({
+        opacity: '1',
+      }), {params: {}}),
+      transition('*=>*', group([
+        style({opacity: .5}),
+        animate('1s ease-in-out')
+      ]))
+    ])
+  ]
 })
 export class FilmOneComponent implements OnInit {
   @ViewChild('mainVideo') mainVideoVC: ElementRef;
@@ -46,8 +56,9 @@ export class FilmOneComponent implements OnInit {
 
   @Input() set animationState(value: string) {
     this._animationState = value;
-    if (this._inited)
+    if (this._inited) {
       this.pause();
+    }
   }
 
   get source() {
@@ -62,15 +73,9 @@ export class FilmOneComponent implements OnInit {
     let main = (<HTMLVideoElement>this.mainVideoVC.nativeElement);
     let left = (<HTMLVideoElement>this.leftVideoVC.nativeElement);
     let right = (<HTMLVideoElement>this.rightVideoVC.nativeElement);
-    // console.log('currentTime p m ', main.currentTime);
-    // console.log('currentTime p l ', left.currentTime);
-    // console.log('currentTime p r ', right.currentTime);
-    // left.currentTime = main.currentTime;
-    // right.currentTime = main.currentTime;
-    // console.log('currentTime  m ', main.currentTime);
-    // console.log('currentTime  l ', left.currentTime);
-    // console.log('currentTime  r ', right.currentTime);
     if (main.paused) {
+      left.currentTime = main.currentTime;
+      right.currentTime = main.currentTime;
       main.play();
       left.play();
       right.play();
@@ -79,9 +84,6 @@ export class FilmOneComponent implements OnInit {
       left.pause();
       right.pause();
     }
-    // console.log(main.defaultPlaybackRate);
-    // console.log(left.defaultPlaybackRate);
-    // console.log(right.defaultPlaybackRate);
   }
 
   ngOnInit() {

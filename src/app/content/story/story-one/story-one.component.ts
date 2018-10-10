@@ -1,5 +1,6 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
-import {animate, state, style, transition, trigger} from "@angular/animations";
+import {animate, group, state, style, transition, trigger} from "@angular/animations";
+import {AppComponent} from "../../../app.component";
 
 @Component({
   selector: 'app-story-one',
@@ -25,7 +26,23 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
       transition('*<=>*', [
         animate('1s ease-in-out')
       ])
-    ])]
+    ]),
+    trigger('child', [
+      state('left', style({
+        opacity: '1',
+      }), {params: {}}),
+      state('middle', style({
+        opacity: '.0001',
+      }), {params: {}}),
+      state('right', style({
+        opacity: '1',
+      }), {params: {}}),
+      transition('*=>*', group([
+        style({opacity: .5}),
+        animate('1s ease-in-out')
+      ]))
+    ])
+  ]
 })
 export class StoryOneComponent implements OnInit {
   @ViewChild('mainVideo') mainVideoVC: ElementRef;
@@ -61,14 +78,6 @@ export class StoryOneComponent implements OnInit {
     let main = (<HTMLVideoElement>this.mainVideoVC.nativeElement);
     let left = (<HTMLVideoElement>this.leftVideoVC.nativeElement);
     let right = (<HTMLVideoElement>this.rightVideoVC.nativeElement);
-    // console.log('currentTime p m ', main.currentTime);
-    // console.log('currentTime p l ', left.currentTime);
-    // console.log('currentTime p r ', right.currentTime);
-    // left.currentTime = main.currentTime;
-    // right.currentTime = main.currentTime;
-    // console.log('currentTime  m ', main.currentTime);
-    // console.log('currentTime  l ', left.currentTime);
-    // console.log('currentTime  r ', right.currentTime);
     if (main.paused) {
       main.play();
       left.play();
@@ -78,14 +87,17 @@ export class StoryOneComponent implements OnInit {
       left.pause();
       right.pause();
     }
-    // console.log(main.defaultPlaybackRate);
-    // console.log(left.defaultPlaybackRate);
-    // console.log(right.defaultPlaybackRate);
   }
 
   ngOnInit() {
     this._inited = true;
     if (this._animationState != 'middle') {
-      this.pause();
+      if (AppComponent.animationService.open)
+        this.pause();
+      else
+        AppComponent.animationService.open$.subscribe(value => {
+          if (value) this.pause();
+        })
     }
-  }}
+  }
+}
