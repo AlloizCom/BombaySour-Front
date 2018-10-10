@@ -21,6 +21,7 @@ export class StoryOneComponent implements OnInit {
   ngOnInit() {
     this.formGroup = new FormGroup({
       video: new FormControl(null, [validateImages]),
+      available: new FormControl('', ),
       name: new FormControl('', [Validators.required]),
       id: new FormControl()
     });
