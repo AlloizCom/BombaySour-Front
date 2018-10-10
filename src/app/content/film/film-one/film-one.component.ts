@@ -71,7 +71,6 @@ export class FilmOneComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
-
   doSome(id: number) {
     let canvas = (<HTMLCanvasElement>document.getElementById('canvas' + id));
     let divWidthPX = +getComputedStyle(canvas.parentElement).transform.split(',')[4];
@@ -85,18 +84,12 @@ export class FilmOneComponent implements OnInit, OnDestroy, AfterViewInit {
       {xFrom: onePiece, xTo: onePiece * 2, canvasXFrom: onePieceCanvas, canvasXTo: onePieceCanvas * 2};
     let positionVideoTwo: { xFrom: number, xTo: number, canvasXFrom: number, canvasXTo: number } =
       {xFrom: onePiece * 3, xTo: onePiece * 4, canvasXFrom: onePieceCanvas * 3, canvasXTo: onePieceCanvas * 4};
-    // console.log('offset ',canvas.parentElement.offsetWidth);
-    // console.log('inner ',window.innerWidth);
-    // console.log('video ',video.videoWidth);
-    //   console.log(divWidthPX);
     if (divWidthPX < 0) {
       positionVideoOne.canvasXFrom += divWidthPXABS;
       positionVideoOne.canvasXTo += divWidthPXABS;
       positionVideoTwo.canvasXFrom += divWidthPXABS;
       positionVideoTwo.canvasXTo += divWidthPXABS;
     }
-    // console.log('one ', positionVideoOne);
-    // console.log('two ', positionVideoTwo);
     context.drawImage(video, 0, 0, canvas.width, canvas.height);
     if (divWidthPXABS != 0) {
       context.drawImage(video, positionVideoOne.xFrom, 0, positionVideoOne.xTo - positionVideoOne.xFrom, video.videoHeight, positionVideoOne.canvasXFrom, 0, positionVideoOne.canvasXTo - positionVideoOne.canvasXFrom, canvas.height);

@@ -60,8 +60,10 @@ export class StoryOneComponent implements OnInit, AfterViewInit, OnDestroy {
   pause(val?: boolean) {
     let main = (<HTMLVideoElement>this.mainVideoVC.nativeElement);
     if (val) {
-      main.pause();
-      clearInterval(this.interval);
+      setTimeout(() => {
+        clearInterval(this.interval);
+        main.pause();
+      }, 1000);
     } else {
       main.play();
       this.interval = setInterval((id = this.story.id) => this.doSome.call(this, id), 1000 / 30)
