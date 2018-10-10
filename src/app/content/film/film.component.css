@@ -21,3 +21,8 @@
   width: 100vw;
   overflow: hidden;
 }
+
+.one-film {
+  position: fixed;
+  height: 100vh;
+}

@@ -1,25 +1,8 @@
+<video class="video-main" autoplay
+       [muted]="true" loop #mainVideo [id]="'video'+film.id">
+  <source [src]="_src.source">
+</video>
 <div class="container-main container-video" [@slider]="_animationState"
      *ngIf="_src">
-  <video class="video-main" autoplay
-         [muted]="true" loop #mainVideo>
-    <source [src]="_src.source">
-  </video>
-</div>
-<div class="container-first container-video"
-     [@slider]="{value:_animationState,params:{middlePos:20}}"
-     [@child]="{value:_animationState}"
-     *ngIf="_src">
-  <video class="video-first" autoplay
-         [muted]="true" loop #leftVideo>
-    <source [src]="_src.source">
-  </video>
-</div>
-<div class="container-second container-video"
-     [@slider]="{value:_animationState,params:{middlePos:60}}"
-     [@child]="{value:_animationState}"
-     *ngIf="_src">
-  <video class="video-second" autoplay
-         [muted]="true" loop #rightVideo>
-    <source [src]="_src.source">
-  </video>
+  <canvas [id]="'canvas'+film.id" [width]="width" [height]="height"></canvas>
 </div>

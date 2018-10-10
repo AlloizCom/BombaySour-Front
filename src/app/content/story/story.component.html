@@ -1,7 +1,8 @@
 <div class="wrapper">
   <div class="button left" (click)="changeCurrentId(-1)"></div>
   <div *ngFor="let one of sources;let i = index" class="one-film">
-    <app-story-one [source]="one" [animationState]="i<currentId?'left':i>currentId?'right':'middle'"></app-story-one>
+    <app-story-one [source]="one" [story]="stories[i]"
+                   [animationState]="i<currentId?'left':i>currentId?'right':'middle'"></app-story-one>
   </div>
   <div class="button right" (click)="changeCurrentId(1)"></div>
 </div>
