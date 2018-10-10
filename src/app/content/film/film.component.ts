@@ -51,7 +51,7 @@ export class FilmComponent implements OnInit {
   changeCurrentId(way: number) {
     if (this.playing)
       return;
-    if (this.currentId + way < -1 || this.currentId + way == this.films.length + 1)
+    if (this.currentId + way < 0 || this.currentId + way == this.films.length)
       return;
     this.currentId += way;
     this.playing = true;

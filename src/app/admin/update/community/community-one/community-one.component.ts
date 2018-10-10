@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
 import {CommunityService} from "../../../../../shared/services/community.service";
+import {ImageService} from "../../../../../shared/services/image.service";
 
 @Component({
   selector: 'app-community-one',
@@ -13,7 +14,7 @@ export class CommunityOneComponent implements OnInit {
   formGroup: FormGroup;
   image: string;
 
-  constructor(private activatedRoute: ActivatedRoute, private service: CommunityService) {
+  constructor(private activatedRoute: ActivatedRoute, private service: CommunityService, private _imageService: ImageService) {
   }
 
   ngOnInit() {
@@ -40,7 +41,10 @@ export class CommunityOneComponent implements OnInit {
     console.log('set value');
     this.service.findOne(id).subscribe(value => {
       this.formGroup.patchValue(value);
-      this.image = value.image
+      this._imageService.findOne(id, 'community').subscribe(value1 => {
+        this.image = value1.body;
+        this.formGroup.patchValue({image: value1.body})
+      })
     });
     // this.formGroup.patchValue({id: id, text: `${id}  text  ${id}`, articleTitle: `${id}  articleTitle  ${id}`});
   }
