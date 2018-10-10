@@ -22,6 +22,7 @@ export class PlatformOneComponent implements OnInit {
       image: new FormControl(null, [Validators.required]),
       text: new FormControl('', [Validators.required]),
       title: new FormControl('', [Validators.required]),
+      available: new FormControl('', ),
       id: new FormControl()
     });
     this.activatedRoute.params.subscribe(value => this.load(value['id']));

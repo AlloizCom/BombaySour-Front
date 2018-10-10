@@ -22,6 +22,7 @@ export class TeamOneComponent implements OnInit {
     this.formGroup = new FormGroup({
       id: new FormControl(),
       image: new FormControl(null, [Validators.required]),
+      available: new FormControl('', ),
       biography: new FormControl('', [Validators.required]),
       name: new FormControl('', [Validators.required])
     });

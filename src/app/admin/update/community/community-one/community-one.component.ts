@@ -22,6 +22,7 @@ export class CommunityOneComponent implements OnInit {
       image: new FormControl('', [Validators.required]),
       text: new FormControl('', [Validators.required]),
       articleTitle: new FormControl('', [Validators.required]),
+      available: new FormControl('', ),
       id: new FormControl('')
     });
     this.activatedRoute.params.subscribe(value => this.load(value['id']));

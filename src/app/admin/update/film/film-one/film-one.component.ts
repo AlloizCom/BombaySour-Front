@@ -23,6 +23,7 @@ export class FilmOneComponent implements OnInit {
     this.formGroup = new FormGroup({
       video: new FormControl(null, [validateImages]),
       filmTitle: new FormControl('', [Validators.required]),
+      available: new FormControl('', ),
       director: new FormControl('', [Validators.required]),
       id: new FormControl(null, [Validators.required])
     });
