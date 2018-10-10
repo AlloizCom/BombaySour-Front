@@ -11,7 +11,6 @@ import {FilmService} from "../../../shared/services/film.service";
 export class FilmComponent implements OnInit {
 
   films: Film[] = [];
-  sources: { id: number, source: any }[] = [];
   currentId = 0;
   playing: boolean = true;
   width = window.innerWidth;
@@ -20,22 +19,6 @@ export class FilmComponent implements OnInit {
   constructor(private _service: ImageService, private _filmServie: FilmService) {
     _filmServie.findAllAvailable().subscribe(value => {
       this.films = value;
-      for (let one of this.films) {
-        _service.loadVideo(one.videoUrl).subscribe(image => {
-          let reader = new FileReader();
-          reader.addEventListener("load", () => {
-            let src: { id: number, source: any } = {} as { id: number, source: any };
-            src.id = one.id;
-            src.source = reader.result;
-            this.sources.push(src);
-          }, false);
-          if (image) {
-            reader.readAsDataURL(image);
-          }
-        }, err => {
-          console.error(err);
-        });
-      }
       this.playing = false;
     }, err => {
       console.error(err);

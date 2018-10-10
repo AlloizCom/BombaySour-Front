@@ -1,8 +1,8 @@
 import {
   AfterViewInit,
   Component,
-  ElementRef, EventEmitter,
-  HostListener,
+  ElementRef,
+  EventEmitter,
   Input,
   OnDestroy,
   OnInit,
@@ -35,17 +35,19 @@ import {Film} from "../../../../shared/models/film";
   ]
 })
 export class FilmOneComponent implements OnInit, OnDestroy, AfterViewInit {
+
   @ViewChild('mainVideo') mainVideoVC: ElementRef;
   @Input() film: Film;
   @Output() loaded = new EventEmitter();
-
-  _src;
   @Input() width = window.innerWidth;
+
   height = window.innerHeight;
+
   private interval;
   private _inited = false;
 
-  constructor() {}
+  constructor() {
+  }
 
   _animationState: string;
 
@@ -59,14 +61,6 @@ export class FilmOneComponent implements OnInit, OnDestroy, AfterViewInit {
       this.pause(value != 'middle');
     }
   }
-
-  get source() {
-    return this._src;
-  }
-
-  @Input() set source(src: { id: number, source: any }) {
-    this._src = src;
-  };
 
   pause(val?: boolean) {
     let main = (<HTMLVideoElement>this.mainVideoVC.nativeElement);
@@ -115,7 +109,9 @@ export class FilmOneComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    (<HTMLVideoElement>this.mainVideoVC.nativeElement).addEventListener('loadeddata',()=>{this.loaded.emit(true)});
+    (<HTMLVideoElement>this.mainVideoVC.nativeElement).addEventListener('loadeddata', () => {
+      this.loaded.emit(true)
+    });
     this._inited = true;
     if (this._animationState == 'middle') {
       if (AppComponent.animationService.open) {

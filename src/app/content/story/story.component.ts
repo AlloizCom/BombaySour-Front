@@ -11,7 +11,6 @@ import {StoryService} from "../../../shared/services/story.service";
 export class StoryComponent implements OnInit {
 
   stories: Story[] = [];
-  sources: { id: number, source: any }[] = [];
   currentId = 0;
   playing: boolean = true;
   width = window.innerWidth;
@@ -26,22 +25,6 @@ export class StoryComponent implements OnInit {
   constructor(private _service: ImageService, private _storyService: StoryService) {
     _storyService.findAllAvailable().subscribe(value => {
       this.stories = value;
-      for (let one of this.stories) {
-        _service.loadVideo(one.videoUrl).subscribe(image => {
-          let reader = new FileReader();
-          reader.addEventListener("load", () => {
-            let src: { id: number, source: any } = {} as { id: number, source: any };
-            src.id = one.id;
-            src.source = reader.result;
-            this.sources.push(src);
-          }, false);
-          if (image) {
-            reader.readAsDataURL(image);
-          }
-        }, err => {
-          console.error(err);
-        });
-      }
       this.playing = false;
     }, err => {
       console.error(err);

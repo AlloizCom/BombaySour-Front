@@ -35,13 +35,14 @@ import {Story} from "../../../../shared/models/story";
   ]
 })
 export class StoryOneComponent implements OnInit, AfterViewInit, OnDestroy {
+
   @ViewChild('mainVideo') mainVideoVC: ElementRef;
   @Input() story: Story;
   @Output() loaded = new EventEmitter();
-
-  _src;
   @Input() width = window.innerWidth;
+
   height = window.innerHeight;
+
   private interval;
   private _inited = false;
 
@@ -59,14 +60,6 @@ export class StoryOneComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this._inited)
       this.pause(value != 'middle');
   }
-
-  get source() {
-    return this._src;
-  }
-
-  @Input() set source(src: { id: number, source: any }) {
-    this._src = src;
-  };
 
   pause(val?: boolean) {
     let main = (<HTMLVideoElement>this.mainVideoVC.nativeElement);
@@ -115,7 +108,9 @@ export class StoryOneComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    (<HTMLVideoElement>this.mainVideoVC.nativeElement).addEventListener('loadeddata',()=>{this.loaded.emit(true)});
+    (<HTMLVideoElement>this.mainVideoVC.nativeElement).addEventListener('loadeddata', () => {
+      this.loaded.emit(true)
+    });
     this._inited = true;
     if (this._animationState == 'middle') {
       if (AppComponent.animationService.open) {

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {CommunityService} from "../../../shared/services/community.service";
 import {Community} from "../../../shared/models/community";
 
@@ -7,7 +7,7 @@ import {Community} from "../../../shared/models/community";
   templateUrl: './community.component.html',
   styleUrls: ['./community.component.css']
 })
-export class CommunityComponent implements OnInit {
+export class CommunityComponent implements OnInit, AfterViewInit {
 
   teams: Community[] = [];
   timeRemaining = 30000;
@@ -15,13 +15,23 @@ export class CommunityComponent implements OnInit {
 
   constructor(private service: CommunityService) {
     this.service.findAllAvailable().subscribe(value => {
-      this.finish = -40 * (value.length - 1.5);
       this.timeRemaining = value.length * 5000;
       this.teams = value;
+      setTimeout(() => {
+        if (typeof window.orientation !== 'undefined') {
+          this.finish = -(document.getElementById(`community${this.teams[0].id}`).parentElement.offsetHeight / (window.innerHeight / 100) / 1.6);
+        } else {
+          this.finish = -((document.getElementById(`community${this.teams[0].id}`).offsetHeight / (window.innerHeight / 100)) * (this.teams.length - 1.6));
+        }
+        console.log(this.finish);
+      }, 1000)
     });
   }
 
   ngOnInit() {
+  }
+
+  ngAfterViewInit(): void {
   }
 
 }

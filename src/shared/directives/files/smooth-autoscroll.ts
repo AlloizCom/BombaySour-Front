@@ -20,9 +20,10 @@ export class SmoothAutoscroll implements OnInit {
   nextAuto;
   running = false;
   initialized = false;
-  private timeRemaining;
-  private factory: AnimationFactory;
-  private player: AnimationPlayer;
+  timeRemaining;
+  factory: AnimationFactory;
+  player: AnimationPlayer;
+  previous = 0;
 
   constructor(private element: ElementRef, private builder: AnimationBuilder) {
   }
@@ -61,6 +62,61 @@ export class SmoothAutoscroll implements OnInit {
     this.initialized = true;
   }
 
+  scrollListener(event: WheelEvent | TouchEvent, that: SmoothAutoscroll): any {
+    that.player.pause();
+    let deltaY;
+    if (event instanceof WheelEvent) {
+      deltaY = (<WheelEvent>event).deltaY;
+    } else {
+      deltaY = that.previous - (<TouchEvent>event).touches[0].clientY;
+      that.previous = (<TouchEvent>event).touches[0].clientY;
+    }
+    let neSC = that.scrollCount + (deltaY > 0 ? -that.scrollLength : that.scrollLength);
+    if (Math.abs(that.scrollCount) > Math.abs(neSC))
+      that.scrollCount = 0;
+    else
+      that.scrollCount = neSC;
+    if (that.scrolling) {
+      that.player.onDone(() => {
+      });
+    }
+    that.scrolling = true;
+    if (!isNaN(that.player.getPosition()))
+      that.lastFrom += (that.lastTo - that.lastFrom) * that.player.getPosition();
+    that.lastTo = that.lastFrom + that.scrollCount;
+    if (that.lastTo > 0) {
+      that.lastTo = 0;
+    }
+    if (that.lastTo <= that.finish) {
+      that.lastTo = that.finish;
+    }
+    that.createAnimation(that.lastFrom, that.lastTo, that.scrollTime);
+    that.player.onDone(() => {
+      if (isNaN(that.player.getPosition()) || that.player.getPosition() == 0)
+        return;
+      that.scrollCount = 0;
+      that.scrolling = false;
+    });
+    if (that.nextAuto) {
+      clearTimeout(that.nextAuto);
+      that.nextAuto = null;
+    }
+    that.nextAuto = setTimeout(() => {
+      that.scrolling = false;
+      that.scrollCount = 0;
+      if (that.lastFrom > that.finish) {
+        that.lastFrom = that.lastTo;
+        that.lastTo = that.finish;
+        that.timeRemaining = ((Math.abs(that.finish) - Math.abs(that.lastFrom)) / that.pointsPerSec) * 1000;
+        // console.log('timeremaining ', that.timeRemaining);
+        // console.log('Math.abs(that.finish) ', Math.abs(that.finish));
+        // console.log('Math.abs(that.lastFrom) ', Math.abs(that.lastFrom));
+        // console.log('that.pointsPerSec ', that.pointsPerSec);
+        that.createAnimation(that.lastFrom, that.finish, that.timeRemaining);
+      }
+    }, 3000);
+  }
+
   private runAnimation() {
     if (!this.initialized)
       return;
@@ -68,49 +124,18 @@ export class SmoothAutoscroll implements OnInit {
     this.finish = this.end;
     this.lastTo = this.finish;
     this.lastFrom = this.begin;
+    let thats = this;
     this.createAnimation(this.lastFrom, this.lastTo, this.timeRemaining);
-    (<HTMLDivElement>this.element.nativeElement).onmousewheel = (event: WheelEvent) => {
-      this.player.pause();
-      this.scrollCount += (event.deltaY > 0 ? -this.scrollLength : this.scrollLength);
-      if (!this.scrolling) {
-        // @ts-ignore
-        this.timeRemaining -= this.player.domPlayer.currentTime;
-        // this.lastFrom += (this.finish - this.lastFrom) * this.player.getPosition();
-      } else {
-        console.log(this.nextAuto);
-        this.player.onDone(() => {
-        });
-        console.log(this.nextAuto);
+    this.pointsPerSec = Math.abs(this.end - this.begin) / (this.timeRemaining / 1000);
+    document.onmousewheel = (event, that = thats) => this.scrollListener.call(this, event, that);
+    document.ontouchmove = (event, that = thats) => this.scrollListener.call(this, event, that);
+    document.ontouchstart = (event) => {
+      if (this.scrolling) {
+        this.lastFrom += (this.lastTo - this.lastFrom) * this.player.getPosition();
+        this.lastTo = this.lastFrom;
+        this.createAnimation(this.lastFrom,this.lastTo,1);
       }
-      this.scrolling = true;
-      this.lastFrom += (this.lastTo - this.lastFrom) * this.player.getPosition();
-      this.lastTo = this.lastFrom + this.scrollCount;
-      if (this.lastTo > 0) {
-        this.lastTo = 0;
-      }
-      if (this.lastTo <= this.finish) {
-        this.lastTo = this.finish;
-      }
-      this.createAnimation(this.lastFrom, this.lastTo, this.scrollTime);
-      this.player.onDone(() => {
-        this.scrollCount = 0;
-        this.scrolling = false;
-      });
-      if (this.nextAuto) {
-        clearTimeout(this.nextAuto);
-        this.nextAuto = null;
-      }
-      this.nextAuto = setTimeout(() => {
-        this.scrolling = false;
-        this.scrollCount = 0;
-        if (this.lastFrom > this.finish) {
-          this.lastFrom = this.lastTo;
-          this.lastTo = this.finish;
-          this.timeRemaining = ((Math.abs(this.finish) - Math.abs(this.lastFrom)) / this.pointsPerSec) * 1000;
-          this.createAnimation(this.lastFrom, this.finish, this.timeRemaining);
-        }
-      }, 3000);
-    }
+    };
   }
 
   private createAnimation(from: number, to: number, time: number, delay: number = 0) {

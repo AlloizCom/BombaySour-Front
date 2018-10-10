@@ -81,7 +81,7 @@
   .container {
     flex-direction: column;
     height: 50vh;
-    margin-bottom: 15%;
+    margin-bottom: 5vh;
   }
 
   .image {

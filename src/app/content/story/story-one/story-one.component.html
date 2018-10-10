@@ -1,8 +1,7 @@
 <video class="video-main"
        loop #mainVideo [id]="'video'+story.id">
-  <source [src]="_src.source">
+  <source [src]="story.videoUrl|video">
 </video>
-<div class="container-main container-video" [@slider]="_animationState"
-     *ngIf="_src">
+<div class="container-main container-video" [@slider]="_animationState">
   <canvas [id]="'canvas'+story.id" [width]="width" [height]="height"></canvas>
 </div>

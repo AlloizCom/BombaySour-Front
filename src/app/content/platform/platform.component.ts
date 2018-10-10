@@ -15,9 +15,16 @@ export class PlatformComponent implements OnInit {
 
   constructor(private service: PlatformService) {
     this.service.findAllAvailable().subscribe(value => {
-      this.finish = -40 * (value.length - 1.5);
       this.timeRemaining = value.length * 5000;
       this.teams = value;
+      setTimeout(() => {
+        if (typeof window.orientation !== 'undefined') {
+          this.finish = -(document.getElementById(`platform${this.teams[0].id}`).parentElement.offsetHeight / (window.innerHeight / 100) / 1.6);
+        } else {
+          this.finish = -((document.getElementById(`platform${this.teams[0].id}`).offsetHeight / (window.innerHeight / 100)) * (this.teams.length - 1.6));
+        }
+        console.log(this.finish);
+      }, 1000)
     });
   }
 
