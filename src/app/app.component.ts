@@ -29,6 +29,7 @@ export class AnimationService {
 export class AppComponent implements AfterViewInit {
 
   static animationService = new AnimationService();
+  static isAuthorized = false;
 
   open: boolean = false;
 

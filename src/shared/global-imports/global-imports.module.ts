@@ -9,6 +9,7 @@ import {serviceProvider} from "../services/service.provider";
 import {MyInterceptor} from "../inteceptor";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {PipesModule} from "../pipes/pipes.module";
+import {CanActivateAdmin} from "../can-activate/can-activate";
 
 @NgModule({
   imports: [
@@ -32,7 +33,8 @@ import {PipesModule} from "../pipes/pipes.module";
       provide: HTTP_INTERCEPTORS,
       useClass: MyInterceptor,
       multi: true
-    }
+    },
+    CanActivateAdmin
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

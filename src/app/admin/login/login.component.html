@@ -1,0 +1,9 @@
+<form [formGroup]="form" (submit)="send()">
+  <label>Username
+    <input type="text" formControlName="username">
+  </label>
+  <label>Password
+    <input type="text" formControlName="password">
+  </label>
+  <button type="submit">Login</button>
+</form>

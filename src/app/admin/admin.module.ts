@@ -4,6 +4,8 @@ import {AdminComponent} from './admin/admin.component';
 import {GlobalImportsModule} from "../../shared/global-imports/global-imports.module";
 import {AddModule} from "./add/add.module";
 import {UpdateModule} from "./update/update.module";
+import { LoginComponent } from './login/login.component';
+import { AdminPannelComponent } from './admin-pannel/admin-pannel.component';
 
 
 @NgModule({
@@ -12,7 +14,7 @@ import {UpdateModule} from "./update/update.module";
     AddModule,
     UpdateModule
   ],
-  declarations: [PannelComponent, AdminComponent],
+  declarations: [PannelComponent, AdminComponent, LoginComponent, AdminPannelComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AdminModule {
