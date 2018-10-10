@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {ImageService} from "../../../shared/services/image.service";
 import {Film} from "../../../shared/models/film";
 import {FilmService} from "../../../shared/services/film.service";
@@ -14,6 +14,14 @@ export class FilmComponent implements OnInit {
   sources: { id: number, source: any }[] = [];
   currentId = 0;
   playing: boolean = true;
+  width = window.innerWidth;
+  loadedFirst = false;
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.width = window.innerWidth;
+    console.log('resize');
+  }
 
   constructor(private _service: ImageService, private _filmServie: FilmService) {
     _filmServie.findAllAvailable().subscribe(value => {
@@ -53,6 +61,10 @@ export class FilmComponent implements OnInit {
     this.currentId += way;
     this.playing = true;
     setTimeout(() => this.playing = false, 1000);
+  }
+
+  loaded(event){
+    this.loadedFirst = event;
   }
 
   ngOnInit(): void {

@@ -1,4 +1,14 @@
-import {AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef, EventEmitter,
+  HostListener,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  ViewChild
+} from '@angular/core';
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {AppComponent} from "../../../app.component";
 import {Film} from "../../../../shared/models/film";
@@ -27,15 +37,15 @@ import {Film} from "../../../../shared/models/film";
 export class FilmOneComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('mainVideo') mainVideoVC: ElementRef;
   @Input() film: Film;
+  @Output() loaded = new EventEmitter();
 
   _src;
-  width = window.innerWidth;
+  @Input() width = window.innerWidth;
   height = window.innerHeight;
   private interval;
   private _inited = false;
 
-  constructor() {
-  }
+  constructor() {}
 
   _animationState: string;
 
@@ -105,6 +115,7 @@ export class FilmOneComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    (<HTMLVideoElement>this.mainVideoVC.nativeElement).addEventListener('loadeddata',()=>{this.loaded.emit(true)});
     this._inited = true;
     if (this._animationState == 'middle') {
       if (AppComponent.animationService.open) {

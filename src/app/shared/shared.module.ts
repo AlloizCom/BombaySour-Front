@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import {GlobalImportsModule} from "../../shared/global-imports/global-imports.module";
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
   imports: [
     GlobalImportsModule
   ],
-  declarations: [HeaderComponent, FooterComponent],
+  declarations: [HeaderComponent, FooterComponent, LoaderComponent],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
-  exports:[HeaderComponent,FooterComponent]
+  exports:[HeaderComponent,FooterComponent,LoaderComponent]
 })
 export class SharedModule { }

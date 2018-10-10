@@ -1,7 +1,8 @@
 <div class="wrapper">
+<app-loader *ngIf="!loadedFirst"></app-loader>
   <div class="button left" (click)="changeCurrentId(-1)"></div>
   <div *ngFor="let one of sources;let i = index" class="one-film">
-    <app-film-one [source]="one" [film]="films[i]"
+    <app-film-one [source]="one" [film]="films[i]" [width]="width" (loaded)="loaded($event)"
                   [animationState]="i<currentId?'left':i>currentId?'right':'middle'"></app-film-one>
   </div>
   <div class="button right" (click)="changeCurrentId(1)"></div>
