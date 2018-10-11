@@ -33,7 +33,7 @@ export class PlatformComponent implements OnInit,OnDestroy {
     that.timeout = setTimeout(() => {
       that.interval = setInterval(() => {
         window.scrollBy(0, 1);
-      }, 10);
+      }, 25);
     }, 1000)
   }
 
