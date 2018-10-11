@@ -92,30 +92,20 @@ h3 > a {
   color: white;
   text-decoration: none;
 }
-
-
-h3 > a:before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  bottom: 0;
-  top: 18px;
-  left: 0;
-  background-color: white;
-  visibility: hidden;
-  -webkit-transform: scaleX(0);
-  transform: scaleX(0);
-  -webkit-transition: all 0.3s ease-in-out 0s;
-  transition: all 0.3s ease-in-out 0s;
+.black{
+  color: black!important;
+}
+.blackBackground{
+  background-color: black!important;
 }
 
-h3 > a:hover:before {
-  visibility: visible;
-  -webkit-transform: scaleX(1);
-  transform: scaleX(1);
-  top: 18px;
-  left: 0;
+.under {
+  width: 0%;
+  height: 2px;
+  bottom: 0;
+  background-color: white;
+  -webkit-transition: all 0.3s ease-in-out 0s;
+  transition: all 0.3s ease-in-out 0s;
 }
 
 .tablet {

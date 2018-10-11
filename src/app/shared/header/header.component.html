@@ -6,37 +6,54 @@
     <ul>
       <li>
         <h3 [routerLink]="['/','film']">
-          <a class="sukabliat">FILMS</a>
+          <a class="sukabliat" [ngClass]="{'black': color}"
+             (mouseenter)="hover(filmLine)"
+             (mouseleave)="leave(filmLine)"
+             (click)="changeRoute('film')">FILMS</a>
+          <div class="under" [ngClass]="{'blackBackground': color}" #filmLine></div>
         </h3>
-        <div class="under"></div>
       </li>
 
       <li>
         <h3 [routerLink]="['/','platform']">
-          <a>platform</a>
+          <a [ngClass]="{'black': color}"
+             (mouseenter)="hover(platform)"
+             (mouseleave)="leave(platform)"
+             (click)="changeRoute('platform')">platform</a>
+          <div class="under" [ngClass]="{'blackBackground': color}" #platform></div>
         </h3>
-        <div class="under"></div>
       </li>
 
       <li>
         <h3 [routerLink]="['/','story']">
-          <a>story</a>
+          <a [ngClass]="{'black': color}"
+             (mouseenter)="hover(story)"
+             (mouseleave)="leave(story)"
+             (click)="changeRoute('story')">story</a>
+          <div class="under" [ngClass]="{'blackBackground': color}" #story></div>
         </h3>
-        <div class="under"></div>
+
       </li>
 
       <li>
-        <h3 [routerLink]="['/','team']">
-          <a>team</a>
+        <h3 [routerLink]="['/','team']" >
+          <a [ngClass]="{'black': color}"
+             (mouseenter)="hover(team)"
+             (mouseleave)="leave(team)"
+             (click)="changeRoute('team')">team</a>
+          <div class="under" [ngClass]="{'blackBackground': color}" #team></div>
         </h3>
-        <div class="under"></div>
+
       </li>
 
       <li>
-        <h3 [routerLink]="['/','community']">
-          <a>community</a>
+        <h3 [routerLink]="['/','community']"
+            (mouseenter)="hover(community)"
+            (mouseleave)="leave(community)"
+            (click)="changeRoute('community')">
+          <a [ngClass]="{'black': color}">community</a>
+          <div class="under" [ngClass]="{'blackBackground': color}" #community></div>
         </h3>
-        <div class="under"></div>
       </li>
 
     </ul>
