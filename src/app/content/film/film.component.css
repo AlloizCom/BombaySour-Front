@@ -14,6 +14,16 @@
   top: 0;
   right: 0;
 }
+.right>svg{
+   position: fixed;
+   top: calc(50vh - 50px);
+   right: 5vw;
+ }
+.left>svg{
+  position: fixed;
+  top: calc(50vh - 50px);
+  left: 5vw;
+}
 
 .wrapper {
   position: relative;
