@@ -1,10 +1,10 @@
-import {Directive, ElementRef, Input, OnInit} from '@angular/core';
+import {Directive, ElementRef, Input, OnDestroy, OnInit} from '@angular/core';
 import {animate, AnimationBuilder, AnimationFactory, AnimationPlayer, style} from "@angular/animations";
 
 @Directive({
   selector: '[smoothAutoScroll]'
 })
-export class SmoothAutoscroll implements OnInit {
+export class SmoothAutoscroll implements OnInit{
 
   @Input() begin;
   @Input() scrollLength;
@@ -129,9 +129,9 @@ export class SmoothAutoscroll implements OnInit {
     let thats = this;
     this.createAnimation(this.lastFrom, this.lastTo, this.timeRemaining);
     this.pointsPerSec = Math.abs(this.end - this.begin) / (this.timeRemaining / 1000);
-    document.onmousewheel = (event, that = thats) => this.scrollListener.call(this, event, that);
-    document.addEventListener('DOMMouseScroll', (event, that = thats) => this.scrollListener.call(this, event, that));
-    document.ontouchmove = (event, that = thats) => this.scrollListener.call(this, event, that);
+    document.addEventListener('mousewheel', (event, that = thats) => this.scrollListener.call(this, event, that), {passive: false});
+    document.addEventListener('DOMMouseScroll', (event, that = thats) => this.scrollListener.call(this, event, that), {passive: false});
+    document.addEventListener('touchmove', (event, that = thats) => this.scrollListener.call(this, event, that), {passive: false});
     document.ontouchstart = (event) => {
       if (this.scrolling) {
         this.lastFrom += (this.lastTo - this.lastFrom) * this.player.getPosition();
