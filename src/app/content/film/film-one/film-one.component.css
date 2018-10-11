@@ -22,3 +22,24 @@ canvas {
   width: 100vw;
   height: 100vh;
 }
+.content{
+  position: absolute;
+  z-index: 50;
+  height: 30%;
+  width: 80vw;
+  left: 10vw;
+  color: white;
+  top: 19vh ;
+}
+.content>h1{
+  font: normal normal normal 150px/1.4em helvetica-w01-light,helvetica-w02-light,sans-serif!important;
+}
+.show{
+  opacity:1;
+  transition: opacity 1s;
+}
+@media only screen and (min-device-width : 320px) and (max-device-width : 640px) {
+  .content>h1{
+    font: normal normal normal 50px/1.4em helvetica-w01-light,helvetica-w02-light,sans-serif!important;
+  }
+}
