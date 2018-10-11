@@ -62,14 +62,16 @@ export class SmoothAutoscroll implements OnInit {
     this.initialized = true;
   }
 
-  scrollListener(event: WheelEvent | TouchEvent, that: SmoothAutoscroll): any {
+  scrollListener(event: WheelEvent | TouchEvent | any, that: SmoothAutoscroll): any {
     that.player.pause();
     let deltaY;
     if (event instanceof WheelEvent) {
       deltaY = (<WheelEvent>event).deltaY;
-    } else {
+    } else if(event.thouches){
       deltaY = that.previous - (<TouchEvent>event).touches[0].clientY;
       that.previous = (<TouchEvent>event).touches[0].clientY;
+    }else{
+      deltaY = event.detail;
     }
     let neSC = that.scrollCount + (deltaY > 0 ? -that.scrollLength : that.scrollLength);
     if (Math.abs(that.scrollCount) > Math.abs(neSC))
@@ -128,6 +130,7 @@ export class SmoothAutoscroll implements OnInit {
     this.createAnimation(this.lastFrom, this.lastTo, this.timeRemaining);
     this.pointsPerSec = Math.abs(this.end - this.begin) / (this.timeRemaining / 1000);
     document.onmousewheel = (event, that = thats) => this.scrollListener.call(this, event, that);
+    document.addEventListener('DOMMouseScroll',(event, that = thats) => this.scrollListener.call(this, event, that));
     document.ontouchmove = (event, that = thats) => this.scrollListener.call(this, event, that);
     document.ontouchstart = (event) => {
       if (this.scrolling) {
