@@ -7,11 +7,9 @@ import {PlatformService} from "../../../shared/services/platform.service";
   templateUrl: './platform.component.html',
   styleUrls: ['./platform.component.css']
 })
-export class PlatformComponent implements OnInit,OnDestroy {
+export class PlatformComponent implements OnInit {
 
   teams: Platform[] = [];
-  interval;
-  timeout;
 
   constructor(private service: PlatformService) {
     this.service.findAllAvailable().subscribe(value => {
@@ -20,26 +18,6 @@ export class PlatformComponent implements OnInit,OnDestroy {
   }
 
   ngOnInit() {
-    this.action(this);
-    document.addEventListener('mousewheel', () => this.action(this), {passive: false});
-    document.addEventListener('DOMMouseScroll', () => this.action(this), {passive: false});
-    document.addEventListener('touchmove', () => this.action(this), {passive: false});
-    document.ontouchstart = () => this.action(this);
-  }
-
-  action(that) {
-    clearInterval(that.interval);
-    clearTimeout(that.timeout);
-    that.timeout = setTimeout(() => {
-      that.interval = setInterval(() => {
-        window.scrollBy(0, 1);
-      }, 25);
-    }, 1000)
-  }
-
-  ngOnDestroy(): void {
-    clearInterval(this.interval);
-    clearTimeout(this.timeout);
   }
 
 }
