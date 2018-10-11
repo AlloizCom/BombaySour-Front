@@ -116,7 +116,7 @@ export class SmoothAutoscroll implements OnInit {
         // console.log('that.pointsPerSec ', that.pointsPerSec);
         that.createAnimation(that.lastFrom, that.finish, that.timeRemaining);
       }
-    }, 3000);
+    }, that.scrollTime + that.delay);
   }
 
   private runAnimation() {
