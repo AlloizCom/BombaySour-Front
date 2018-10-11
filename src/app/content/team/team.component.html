@@ -12,8 +12,7 @@
 <!--</div>-->
 
 <div class="main-container">
-  <div class="scrollable" smoothAutoScroll *ngIf="teams.length>0" [begin]="0" [end]="finish" [time]="timeRemaining"
-       [scrollLength]="30" [scrollTime]="1000" [delay]="1000" [initialDelay]="2000">
+  <div class="scrollable">
     <div *ngFor="let one of teams; let i = index" class="container" [id]="'team'+one.id">
       <div *ngIf="i%2==0" class="text left">
         <div class="title">

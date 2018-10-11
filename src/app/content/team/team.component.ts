@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {TeamService} from "../../../shared/services/team.service";
 import {Team} from "../../../shared/models/team";
 import {AnimationBuilder} from "@angular/animations";
@@ -8,27 +8,39 @@ import {AnimationBuilder} from "@angular/animations";
   templateUrl: './team.component.html',
   styleUrls: ['./team.component.css']
 })
-export class TeamComponent implements OnInit {
+export class TeamComponent implements OnInit, OnDestroy {
 
   teams: Team[] = [];
-  timeRemaining = 30000;
-  finish = 0;
+  interval;
+  timeout;
 
   constructor(private service: TeamService, private builder: AnimationBuilder) {
     this.service.findAllAvailable().subscribe(value => {
-      this.timeRemaining = value.length * 5000;
       this.teams = value;
-      setTimeout(() => {
-        if (typeof window.orientation !== 'undefined') {
-          this.finish = -(document.getElementById(`team${this.teams[0].id}`).parentElement.offsetHeight / (window.innerHeight / 100) / 1.6);
-        } else {
-          this.finish = -((document.getElementById(`team${this.teams[0].id}`).offsetHeight / (window.innerHeight / 100)) * (this.teams.length - 1.6));
-        }
-        console.log(this.finish);
-      }, 1000)
     });
   }
 
+
   ngOnInit() {
+    this.action(this);
+    document.addEventListener('mousewheel', () => this.action(this), {passive: false});
+    document.addEventListener('DOMMouseScroll', () => this.action(this), {passive: false});
+    document.addEventListener('touchmove', () => this.action(this), {passive: false});
+    document.ontouchstart = () => this.action(this);
+  }
+
+  action(that) {
+    clearInterval(that.interval);
+    clearTimeout(that.timeout);
+    that.timeout = setTimeout(() => {
+      that.interval = setInterval(() => {
+        window.scrollBy(0, 1);
+      }, 10);
+    }, 1000)
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this.interval);
+    clearTimeout(this.timeout);
   }
 }
