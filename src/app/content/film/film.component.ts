@@ -47,7 +47,4 @@ export class FilmComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  scroll(e){
-    e.scrollIntoView({behavior:'smooth'});
-  }
 }

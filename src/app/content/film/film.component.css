@@ -1,6 +1,6 @@
 .button {
   z-index: 20;
-  position: fixed;
+  position: absolute;
   height: 100px;
   width: 100px;
 }
@@ -15,14 +15,12 @@
   right: 5vw;
 }
 .right>svg{
-   position: fixed;
    top: calc(50vh - 50px);
    right: 5vw;
   height: 100px;
   width: 100px;
  }
 .left>svg{
-  position: fixed;
   top: calc(50vh - 50px);
   left: 5vw;
   height: 100px;

@@ -40,7 +40,6 @@ export class FilmOneComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() film: Film;
   @Output() loaded = new EventEmitter();
   @Input() width = window.innerWidth;
-  @Output()scroll =new EventEmitter();
 
   height = window.innerHeight;
 
@@ -126,7 +125,4 @@ export class FilmOneComponent implements OnInit, OnDestroy, AfterViewInit {
       }
     }
   }
-  scrollEvent(){
-    this.scroll.emit();
-}
 }

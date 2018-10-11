@@ -32,7 +32,7 @@ canvas {
   top: 19vh ;
 }
 .content>h1{
-  font: normal normal normal 150px/1.4em helvetica-w01-light,helvetica-w02-light,sans-serif!important;
+  font: normal normal normal 150px/1em helvetica-w01-light,helvetica-w02-light,sans-serif!important;
 }
 .show{
   opacity:1;
