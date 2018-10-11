@@ -1,10 +1,9 @@
-import {Directive, OnDestroy, OnInit} from '@angular/core';
+import {Directive, Input, OnDestroy, OnInit} from '@angular/core';
 
 @Directive({
   selector: '[smoothAutoScroll]'
 })
 export class SmoothAutoscroll implements OnInit, OnDestroy {
-
   destroyed: boolean = false;
   timeout;
   interval;
@@ -12,7 +11,23 @@ export class SmoothAutoscroll implements OnInit, OnDestroy {
   constructor() {
   }
 
+  private _pause;
+
+  get pause() {
+    return this._pause;
+  }
+
+  @Input() set pause(value) {
+    this._pause = value;
+    if (value) {
+      this.ngOnDestroy();
+    } else {
+      this.ngOnInit()
+    }
+  }
+
   ngOnInit() {
+    this.destroyed = false;
     this.action();
     document.addEventListener('mousewheel', () => this.action.call(this));
     document.addEventListener('DOMMouseScroll', () => this.action.call(this));

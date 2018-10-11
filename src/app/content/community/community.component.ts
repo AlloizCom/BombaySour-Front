@@ -10,11 +10,16 @@ import {Community} from "../../../shared/models/community";
 export class CommunityComponent implements OnInit{
 
   teams: Community[] = [];
+  pause:boolean = false;
 
   constructor(private service: CommunityService) {
     this.service.findAllAvailable().subscribe(value => {
       this.teams = value;
     });
+  }
+
+  showDescr(){
+    this.pause = !this.pause;
   }
 
   ngOnInit() {
