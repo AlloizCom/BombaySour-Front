@@ -26,6 +26,7 @@
   width: 100%;
   height: 40vh;
   margin-bottom: 5vh;
+  flex-wrap: wrap;
 }
 
 .text {
@@ -74,7 +75,10 @@
   transition: 1.5s;
   transform: scale(1.05);
 }
-
+.content{
+  width: 90vw;
+  height: 30vh;
+}
 @media only screen and (max-device-width: 968px) {
   .text .title p {
     font-size: 26px;

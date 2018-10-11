@@ -14,32 +14,39 @@
 
 <div class="main-container">
   <div class="scrollable" smoothAutoScroll [pause]="pause">
-    <div *ngFor="let one of teams; let i = index" class="container" [id]="'community'+one.id" (click)="showDescr()">
-      <div *ngIf="i%2==0" class="text left">
-        <div class="title">
-          <p>
-            {{one.text}}
-          </p>
-        </div>
-        <div class="read-more">
-        </div>
+      <div>
+        <div *ngFor="let one of teams; let i = index" class="container" [id]="'community'+one.id" (click)="showDescr()">
+          <div *ngIf="i%2==0" class="text left">
+            <div class="title">
+              <p>
+                {{one.text}}
+              </p>
+            </div>
+            <div class="read-more">
+            </div>
 
-      </div>
-      <div divImage [id]="one.id" [controller]="'community'" class="image">
-        <div class="text-wrapper">
-          <p>{{one.articleTitle}} {{i}}</p>
-        </div>
+          </div>
+          <div divImage [id]="one.id" [controller]="'community'" class="image">
+            <div class="text-wrapper">
+              <p>{{one.articleTitle}} {{i}}</p>
+            </div>
 
+          </div>
+          <div *ngIf="i%2==1" class="text right">
+            <div class="title">
+              <p>
+                {{one.text}}
+              </p>
+            </div>
+            <div class="read-more">
+            </div>
+          </div>
+          <div class="content">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni sed tempore totam voluptatum! Atque dicta eaque expedita impedit iste praesentium quasi vel veritatis. Dolor repellat, unde. Deserunt ipsum quasi vel.
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni sed tempore totam voluptatum! Atque dicta eaque expedita impedit iste praesentium quasi vel veritatis. Dolor repellat, unde. Deserunt ipsum quasi vel.</div>
       </div>
-      <div *ngIf="i%2==1" class="text right">
-        <div class="title">
-          <p>
-            {{one.text}}
-          </p>
-        </div>
-        <div class="read-more">
-        </div>
-      </div>
+
+
     </div>
   </div>
 </div>
