@@ -25,3 +25,8 @@
 .one-film {
   height: 100vh;
 }
+.app-loader{
+  position: absolute;
+  top: 0;
+  z-index: 1100;
+}

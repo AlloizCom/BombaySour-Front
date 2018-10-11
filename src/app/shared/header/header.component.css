@@ -33,7 +33,7 @@ li {
   text-transform: uppercase;
   text-align: center;
   font-size: 18px;
-  color: #fff;
+  color: white;
   mix-blend-mode: multiply;
 }
 
@@ -45,6 +45,9 @@ nav {
   margin: auto 30px auto 10px;
   width: auto;
   height: 16px;
+}
+nav>ul>li{
+  margin: 0 5px 0 5px;
 }
 
 header {
@@ -60,7 +63,6 @@ header {
 
 a {
   text-decoration: none;
-  color: #1a1a1a;
   cursor: pointer;
 }
 
@@ -84,22 +86,12 @@ a {
   border: none !important;
 }
 
-.vertical {
-  width: 2px;
-  height: 22px;
-  background-color: black;
-  margin: 0 3px 0 8px;
-}
-
 h3 > a {
   position: relative;
-  color: black;
+  color: white;
   text-decoration: none;
 }
 
-h3 > a:hover {
-  color: black;
-}
 
 h3 > a:before {
   content: "";
@@ -109,7 +101,7 @@ h3 > a:before {
   bottom: 0;
   top: 24px;
   left: 0;
-  background-color: black;
+  background-color: white;
   visibility: hidden;
   -webkit-transform: scaleX(0);
   transform: scaleX(0);
@@ -200,14 +192,22 @@ h3 > a:hover:before {
       padding-left: 84vw;
        }
     .tablet{
-      width: 30px;
-      padding: 7px;
+      width: 25px;
+      padding: 5px;
     }
     .logo{
       height: 41px;
       font-size: 15px;
       padding: 0;
       width: 220px;
+      }
+    .logo>h3{
+      height: 38px;
+      padding-top: 16px;
+      background-color: #000;
+      text-transform: uppercase;
+      text-align: center;
+      font-size: 16px;
     }
   }
 
