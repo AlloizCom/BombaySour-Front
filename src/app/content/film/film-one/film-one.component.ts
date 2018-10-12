@@ -3,6 +3,7 @@ import {
   Component,
   ElementRef,
   EventEmitter,
+  HostListener,
   Input,
   OnDestroy,
   OnInit,
@@ -42,10 +43,9 @@ export class FilmOneComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('mainVideo') mainVideoVC: ElementRef;
   @Input() film: Film;
   @Output() loaded = new EventEmitter();
-  @Input() width = window.innerWidth;
+  width = window.innerWidth;
 
   height = window.innerHeight;
-
   private interval;
   private _inited = false;
 
@@ -63,6 +63,12 @@ export class FilmOneComponent implements OnInit, OnDestroy, AfterViewInit {
     if (this._inited) {
       this.pause(value != 'middle');
     }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.width = window.innerWidth;
+    this.height = window.innerHeight;
   }
 
   pause(val?: boolean) {
@@ -85,22 +91,77 @@ export class FilmOneComponent implements OnInit, OnDestroy, AfterViewInit {
     let restWidth = (window.innerWidth - divWidthPXABS);
     let context = canvas.getContext('2d');
     let video = (<HTMLVideoElement>document.getElementById(`video${id}`));
-    let onePiece = video.videoWidth / 5;
+
+    let canvasW2H = canvas.width / canvas.height;
+    let videoW2H = video.videoWidth / video.videoHeight;
+
+    let mainX = 0;
+    let mainY = 0;
+    let mainWidth = video.videoWidth;
+    let mainHeight = video.videoHeight;
+
+    console.error('---------------------');
+
+    console.log(`canvas : ${canvasW2H}`);
+    console.log(`video : ${videoW2H}`);
+
+    if (canvasW2H > videoW2H) {
+      //video is wider
+      let target = canvas.height / video.videoHeight;
+      let current = canvas.width / video.videoWidth;
+      mainX = (video.videoWidth * (target / current)) / 2;
+      mainWidth = video.videoWidth - (mainX * 2);
+
+      console.log(`target : ${target}`);
+      console.log(`current : ${current}`);
+      console.log(`mainX : ${mainX}`);
+      console.log(`mainWidth : ${mainWidth}`);
+
+      console.log(`canvas : ${canvasW2H}`);
+      console.log(`video : ${mainWidth / video.videoHeight}`);
+
+    } else if (canvasW2H < videoW2H) {
+      //video is heigher
+      let target = canvas.width / video.videoWidth;
+      let current = canvas.height / video.videoHeight;
+      mainY = (video.videoHeight * (target / current)) / 2;
+      mainHeight = video.videoHeight - (mainY * 2);
+
+      console.log(`target : ${target}`);
+      console.log(`current : ${current}`);
+      console.log(`mainY : ${mainY}`);
+      console.log(`mainHeight : ${mainHeight}`);
+
+      console.log(`canvas : ${canvasW2H}`);
+      console.log(`video : ${video.videoWidth / mainHeight}`);
+    }
+
+    let onePiece = mainWidth / 5;
     let onePieceCanvas = restWidth / 5;
-    let positionVideoOne: { xFrom: number, xTo: number, canvasXFrom: number, canvasXTo: number } =
-      {xFrom: onePiece, xTo: onePiece * 2, canvasXFrom: onePieceCanvas, canvasXTo: onePieceCanvas * 2};
-    let positionVideoTwo: { xFrom: number, xTo: number, canvasXFrom: number, canvasXTo: number } =
-      {xFrom: onePiece * 3, xTo: onePiece * 4, canvasXFrom: onePieceCanvas * 3, canvasXTo: onePieceCanvas * 4};
+    let positionVideoOne: Position = new Position();
+    let positionVideoTwo: Position = new Position();
+    positionVideoOne.xFrom = mainX + onePiece;
+    positionVideoOne.xTo = mainX + onePiece * 2;
+    positionVideoOne.canvasXFrom = onePieceCanvas;
+    positionVideoOne.canvasXTo = onePieceCanvas * 2;
+    positionVideoOne.yFrom = mainY;
+    positionVideoOne.yTo = mainY + mainHeight;
+    positionVideoTwo.xFrom = mainX + onePiece * 3;
+    positionVideoTwo.xTo = mainX + onePiece * 4;
+    positionVideoTwo.canvasXFrom = onePieceCanvas * 3;
+    positionVideoTwo.canvasXTo = onePieceCanvas * 4;
+    positionVideoTwo.yFrom = mainY;
+    positionVideoTwo.yTo = mainY + mainHeight;
     if (divWidthPX < 0) {
       positionVideoOne.canvasXFrom += divWidthPXABS;
       positionVideoOne.canvasXTo += divWidthPXABS;
       positionVideoTwo.canvasXFrom += divWidthPXABS;
       positionVideoTwo.canvasXTo += divWidthPXABS;
     }
-    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+    context.drawImage(video, mainX, mainY, mainWidth, mainHeight, 0, 0, canvas.width, canvas.height);
     if (divWidthPXABS != 0) {
-      context.drawImage(video, positionVideoOne.xFrom, 0, positionVideoOne.xTo - positionVideoOne.xFrom, video.videoHeight, positionVideoOne.canvasXFrom, 0, positionVideoOne.canvasXTo - positionVideoOne.canvasXFrom, canvas.height);
-      context.drawImage(video, positionVideoTwo.xFrom, 0, positionVideoTwo.xTo - positionVideoTwo.xFrom, video.videoHeight, positionVideoTwo.canvasXFrom, 0, positionVideoTwo.canvasXTo - positionVideoTwo.canvasXFrom, canvas.height);
+      context.drawImage(video, positionVideoOne.xFrom, positionVideoOne.yFrom, positionVideoOne.xTo - positionVideoOne.xFrom, mainHeight, positionVideoOne.canvasXFrom, 0, positionVideoOne.canvasXTo - positionVideoOne.canvasXFrom, canvas.height);
+      context.drawImage(video, positionVideoTwo.xFrom, positionVideoTwo.yFrom, positionVideoTwo.xTo - positionVideoTwo.xFrom, mainHeight, positionVideoTwo.canvasXFrom, 0, positionVideoTwo.canvasXTo - positionVideoTwo.canvasXFrom, canvas.height);
     }
   }
 
@@ -128,4 +189,14 @@ export class FilmOneComponent implements OnInit, OnDestroy, AfterViewInit {
       }
     }
   }
+}
+
+
+class Position {
+  xFrom: number;
+  xTo: number;
+  yFrom: number;
+  yTo: number;
+  canvasXFrom: number;
+  canvasXTo: number;
 }

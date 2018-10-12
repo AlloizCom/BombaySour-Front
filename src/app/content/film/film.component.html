@@ -7,7 +7,7 @@
 
   </div>
   <div *ngFor="let one of films;let i = index" class="one-film">
-    <app-film-one [film]="one" [width]="width" (loaded)="loaded($event)"
+    <app-film-one [film]="one" (loaded)="loaded($event)"
                   [animationState]="i<currentId?'left':i>currentId?'right':'middle'"></app-film-one>
   </div>
   <div class="button right" (click)="changeCurrentId(1)">
