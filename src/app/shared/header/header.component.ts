@@ -1,7 +1,6 @@
-import {Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
-import {trigger, state, style, animate, transition} from '@angular/animations';
-import {ActivatedRoute} from '@angular/router';
-import {CommunityComponent} from '../../content/community/community.component';
+import {Component, ElementRef, OnInit} from '@angular/core';
+import {animate, state, style, transition, trigger} from '@angular/animations';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -25,14 +24,14 @@ import {CommunityComponent} from '../../content/community/community.component';
 })
 export class HeaderComponent implements OnInit {
   isOpen = false;
-  color: boolean =false;
+  color: boolean = false;
 
-  constructor(private el: ElementRef, private _router: ActivatedRoute) {
-    if (_router._routerState.snapshot.url === "/film" || _router._routerState.snapshot.url === "/story") {
-      this.color = false;
-    } else {
-      this.color = true;
-    }
+  constructor(private el: ElementRef, private _router: ActivatedRoute, private _some: Router) {
+    _some.events.subscribe(value => {
+      if (value instanceof NavigationEnd) {
+        this.color = value.urlAfterRedirects != '/film' && value.urlAfterRedirects != '/story';
+      }
+    });
   }
 
   ngOnInit() {
@@ -42,17 +41,20 @@ export class HeaderComponent implements OnInit {
   toggle() {
     this.isOpen = !this.isOpen;
   }
-  changeRoute(e){
-    if(e==='film' || e==='story'){
+
+  changeRoute(e) {
+    if (e === 'film' || e === 'story') {
       this.color = false;
-    }else{
+    } else {
       this.color = true;
     }
   }
-  hover(e){
+
+  hover(e) {
     e.style.width = '100%';
   }
-  leave(e){
+
+  leave(e) {
     e.style.width = '0%';
   }
 }
