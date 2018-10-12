@@ -54,7 +54,7 @@ header {
   position: fixed;
   top: 0;
   justify-content: space-between;
-  width: 100%;
+  width: 100vw;
   display: flex;
   z-index: 29;
   /*background-color: white;*/
