@@ -28,7 +28,4 @@ body{
   font-family: HelveticaBold;
   src: url('assets/fonts/9206.otf');
 }
-body {
-  /* Disables pull-to-refresh but allows overscroll glow effects. */
-  overscroll-behavior-y: contain;
-}
+
