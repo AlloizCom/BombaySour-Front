@@ -11,6 +11,7 @@ import {NavigatorComponent} from "./navigator/navigator.component";
 import {SharedModule} from "../shared/shared.module";
 import { FilmOneComponent } from './film/film-one/film-one.component';
 import { StoryOneComponent } from './story/story-one/story-one.component';
+import { CommunityOneComponent } from './community/community-one/community-one.component';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { StoryOneComponent } from './story/story-one/story-one.component';
     PlatformComponent,
     ContentComponent,
     FilmOneComponent,
-    StoryOneComponent
+    StoryOneComponent,
+    CommunityOneComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

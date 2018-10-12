@@ -1,0 +1,111 @@
+.image {
+  width: 60%;
+  height: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  background-position: center;
+  transition: 1.5s;
+}
+.image p {
+  color: whitesmoke;
+}
+.text-wrapper{
+  margin: 0 0 20px 40px;
+}
+.title{
+  height: 80%;
+  margin-top: 8%;
+}
+
+.image > p {
+  font-size: 20px;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  height: 40vh;
+  margin-bottom: 5vh;
+  flex-wrap: wrap;
+}
+
+.text {
+  height: 100%;
+  width: 40%;
+  text-align: center;
+}
+.text p{
+  width: 90%;
+  margin: auto;
+}
+.container p {
+  font-size: 46px;
+  font-weight: 400;
+}
+.read-more  {
+  position: relative;
+}
+.read-more  > p  {
+  font-family: Arial,sans-serif!important;
+  font-size: 28px;
+}
+
+.left {
+  margin-right: 0;
+  margin-left: auto;
+}
+
+.right {
+  margin-right: auto;
+  margin-left: 0;
+}
+
+.main-container {
+  /*overflow: hidden;*/
+  /*height: 100vh;*/
+  /*height: calc(100vh - 40px);*/
+}
+
+.scrollable {
+  width: 90%;
+  margin: 90px auto;
+  transform: translate3d(0, 0, 0);
+}
+.image:hover {
+  transition: 1.5s;
+  transform: scale(1.05);
+}
+.content{
+  width: 90vw;
+  height: 30vh;
+}
+@media only screen and (max-device-width: 968px) {
+  .text .title p {
+    font-size: 26px;
+  }
+
+  .container {
+    flex-direction: column;
+    height: 50vh;
+    margin-bottom: 3vh;
+  }
+
+  .image {
+    width: 100%;
+    height: 50vh;
+  }
+
+  .text {
+    width: 100%;
+    height: auto;
+  }
+
+  .title {
+    height: auto;
+    margin-top: 0.5%;
+  }
+
+  div.text {
+    order: 1;
+  }
+}

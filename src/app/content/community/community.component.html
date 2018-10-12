@@ -15,47 +15,9 @@
 <div class="main-container">
   <div class="scrollable" smoothAutoScroll [pause]="pause">
     <div>
-      <div *ngFor="let one of teams; let i = index" class="container" [id]="'community'+one.id">
-        <div *ngIf="i%2==0" class="text left">
-          <div class="title">
-            <p>
-              {{one.text}}
-            </p>
-          </div>
-          <div class="read-more" (click)="showDescr(i)">
-            <span *ngIf="currentI != i">Read more</span>
-            <span *ngIf="currentI == i">Close</span>
-          </div>
-        </div>
-        <div divImage [id]="one.id" [controller]="'community'" class="image">
-          <div class="text-wrapper">
-            <p>{{one.articleTitle}} {{i}}</p>
-          </div>
-        </div>
-        <div *ngIf="i%2==1" class="text right">
-          <div class="title">
-            <p>
-              {{one.text}}
-            </p>
-          </div>
-          <div class="read-more" (click)="showDescr(i)">
-            <span *ngIf="currentI != i">Read more</span>
-            <span *ngIf="currentI == i">Close</span>
-          </div>
-        </div>
-        <div class="content" *ngIf="currentI == i">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni sed tempore totam voluptatum! Atque dicta
-          eaque expedita impedit iste praesentium quasi vel veritatis. Dolor repellat, unde. Deserunt ipsum quasi vel.
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni sed tempore totam voluptatum! Atque dicta
-          eaque expedita impedit iste praesentium quasi vel veritatis. Dolor repellat, unde. Deserunt ipsum quasi vel.
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto commodi consequatur cumque, delectus
-          provident quis quos temporibus! A debitis doloremque enim, eos fugiat impedit iste molestias natus nulla,
-          obcaecati sunt?
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. A adipisci aliquam animi architecto consectetur
-          delectus dicta dolorum id ipsam labore molestias mollitia obcaecati provident quibusdam quidem, sequi
-          similique vitae voluptatem!
-        </div>
-      </div>
+      <app-community-one *ngFor="let one of teams; let i = index" class="container" [id]="'community'+one.id"
+      [show]="currentI==i" [position]="i%2==0?'left':'right'" (readMore)="showDescr(i)" [community]="one">
+      </app-community-one>
     </div>
   </div>
 </div>

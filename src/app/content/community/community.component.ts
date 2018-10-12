@@ -20,8 +20,10 @@ export class CommunityComponent implements OnInit {
   }
 
   showDescr(val) {
-    this.pause = !this.pause;
+    if (this.currentI == val || this.currentI == -1)
+      this.pause = !this.pause;
     this.currentI = this.pause ? val : -1;
+    console.log(document.getElementById("community" + this.currentI));
   }
 
   ngOnInit() {
