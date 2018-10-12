@@ -25,6 +25,7 @@ import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 export class HeaderComponent implements OnInit {
   isOpen = false;
   color: boolean = false;
+  fill: string = 'white';
 
   constructor(private el: ElementRef, private _router: ActivatedRoute, private _some: Router) {
     _some.events.subscribe(value => {
@@ -45,8 +46,11 @@ export class HeaderComponent implements OnInit {
   changeRoute(e) {
     if (e === 'film' || e === 'story') {
       this.color = false;
+      this.fill = 'white';
+
     } else {
       this.color = true;
+      this.fill = 'black';
     }
   }
 

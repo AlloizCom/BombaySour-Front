@@ -94,6 +94,10 @@ h3 > a {
 }
 .black{
   color: black!important;
+  fill: black!important;
+}
+.white{
+  fill: white!important;
 }
 .blackBackground{
   background-color: black!important;

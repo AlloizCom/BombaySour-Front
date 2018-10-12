@@ -1,19 +1,32 @@
 .button {
   z-index: 20;
-  position: fixed;
-  height: 100vh;
-  width: 50vw;
+  position: absolute;
+  height: 100px;
+  width: 100px;
 }
 
 .left {
-  top: 0;
-  left: 0;
+  top: calc(50vh - 50px);
+  left: 5vw;
 }
 
 .right {
-  top: 0;
-  right: 0;
+  top: calc(50vh - 50px);
+  right: 5vw;
 }
+.right>svg{
+  top: calc(50vh - 50px);
+  right: 5vw;
+  height: 100px;
+  width: 100px;
+}
+.left>svg{
+  top: calc(50vh - 50px);
+  left: 5vw;
+  height: 100px;
+  width: 100px;
+}
+
 
 .wrapper {
   position: relative;
@@ -23,6 +36,32 @@
 }
 
 .one-film {
-  position: fixed;
   height: 100vh;
+}
+app-loader{
+  position: absolute;
+  top: 0;
+  z-index: 1100;
+}
+.content{
+  width: 100%;
+  height: 30vh;
+  background-color: white;
+}
+@media only screen and (min-device-width : 320px) and (max-device-width : 640px) {
+  .right>svg{
+    top: calc(50vh - 25px);
+    right: 5vw;
+    height: 50px;
+    width: 50px;
+  }
+  .left>svg{
+    top: calc(50vh - 25px);
+    left: 5vw;
+    height: 50px;
+    width: 50px;
+  }
+  .button{
+    width: 50px!important;
+  }
 }

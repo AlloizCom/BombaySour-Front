@@ -61,7 +61,7 @@
 
     <span class="tablet" (click)="toggle()">
       <svg viewBox="0 0 43 38" id="burger" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-        <path fill="white" class="dcls-1" d="M0 31h43v7H0zM0 15h43v7H0zM0 0h43v7H0z"></path>
+        <path [ngClass]="{'white': !color}" class="dcls-1" d="M0 31h43v7H0zM0 15h43v7H0zM0 0h43v7H0z"></path>
       </svg>
     </span>
     <div class="navTab" [@openClose]="isOpen ? 'open' : 'closed'">

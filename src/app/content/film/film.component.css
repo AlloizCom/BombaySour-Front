@@ -61,4 +61,7 @@ app-loader{
     height: 50px;
     width: 50px;
   }
+  .button{
+    width: 50px!important;
+  }
 }
