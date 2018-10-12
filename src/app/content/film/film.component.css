@@ -54,19 +54,15 @@ app-loader{
 }
 @media only screen and (min-device-width : 320px) and (max-device-width : 640px) {
   .right>svg{
-    top: calc(50vh - 25px);
-    right: 5vw;
     height: 50px;
     width: 50px;
+    margin-left: calc(45vw - 50px);
   }
   .left>svg{
-    top: calc(50vh - 25px);
-    left: 5vw;
+    margin-left: 5vw;
     height: 50px;
     width: 50px;
   }
-  .button{
-    width: 50px!important;
-  }
+
 }
 
