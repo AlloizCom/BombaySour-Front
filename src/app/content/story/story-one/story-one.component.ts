@@ -43,7 +43,7 @@ export class StoryOneComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() story: Story;
   @Output() loaded = new EventEmitter();
   @Input() width = window.innerWidth;
-
+  playing = false;
   height = window.innerHeight;
 
   private interval;
@@ -112,8 +112,16 @@ export class StoryOneComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     (<HTMLVideoElement>this.mainVideoVC.nativeElement).addEventListener('canplay', () => {
-      this.loaded.emit(true)
+      this.loaded.emit(true);
+      this.playing = true;
     });
+    (<HTMLVideoElement>this.mainVideoVC.nativeElement).addEventListener('loaded', () => {
+      this.loaded.emit(true);
+    });
+    setTimeout(() => {
+      if (!this.playing)
+        (<HTMLVideoElement>this.mainVideoVC.nativeElement).load();
+    }, 5000);
     this._inited = true;
     if (this._animationState == 'middle') {
       if (AppComponent.animationService.open) {

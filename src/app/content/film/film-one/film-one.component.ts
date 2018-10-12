@@ -43,6 +43,7 @@ export class FilmOneComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() film: Film;
   @Output() loaded = new EventEmitter();
   @Input() width = window.innerWidth;
+  playing = false;
 
   height = window.innerHeight;
 
@@ -113,8 +114,16 @@ export class FilmOneComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngAfterViewInit(): void {
     (<HTMLVideoElement>this.mainVideoVC.nativeElement).addEventListener('canplay', () => {
-      this.loaded.emit(true)
+      this.loaded.emit(true);
+      this.playing = true;
     });
+    (<HTMLVideoElement>this.mainVideoVC.nativeElement).addEventListener('loaded', () => {
+      this.loaded.emit(true);
+    });
+    setTimeout(()=>{
+      if(!this.playing)
+        (<HTMLVideoElement>this.mainVideoVC.nativeElement).load();
+    },5000);
     this._inited = true;
     if (this._animationState == 'middle') {
       if (AppComponent.animationService.open) {
