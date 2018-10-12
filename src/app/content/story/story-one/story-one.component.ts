@@ -28,6 +28,9 @@ import {Story} from "../../../../shared/models/story";
       state('right', style({
         transform: 'translate(100vw)',
       }), {params: {}}),
+      transition('void=>*', [
+        animate('0s')
+      ]),
       transition('*<=>*', [
         animate('1s ease-in-out')
       ]),
