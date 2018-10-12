@@ -29,10 +29,13 @@ canvas {
   width: 80vw;
   left: 10vw;
   color: white;
-  top: 19vh ;
+  top: 68vh ;
 }
 .content>h1{
   font: normal normal normal 150px/1em helvetica-w01-light,helvetica-w02-light,sans-serif!important;
+}
+.content>p{
+  color: gold;
 }
 .show{
   opacity:1;
