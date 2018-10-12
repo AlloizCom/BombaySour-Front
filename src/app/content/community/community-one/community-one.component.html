@@ -26,16 +26,18 @@
       <span *ngIf="show">Close</span>
     </div>
   </div>
-  <div class="content" *ngIf="show">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni sed tempore totam voluptatum! Atque dicta
-    eaque expedita impedit iste praesentium quasi vel veritatis. Dolor repellat, unde. Deserunt ipsum quasi vel.
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni sed tempore totam voluptatum! Atque dicta
-    eaque expedita impedit iste praesentium quasi vel veritatis. Dolor repellat, unde. Deserunt ipsum quasi vel.
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto commodi consequatur cumque, delectus
-    provident quis quos temporibus! A debitis doloremque enim, eos fugiat impedit iste molestias natus nulla,
-    obcaecati sunt?
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. A adipisci aliquam animi architecto consectetur
-    delectus dicta dolorum id ipsam labore molestias mollitia obcaecati provident quibusdam quidem, sequi
-    similique vitae voluptatem!
+  <div class="content" [ngClass]="{'showContent': show }">
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni sed tempore totam voluptatum! Atque dicta
+      eaque expedita impedit iste praesentium quasi vel veritatis. Dolor repellat, unde. Deserunt ipsum quasi vel.
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni sed tempore totam voluptatum! Atque dicta
+      eaque expedita impedit iste praesentium quasi vel veritatis. Dolor repellat, unde. Deserunt ipsum quasi vel.
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto commodi consequatur cumque, delectus
+      provident quis quos temporibus! A debitis doloremque enim, eos fugiat impedit iste molestias natus nulla,
+      obcaecati sunt?
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. A adipisci aliquam animi architecto consectetur
+      delectus dicta dolorum id ipsam labore molestias mollitia obcaecati provident quibusdam quidem, sequi
+      similique vitae voluptatem!
+    </p>
   </div>
 </div>

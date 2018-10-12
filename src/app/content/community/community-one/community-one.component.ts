@@ -17,6 +17,7 @@ export class CommunityOneComponent implements OnInit {
   constructor() { }
 
   read(){
+    console.log(this.show)
     this.readMore.emit();
   }
 
