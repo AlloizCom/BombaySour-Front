@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CommunityService} from "../../../shared/services/community.service";
 import {Community} from "../../../shared/models/community";
 
@@ -7,10 +7,11 @@ import {Community} from "../../../shared/models/community";
   templateUrl: './community.component.html',
   styleUrls: ['./community.component.css']
 })
-export class CommunityComponent implements OnInit{
+export class CommunityComponent implements OnInit {
 
   teams: Community[] = [];
-  pause:boolean = false;
+  pause: boolean = false;
+  currentI = -1;
 
   constructor(private service: CommunityService) {
     this.service.findAllAvailable().subscribe(value => {
@@ -18,8 +19,9 @@ export class CommunityComponent implements OnInit{
     });
   }
 
-  showDescr(){
+  showDescr(val) {
     this.pause = !this.pause;
+    this.currentI = this.pause ? val : -1;
   }
 
   ngOnInit() {

@@ -1,52 +1,61 @@
 <!--<div class="main-container">-->
-  <!--<div class="scrollable" smoothAutoScroll *ngIf="teams.length>0" [begin]="0" [end]="finish" [time]="timeRemaining"-->
-       <!--[scrollLength]="30" [scrollTime]="1000" [delay]="1000" [initialDelay]="2000">-->
-    <!--<div *ngFor="let one of teams; let i = index" class="container"  >-->
-      <!--<div *ngIf="i%2==0" class="text left">{{one.text}}</div>-->
-      <!--<div class="image" divImage [id]="one.id" [controller]="'community'">-->
-        <!--<p>{{one.articleTitle}} {{i}}</p>-->
-      <!--</div>-->
-      <!--<div *ngIf="i%2==1" class="text right">{{one.text}}</div>-->
-    <!--</div>-->
-  <!--</div>-->
+<!--<div class="scrollable" smoothAutoScroll *ngIf="teams.length>0" [begin]="0" [end]="finish" [time]="timeRemaining"-->
+<!--[scrollLength]="30" [scrollTime]="1000" [delay]="1000" [initialDelay]="2000">-->
+<!--<div *ngFor="let one of teams; let i = index" class="container"  >-->
+<!--<div *ngIf="i%2==0" class="text left">{{one.text}}</div>-->
+<!--<div class="image" divImage [id]="one.id" [controller]="'community'">-->
+<!--<p>{{one.articleTitle}} {{i}}</p>-->
+<!--</div>-->
+<!--<div *ngIf="i%2==1" class="text right">{{one.text}}</div>-->
+<!--</div>-->
+<!--</div>-->
 <!--</div>-->
 
 
 <div class="main-container">
   <div class="scrollable" smoothAutoScroll [pause]="pause">
-      <div>
-        <div *ngFor="let one of teams; let i = index" class="container" [id]="'community'+one.id" (click)="showDescr()">
-          <div *ngIf="i%2==0" class="text left">
-            <div class="title">
-              <p>
-                {{one.text}}
-              </p>
-            </div>
-            <div class="read-more">
-            </div>
-
+    <div>
+      <div *ngFor="let one of teams; let i = index" class="container" [id]="'community'+one.id">
+        <div *ngIf="i%2==0" class="text left">
+          <div class="title">
+            <p>
+              {{one.text}}
+            </p>
           </div>
-          <div divImage [id]="one.id" [controller]="'community'" class="image">
-            <div class="text-wrapper">
-              <p>{{one.articleTitle}} {{i}}</p>
-            </div>
-
+          <div class="read-more" (click)="showDescr(i)">
+            <span *ngIf="currentI != i">Read more</span>
+            <span *ngIf="currentI == i">Close</span>
           </div>
-          <div *ngIf="i%2==1" class="text right">
-            <div class="title">
-              <p>
-                {{one.text}}
-              </p>
-            </div>
-            <div class="read-more">
-            </div>
+        </div>
+        <div divImage [id]="one.id" [controller]="'community'" class="image">
+          <div class="text-wrapper">
+            <p>{{one.articleTitle}} {{i}}</p>
           </div>
-          <div class="content">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni sed tempore totam voluptatum! Atque dicta eaque expedita impedit iste praesentium quasi vel veritatis. Dolor repellat, unde. Deserunt ipsum quasi vel.
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni sed tempore totam voluptatum! Atque dicta eaque expedita impedit iste praesentium quasi vel veritatis. Dolor repellat, unde. Deserunt ipsum quasi vel.</div>
+        </div>
+        <div *ngIf="i%2==1" class="text right">
+          <div class="title">
+            <p>
+              {{one.text}}
+            </p>
+          </div>
+          <div class="read-more" (click)="showDescr(i)">
+            <span *ngIf="currentI != i">Read more</span>
+            <span *ngIf="currentI == i">Close</span>
+          </div>
+        </div>
+        <div class="content" *ngIf="currentI == i">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni sed tempore totam voluptatum! Atque dicta
+          eaque expedita impedit iste praesentium quasi vel veritatis. Dolor repellat, unde. Deserunt ipsum quasi vel.
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni sed tempore totam voluptatum! Atque dicta
+          eaque expedita impedit iste praesentium quasi vel veritatis. Dolor repellat, unde. Deserunt ipsum quasi vel.
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto commodi consequatur cumque, delectus
+          provident quis quos temporibus! A debitis doloremque enim, eos fugiat impedit iste molestias natus nulla,
+          obcaecati sunt?
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. A adipisci aliquam animi architecto consectetur
+          delectus dicta dolorum id ipsam labore molestias mollitia obcaecati provident quibusdam quidem, sequi
+          similique vitae voluptatem!
+        </div>
       </div>
-
-
     </div>
   </div>
 </div>
