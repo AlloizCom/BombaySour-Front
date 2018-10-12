@@ -2,7 +2,7 @@
   <div *ngIf="position=='left'" class="text left">
     <div class="title">
       <p>
-        {{community.text}}
+        {{platform.text}}
       </p>
     </div>
     <div class="read-more" (click)="read()">
@@ -10,15 +10,15 @@
       <span *ngIf="show">Close</span>
     </div>
   </div>
-  <div divImage [id]="community.id" [controller]="'community'" class="image">
+  <div divImage [id]="platform.id" [controller]="'platform'" class="image">
     <div class="text-wrapper">
-      <p>{{community.articleTitle}}</p>
+      <p>{{platform.text}} {{i}}</p>
     </div>
   </div>
   <div *ngIf="position=='right'" class="text right">
     <div class="title">
       <p>
-        {{community.text}}
+        {{platform.text}}
       </p>
     </div>
     <div class="read-more" (click)="read()">

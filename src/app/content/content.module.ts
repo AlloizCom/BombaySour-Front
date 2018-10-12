@@ -12,6 +12,7 @@ import {SharedModule} from "../shared/shared.module";
 import { FilmOneComponent } from './film/film-one/film-one.component';
 import { StoryOneComponent } from './story/story-one/story-one.component';
 import { CommunityOneComponent } from './community/community-one/community-one.component';
+import {PlatformOneComponent} from './platform/platform-one/platform-one.component';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import { CommunityOneComponent } from './community/community-one/community-one.c
     ContentComponent,
     FilmOneComponent,
     StoryOneComponent,
-    CommunityOneComponent
+    CommunityOneComponent,
+    PlatformOneComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

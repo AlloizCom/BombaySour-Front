@@ -27,7 +27,12 @@ export class HeaderComponent implements OnInit {
   isOpen = false;
   color: boolean =false;
 
-  constructor(private el: ElementRef) {
+  constructor(private el: ElementRef, private _router: ActivatedRoute) {
+    if (_router._routerState.snapshot.url === "/film" || _router._routerState.snapshot.url === "/story") {
+      this.color = false;
+    } else {
+      this.color = true;
+    }
   }
 
   ngOnInit() {
@@ -50,5 +55,4 @@ export class HeaderComponent implements OnInit {
   leave(e){
     e.style.width = '0%';
   }
-
 }
