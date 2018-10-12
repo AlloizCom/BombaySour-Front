@@ -112,7 +112,7 @@ export class FilmOneComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    (<HTMLVideoElement>this.mainVideoVC.nativeElement).addEventListener('loadeddata', () => {
+    (<HTMLVideoElement>this.mainVideoVC.nativeElement).addEventListener('canplay', () => {
       this.loaded.emit(true)
     });
     this._inited = true;

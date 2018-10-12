@@ -111,7 +111,7 @@ export class StoryOneComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    (<HTMLVideoElement>this.mainVideoVC.nativeElement).addEventListener('loadeddata', () => {
+    (<HTMLVideoElement>this.mainVideoVC.nativeElement).addEventListener('canplay', () => {
       this.loaded.emit(true)
     });
     this._inited = true;
