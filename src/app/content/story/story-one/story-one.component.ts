@@ -12,6 +12,8 @@ import {
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {AppComponent} from "../../../app.component";
 import {Story} from "../../../../shared/models/story";
+import {DeviceDetectorService} from "ngx-device-detector";
+import {ImageService} from "../../../../shared/services/image.service";
 
 @Component({
   selector: 'app-story-one',
@@ -40,9 +42,11 @@ import {Story} from "../../../../shared/models/story";
 export class StoryOneComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild('mainVideo') mainVideoVC: ElementRef;
+  @ViewChild('mainImage') mainImageVC: ElementRef;
   @Input() story: Story;
   @Output() loaded = new EventEmitter();
 
+  poster: string = '';
 
   width = window.innerWidth;
 
@@ -58,7 +62,7 @@ export class StoryOneComponent implements OnInit, AfterViewInit, OnDestroy {
   private interval;
   private _inited = false;
 
-  constructor() {
+  constructor(private deviceService: DeviceDetectorService, private _imageService: ImageService) {
   }
 
   _animationState: string;
@@ -92,27 +96,85 @@ export class StoryOneComponent implements OnInit, AfterViewInit, OnDestroy {
     let divWidthPXABS = Math.abs(divWidthPX);
     let restWidth = (window.innerWidth - divWidthPXABS);
     let context = canvas.getContext('2d');
+    let image = (<HTMLImageElement>this.mainImageVC.nativeElement);
     let video = (<HTMLVideoElement>document.getElementById(`video${id}`));
-    let onePiece = video.videoWidth / 5;
+    let mainX = 0;
+    let mainY = 0;
+    let mainWidth = video.videoWidth;
+    let mainHeight = video.videoHeight;
+    if (this.deviceService.isMobile()) {
+      mainHeight = image.height;
+      mainWidth = image.width;
+      if (canvas.width < image.width) {
+        let onePX = image.naturalWidth / image.width;
+        mainWidth = canvas.width * onePX;
+        mainX = ((image.width - mainWidth) / 2) * onePX;
+      } else {
+        mainWidth = image.naturalWidth;
+      }
+      if (canvas.height < image.height) {
+        let onePX = image.naturalHeight / image.height;
+        mainHeight = canvas.height * onePX;
+        mainY = ((image.height - mainHeight) / 2) * onePX;
+      } else {
+        mainHeight = image.naturalHeight;
+      }
+    } else {
+      mainHeight = video.height;
+      mainWidth = video.width;
+      if (canvas.width < video.width) {
+        let onePX = video.videoWidth / video.width;
+        mainWidth = canvas.width * onePX;
+        mainX = ((video.width - mainWidth) / 2) * onePX;
+      } else {
+        mainWidth = video.videoWidth;
+      }
+      if (canvas.height < video.height) {
+        let onePX = video.videoWidth / video.height;
+        mainHeight = canvas.height * onePX;
+        mainY = ((video.height - mainHeight) / 2) * onePX;
+      } else {
+        mainHeight = video.videoHeight;
+      }
+    }
+
+    let onePiece = mainWidth / 5;
     let onePieceCanvas = restWidth / 5;
-    let positionVideoOne: { xFrom: number, xTo: number, canvasXFrom: number, canvasXTo: number } =
-      {xFrom: onePiece, xTo: onePiece * 2, canvasXFrom: onePieceCanvas, canvasXTo: onePieceCanvas * 2};
-    let positionVideoTwo: { xFrom: number, xTo: number, canvasXFrom: number, canvasXTo: number } =
-      {xFrom: onePiece * 3, xTo: onePiece * 4, canvasXFrom: onePieceCanvas * 3, canvasXTo: onePieceCanvas * 4};
+    let positionVideoOne: Position = new Position();
+    let positionVideoTwo: Position = new Position();
+
+    positionVideoOne.xFrom = mainX + onePiece;
+    positionVideoOne.xTo = mainX + onePiece * 2;
+    positionVideoOne.canvasXFrom = onePieceCanvas;
+    positionVideoOne.canvasXTo = onePieceCanvas * 2;
+    positionVideoOne.yFrom = mainY;
+    positionVideoOne.yTo = mainY + mainHeight;
+
+    positionVideoTwo.xFrom = mainX + onePiece * 3;
+    positionVideoTwo.xTo = mainX + onePiece * 4;
+    positionVideoTwo.canvasXFrom = onePieceCanvas * 3;
+    positionVideoTwo.canvasXTo = onePieceCanvas * 4;
+    positionVideoTwo.yFrom = mainY;
+    positionVideoTwo.yTo = mainY + mainHeight;
+
     if (divWidthPX < 0) {
       positionVideoOne.canvasXFrom += divWidthPXABS;
       positionVideoOne.canvasXTo += divWidthPXABS;
       positionVideoTwo.canvasXFrom += divWidthPXABS;
       positionVideoTwo.canvasXTo += divWidthPXABS;
     }
-    context.drawImage(video, 0, 0, canvas.width, canvas.height);
-    if (divWidthPXABS != 0) {
-      context.drawImage(video, positionVideoOne.xFrom, 0, positionVideoOne.xTo - positionVideoOne.xFrom, video.videoHeight, positionVideoOne.canvasXFrom, 0, positionVideoOne.canvasXTo - positionVideoOne.canvasXFrom, canvas.height);
-      context.drawImage(video, positionVideoTwo.xFrom, 0, positionVideoTwo.xTo - positionVideoTwo.xFrom, video.videoHeight, positionVideoTwo.canvasXFrom, 0, positionVideoTwo.canvasXTo - positionVideoTwo.canvasXFrom, canvas.height);
+    if (!this.deviceService.isMobile()) {
+      this.draw(context, video, mainX, mainY, mainWidth, mainHeight, canvas, divWidthPXABS, positionVideoOne, positionVideoTwo);
+    } else {
+      this.draw(context, image, mainX, mainY, mainWidth, mainHeight, canvas, divWidthPXABS, positionVideoOne, positionVideoTwo);
     }
   }
 
   ngOnInit() {
+    this._imageService.findOne(this.story.id, 'film').subscribe(value => {
+      this.poster = value.body;
+      this.interval = setInterval((id = this.story.id) => this.doSome.call(this, id), 1000 / 30)
+    });
   }
 
   ngOnDestroy(): void {
@@ -144,4 +206,22 @@ export class StoryOneComponent implements OnInit, AfterViewInit, OnDestroy {
       }
     }
   }
+
+  private draw(context, video, mainX: number, mainY: number, mainWidth, mainHeight, canvas, divWidthPXABS, positionVideoOne: Position, positionVideoTwo: Position) {
+    context.drawImage(video, mainX, mainY, mainWidth, mainHeight, 0, 0, canvas.width, canvas.height);
+    if (divWidthPXABS != 0) {
+      context.drawImage(video, positionVideoOne.xFrom, positionVideoOne.yFrom, positionVideoOne.xTo - positionVideoOne.xFrom, mainHeight, positionVideoOne.canvasXFrom, 0, positionVideoOne.canvasXTo - positionVideoOne.canvasXFrom, canvas.height);
+      context.drawImage(video, positionVideoTwo.xFrom, positionVideoTwo.yFrom, positionVideoTwo.xTo - positionVideoTwo.xFrom, mainHeight, positionVideoTwo.canvasXFrom, 0, positionVideoTwo.canvasXTo - positionVideoTwo.canvasXFrom, canvas.height);
+    }
+  }
+
+}
+
+class Position {
+  xFrom: number;
+  xTo: number;
+  yFrom: number;
+  yTo: number;
+  canvasXFrom: number;
+  canvasXTo: number;
 }
