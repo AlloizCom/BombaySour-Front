@@ -3,6 +3,13 @@
   height: 0;
   z-index: -98;
 }
+.image-main{
+  min-height: 100vh;
+  min-width: 100vw;
+  position: absolute;
+  left: -10000px;
+  z-index: -1000;
+}
 
 .container-video {
   position: absolute;
