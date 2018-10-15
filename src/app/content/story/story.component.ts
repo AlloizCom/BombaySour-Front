@@ -13,15 +13,10 @@ export class StoryComponent implements OnInit {
   stories: Story[] = [];
   currentId = 0;
   playing: boolean = true;
-  width = window.innerWidth;
   loadedFirst = false;
   hideArrow: boolean = false;
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event) {
-    this.width = window.innerWidth;
-    console.log('resize');
-  }
+
 
   constructor(private _service: ImageService, private _storyService: StoryService) {
     _storyService.findAllAvailable().subscribe(value => {

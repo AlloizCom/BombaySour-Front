@@ -12,6 +12,7 @@ export class StoryComponent implements OnInit {
 
   formGroup: FormGroup;
   image: string;
+  video: string;
 
   constructor(private service: StoryService) {
   }
@@ -19,12 +20,18 @@ export class StoryComponent implements OnInit {
   ngOnInit() {
     this.formGroup = new FormGroup({
       video: new FormControl(null, [validateImages]),
+      poster: new FormControl('', [Validators.required]),
       name: new FormControl('', [Validators.required])
     });
   }
 
   readUrl(event) {
-    readUrl(event, (ev) => this.image = ev.target.result);
+    this.formGroup.patchValue({poster: event});
+    this.image = event;
+  }
+
+  readUrlVideo(event) {
+    readUrl(event, (ev) => this.video= ev.target.result);
   }
 
   save(form) {

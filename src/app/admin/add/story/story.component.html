@@ -3,9 +3,14 @@
   <label>Name
     <input type="text" formControlName="name">
   </label>
-  <label>Video
-    <input type="file" accept="video/*" formControlName="video" name="multipartFile" (change)="readUrl($event)">
+  <label>Poster
+    <input type="file" accept="image/*" appBase64AndProgressFile (file)="readUrl($event)"
+           [ngStyle]="{'display':'none'}">
   </label>
-  <video *ngIf="image&&image.length>0" [src]="image"></video>
+  <img *ngIf="image&&image.length>0" [src]="image" alt="image">
+  <label>Video
+    <input type="file" accept="video/*" formControlName="video" name="multipartFile" (change)="readUrlVideo($event)">
+  </label>
+  <video *ngIf="video&&video.length>0" [src]="video"></video>
   <button type="submit" [disabled]="formGroup.invalid">Save</button>
 </form>

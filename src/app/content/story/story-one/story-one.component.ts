@@ -2,7 +2,7 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
-  EventEmitter,
+  EventEmitter, HostListener,
   Input,
   OnDestroy,
   OnInit,
@@ -42,10 +42,19 @@ export class StoryOneComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('mainVideo') mainVideoVC: ElementRef;
   @Input() story: Story;
   @Output() loaded = new EventEmitter();
-  @Input() width = window.innerWidth;
+
+
+  width = window.innerWidth;
+
   playing = false;
+
   height = window.innerHeight;
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.width = window.innerWidth;
+    this.height = window.innerHeight;
+  }
   private interval;
   private _inited = false;
 

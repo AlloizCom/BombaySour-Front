@@ -3,4 +3,5 @@ export class Film {
   filmTitle:string;
   videoUrl:string;
   director:string;
+  poster:string;
 }

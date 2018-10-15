@@ -10,11 +10,13 @@ import {MyInterceptor} from "../inteceptor";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {PipesModule} from "../pipes/pipes.module";
 import {CanActivateAdmin} from "../can-activate/can-activate";
+import {DeviceDetectorModule} from "ngx-device-detector";
 
 @NgModule({
   imports: [
     CommonModule,
     BrowserModule,
+    DeviceDetectorModule.forRoot()
   ],
   exports: [
     BrowserModule,
@@ -25,7 +27,8 @@ import {CanActivateAdmin} from "../can-activate/can-activate";
     ReactiveFormsModule,
     DirectivesModule,
     BrowserAnimationsModule,
-    PipesModule
+    PipesModule,
+    DeviceDetectorModule
   ],
   providers: [
     ...serviceProvider,

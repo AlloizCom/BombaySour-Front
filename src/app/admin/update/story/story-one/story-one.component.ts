@@ -4,6 +4,8 @@ import {readUrl, validateImages} from "../../../../../shared/utils";
 import {ActivatedRoute} from "@angular/router";
 import {StoryService} from "../../../../../shared/services/story.service";
 import {url} from "../../../../../shared/config/url";
+import {FilmService} from "../../../../../shared/services/film.service";
+import {ImageService} from "../../../../../shared/services/image.service";
 
 @Component({
   selector: 'app-story-one',
@@ -14,13 +16,15 @@ export class StoryOneComponent implements OnInit {
 
   formGroup: FormGroup;
   image: string;
+  video: string;
 
-  constructor(private activatedRoute: ActivatedRoute, private service: StoryService) {
+  constructor(private activatedRoute: ActivatedRoute, private service: StoryService, private _imageService: ImageService) {
   }
 
   ngOnInit() {
     this.formGroup = new FormGroup({
       video: new FormControl(null, [validateImages]),
+      poster: new FormControl('', [Validators.required]),
       available: new FormControl('', ),
       name: new FormControl('', [Validators.required]),
       id: new FormControl()
@@ -29,7 +33,12 @@ export class StoryOneComponent implements OnInit {
   }
 
   readUrl(event) {
-    readUrl(event, (ev) => this.image = ev.target.result);
+    this.formGroup.patchValue({poster: event});
+    this.image = event;
+  }
+
+  readUrlVideo(event) {
+    readUrl(event, (ev) => this.video = ev.target.result);
   }
 
   save(form) {
@@ -41,7 +50,8 @@ export class StoryOneComponent implements OnInit {
     // this.formGroup.patchValue({id: id, text: `${id}  text  ${id}`, title: `${id}  title  ${id}`});
     this.service.findOne(id).subscribe(value => {
       this.formGroup.patchValue(value);
-      this.image =url+ value.videoUrl
+      this.video = url + value.videoUrl;
+      this._imageService.findOne(value.id, 'story').subscribe(value1 => this.image = value1.body);
     });
   }
 }

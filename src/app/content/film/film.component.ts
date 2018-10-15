@@ -13,7 +13,6 @@ export class FilmComponent implements OnInit {
   films: Film[] = [];
   currentId = 0;
   playing: boolean = true;
-  width = window.innerWidth;
   loadedFirst = false;
   hideArrow: boolean =false;
 
@@ -24,12 +23,6 @@ export class FilmComponent implements OnInit {
     }, err => {
       console.error(err);
     });
-  }
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event) {
-    this.width = window.innerWidth;
-    console.log('resize');
   }
 
   changeCurrentId(way: number) {

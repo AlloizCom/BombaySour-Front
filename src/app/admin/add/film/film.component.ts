@@ -12,6 +12,7 @@ export class FilmComponent implements OnInit {
 
   formGroup: FormGroup;
   image: string;
+  video: string;
 
   constructor(private service: FilmService) {
   }
@@ -19,13 +20,19 @@ export class FilmComponent implements OnInit {
   ngOnInit() {
     this.formGroup = new FormGroup({
       video: new FormControl(null, [validateImages]),
+      poster: new FormControl('', [Validators.required]),
       filmTitle: new FormControl('', [Validators.required]),
       director: new FormControl('', [Validators.required])
     });
   }
 
   readUrl(event) {
-    readUrl(event, (ev) => this.image = ev.target.result);
+    this.formGroup.patchValue({poster: event});
+    this.image = event;
+  }
+
+  readUrlVideo(event) {
+    readUrl(event, (ev) => this.video= ev.target.result);
   }
 
   save(form) {
