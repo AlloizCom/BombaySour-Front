@@ -14,13 +14,14 @@ export class StoryComponent implements OnInit {
   currentId = 0;
   playing: boolean = true;
   loadedFirst = false;
+  hideArrow: boolean = false;
 
 
 
   constructor(private _service: ImageService, private _storyService: StoryService) {
     _storyService.findAllAvailable().subscribe(value => {
       this.stories = value;
-      this.playing = false;
+      this.playing = true;
     }, err => {
       console.error(err);
     });
@@ -35,12 +36,17 @@ export class StoryComponent implements OnInit {
     this.playing = true;
     setTimeout(() => this.playing = false, 1000);
   }
+  hide(){
+    this.hideArrow = false;
+    setTimeout(()=>{this.hideArrow= true; console.log(this.hideArrow)}, 5000);
+  }
 
   loaded(event){
     this.loadedFirst = event;
   }
 
   ngOnInit(): void {
+    setTimeout(()=>{this.hideArrow= true; console.log(this.hideArrow)}, 5000);
   }
 
 }

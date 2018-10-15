@@ -14,6 +14,7 @@ export class FilmComponent implements OnInit {
   currentId = 0;
   playing: boolean = true;
   loadedFirst = false;
+  hideArrow: boolean =false;
 
   constructor(private _service: ImageService, private _filmServie: FilmService) {
     _filmServie.findAllAvailable().subscribe(value => {
@@ -37,7 +38,11 @@ export class FilmComponent implements OnInit {
   loaded(event) {
     this.loadedFirst = event;
   }
-
+  hide(){
+    this.hideArrow = false;
+    setTimeout(()=>{this.hideArrow= true; console.log(this.hideArrow)}, 5000);
+  }
   ngOnInit(): void {
+    setTimeout(()=>{this.hideArrow= true; console.log(this.hideArrow)}, 5000);
   }
 }

@@ -1,32 +1,35 @@
 .button {
   z-index: 20;
   position: absolute;
-  height: 100px;
-  width: 100px;
+  height: 100vh;
+  width: 50vw;
 }
 
 .left {
-  top: calc(50vh - 50px);
-  left: 5vw;
+  top: 0;
+  left: 0;
 }
 
 .right {
-  top: calc(50vh - 50px);
-  right: 5vw;
+  top: 0;
+  right: 0;
 }
 .right>svg{
-  top: calc(50vh - 50px);
-  right: 5vw;
+  margin-top: calc(50vh - 50px);
+  margin-left: calc(45vw - 100px);
   height: 100px;
   width: 100px;
 }
 .left>svg{
-  top: calc(50vh - 50px);
-  left: 5vw;
+  margin-top: calc(50vh - 50px);
+  margin-left: 5vw;
   height: 100px;
   width: 100px;
 }
-
+.hide{
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
 
 .wrapper {
   position: relative;
@@ -50,18 +53,14 @@ app-loader{
 }
 @media only screen and (min-device-width : 320px) and (max-device-width : 640px) {
   .right>svg{
-    top: calc(50vh - 25px);
-    right: 5vw;
     height: 50px;
     width: 50px;
+    margin-left: calc(45vw - 50px);
   }
   .left>svg{
-    top: calc(50vh - 25px);
-    left: 5vw;
+    margin-left: 5vw;
     height: 50px;
     width: 50px;
   }
-  .button{
-    width: 50px!important;
-  }
+
 }
