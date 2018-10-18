@@ -1,5 +1,5 @@
 <p>Story</p>
-<form [formGroup]="formGroup" (submit)="save()">
+<form [formGroup]="formGroup" (submit)="save(form)" #form>
   <label>Name
     <input type="text" formControlName="name">
   </label>
