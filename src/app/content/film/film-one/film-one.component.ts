@@ -50,12 +50,12 @@ export class FilmOneComponent implements OnInit, OnDestroy, AfterViewInit {
   playing = false;
   height = window.innerHeight;
   poster: string = '';
+  isMobile = false;
   private interval;
   private _inited = false;
 
   constructor(private deviceService: DeviceDetectorService, private _imageService: ImageService) {
-    console.log(this.deviceService.isDesktop());
-    console.log(this.deviceService.isMobile());
+    this.isMobile = this.deviceService.isMobile();
   }
 
   _animationState: string;
@@ -75,6 +75,8 @@ export class FilmOneComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   pause(val?: boolean) {
+    if (this.isMobile)
+      return;
     let main = (<HTMLVideoElement>this.mainVideoVC.nativeElement);
     if (val) {
       setTimeout(() => {
@@ -94,48 +96,44 @@ export class FilmOneComponent implements OnInit, OnDestroy, AfterViewInit {
     let divWidthPXABS = Math.abs(divWidthPX);
     let restWidth = (window.innerWidth - divWidthPXABS);
     let context = canvas.getContext('2d');
-    let image = (<HTMLImageElement>this.mainImageVC.nativeElement);
+    let image = this.isMobile ? (<HTMLImageElement>this.mainImageVC.nativeElement) : null;
     let video = (<HTMLVideoElement>document.getElementById(`video${id}`));
     let mainX = 0;
     let mainY = 0;
-    let mainWidth = video.videoWidth;
-    let mainHeight = video.videoHeight;
+    let mainWidth = 0;
+    let mainHeight = 0;
+    let contentWidth = 0;
+    let contentHeight = 0;
+    let containerWidth = 0;
+    let containerHeight = 0;
     if (this.deviceService.isMobile()) {
-      mainHeight = image.height;
-      mainWidth = image.width;
-      if (canvas.width < image.width) {
-        let onePX = image.naturalWidth / image.width;
-        mainWidth = canvas.width * onePX;
-        mainX = ((image.width - mainWidth) / 2) * onePX;
-      } else {
-        mainWidth = image.naturalWidth;
-      }
-      if (canvas.height < image.height) {
-        let onePX = image.naturalHeight / image.height;
-        mainHeight = canvas.height * onePX;
-        mainY = ((image.height - mainHeight) / 2) * onePX;
-      } else {
-        mainHeight = image.naturalHeight;
-      }
+      contentHeight = image.naturalHeight;
+      contentWidth = image.naturalWidth;
+      containerHeight = image.height;
+      containerWidth = image.width;
     } else {
-      mainHeight = video.height;
-      mainWidth = video.width;
-      if (canvas.width < video.width) {
-        let onePX = video.videoWidth / video.width;
-        mainWidth = canvas.width * onePX;
-        mainX = ((video.width - mainWidth) / 2) * onePX;
-      } else {
-        mainWidth = video.videoWidth;
-      }
-      if (canvas.height < video.height) {
-        let onePX = video.videoWidth / video.height;
-        mainHeight = canvas.height * onePX;
-        mainY = ((video.height - mainHeight) / 2) * onePX;
-      } else {
-        mainHeight = video.videoHeight;
-      }
+      contentHeight = video.videoHeight;
+      contentWidth = video.videoWidth;
+      containerHeight = +getComputedStyle(video).height.replace('px', '');
+      containerWidth = +getComputedStyle(video).width.replace('px', '');
     }
 
+    mainHeight = containerHeight;
+    mainWidth = containerWidth;
+    if (canvas.width < containerWidth) {
+      let onePX = contentWidth / containerWidth;
+      mainWidth = canvas.width * onePX;
+      mainX = ((containerWidth - mainWidth) / 2) * onePX;
+    } else {
+      mainWidth = contentWidth;
+    }
+    if (canvas.height < containerHeight) {
+      let onePX = contentHeight / containerHeight;
+      mainHeight = canvas.height * onePX;
+      mainY = ((containerHeight - mainHeight) / 2) * onePX;
+    } else {
+      mainHeight = contentHeight;
+    }
     let onePiece = mainWidth / 5;
     let onePieceCanvas = restWidth / 5;
     let positionVideoOne: Position = new Position();
@@ -161,11 +159,7 @@ export class FilmOneComponent implements OnInit, OnDestroy, AfterViewInit {
       positionVideoTwo.canvasXFrom += divWidthPXABS;
       positionVideoTwo.canvasXTo += divWidthPXABS;
     }
-    if (!this.deviceService.isMobile()) {
-      this.draw(context, video, mainX, mainY, mainWidth, mainHeight, canvas, divWidthPXABS, positionVideoOne, positionVideoTwo);
-    } else {
-      this.draw(context, image, mainX, mainY, mainWidth, mainHeight, canvas, divWidthPXABS, positionVideoOne, positionVideoTwo);
-    }
+    this.draw(context, this.isMobile ? image : video, mainX, mainY, mainWidth, mainHeight, canvas, divWidthPXABS, positionVideoOne, positionVideoTwo);
   }
 
   ngOnInit() {
@@ -180,17 +174,21 @@ export class FilmOneComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    (<HTMLVideoElement>this.mainVideoVC.nativeElement).addEventListener('canplay', () => {
+    if (!this.isMobile) {
+      (<HTMLVideoElement>this.mainVideoVC.nativeElement).addEventListener('canplay', () => {
+        this.loaded.emit(true);
+        this.playing = true;
+      });
+      (<HTMLVideoElement>this.mainVideoVC.nativeElement).addEventListener('loaded', () => {
+        this.loaded.emit(true);
+      });
+      setTimeout(() => {
+        if (!this.playing)
+          (<HTMLVideoElement>this.mainVideoVC.nativeElement).load();
+      }, 5000);
+    } else {
       this.loaded.emit(true);
-      this.playing = true;
-    });
-    (<HTMLVideoElement>this.mainVideoVC.nativeElement).addEventListener('loaded', () => {
-      this.loaded.emit(true);
-    });
-    setTimeout(()=>{
-      if(!this.playing)
-        (<HTMLVideoElement>this.mainVideoVC.nativeElement).load();
-    },5000);
+    }
     this._inited = true;
     if (this._animationState == 'middle') {
       if (AppComponent.animationService.open) {

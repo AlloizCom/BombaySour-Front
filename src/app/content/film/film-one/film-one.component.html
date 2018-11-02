@@ -1,8 +1,8 @@
-<video class="image-main" [autoplay]="true"
+<video *ngIf="!isMobile" class="image-main" [autoplay]="true"
        [muted]="true" loop #mainVideo [id]="'video'+film.id">
   <source [src]="film.videoUrl|video">
 </video>
-<img [src]="poster" #mainImage class="image-main">
+<img *ngIf="isMobile" [src]="poster" #mainImage class="image-main">
 <div class="container-main container-video" [@slider]="_animationState">
   <canvas [id]="'canvas'+film.id" [width]="width" [height]="height"></canvas>
   <div class="content">
