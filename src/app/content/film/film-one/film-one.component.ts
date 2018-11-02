@@ -90,6 +90,8 @@ export class FilmOneComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
+
+
   doSome(id: number) {
     let canvas = (<HTMLCanvasElement>document.getElementById('canvas' + id));
     let divWidthPX = +getComputedStyle(canvas.parentElement).transform.split(',')[4];
