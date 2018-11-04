@@ -90,8 +90,6 @@ export class FilmOneComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
-
-
   doSome(id: number) {
     let canvas = (<HTMLCanvasElement>document.getElementById('canvas' + id));
     let divWidthPX = +getComputedStyle(canvas.parentElement).transform.split(',')[4];
@@ -123,16 +121,36 @@ export class FilmOneComponent implements OnInit, OnDestroy, AfterViewInit {
     mainHeight = containerHeight;
     mainWidth = containerWidth;
     if (canvas.width < containerWidth) {
+      // let onePX = contentWidth / containerWidth;
+      // mainWidth = canvas.width * onePX;
+      // mainX = ((containerWidth - mainWidth) / 2) * onePX;
+
+
+      let coef = contentHeight / contentWidth;
+
       let onePX = contentWidth / containerWidth;
-      mainWidth = canvas.width * onePX;
-      mainX = ((containerWidth - mainWidth) / 2) * onePX;
+      mainWidth = canvas.width * coef;
+      mainHeight = canvas.height * coef;
+
+      mainX = ((containerWidth - mainWidth) / 2) * coef;
+
     } else {
       mainWidth = contentWidth;
     }
     if (canvas.height < containerHeight) {
+      // let onePX = contentHeight / containerHeight;
+      // mainHeight = canvas.height * onePX;
+      // mainY = ((containerHeight - mainHeight) / 2) * onePX;
+
+
       let onePX = contentHeight / containerHeight;
-      mainHeight = canvas.height * onePX;
-      mainY = ((containerHeight - mainHeight) / 2) * onePX;
+      let coef = contentHeight / contentWidth;
+
+      mainHeight = (canvas.height * coef);
+      mainWidth = (canvas.width * coef);
+      mainY = ((containerHeight - mainHeight) / 2) * coef;
+
+
     } else {
       mainHeight = contentHeight;
     }
