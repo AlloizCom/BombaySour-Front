@@ -14,6 +14,7 @@ import {AppComponent} from "../../../app.component";
 import {Story} from "../../../../shared/models/story";
 import {DeviceDetectorService} from "ngx-device-detector";
 import {ImageService} from "../../../../shared/services/image.service";
+import {t} from '@angular/core/src/render3';
 
 @Component({
   selector: 'app-story-one',
@@ -54,6 +55,8 @@ export class StoryOneComponent implements OnInit, AfterViewInit, OnDestroy {
 
   height = window.innerHeight;
 
+  isMobile = false;
+
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.width = window.innerWidth;
@@ -63,6 +66,7 @@ export class StoryOneComponent implements OnInit, AfterViewInit, OnDestroy {
   private _inited = false;
 
   constructor(private deviceService: DeviceDetectorService, private _imageService: ImageService) {
+    this.isMobile = this.deviceService.isMobile();
   }
 
   _animationState: string;
@@ -137,6 +141,33 @@ export class StoryOneComponent implements OnInit, AfterViewInit, OnDestroy {
         mainHeight = video.videoHeight;
       }
     }
+
+
+
+
+    let containerWidth = 0;
+    let containerHeight = 0;
+    // let contentWidth = +getComputedStyle(video).videoWidth.replace('px', '');
+    // let contentHeight = +getComputedStyle(video).videoHeight.replace('px', '');
+    let contentWidth = video.videoWidth;
+    let contentHeight = video.videoHeight;
+    containerHeight = +getComputedStyle(video).height.replace('px', '');
+    containerWidth = +getComputedStyle(video).width.replace('px', '');
+
+    let scalingCoefWidth = containerWidth/contentWidth;
+    let scalingCoefHeight = containerHeight/contentHeight;
+
+    mainWidth = canvas.width / scalingCoefWidth;
+    mainHeight = canvas.height / scalingCoefHeight;
+
+    if(this._animationState=='middle') {
+      mainY = (containerHeight/scalingCoefHeight-mainHeight)/2;
+      mainX = (containerWidth/scalingCoefWidth-mainWidth)/2;
+    }
+
+
+
+
 
     let onePiece = mainWidth / 5;
     let onePieceCanvas = restWidth / 5;

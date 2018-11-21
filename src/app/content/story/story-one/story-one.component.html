@@ -1,8 +1,12 @@
-<video class="video-main"
+<video class="image-main"
        loop #mainVideo [id]="'video'+story.id">
   <source [src]="story.videoUrl|video">
 </video>
 <img [src]="poster" #mainImage class="image-main">
 <div class="container-main container-video" [@slider]="_animationState">
   <canvas [id]="'canvas'+story.id" [width]="width" [height]="height"></canvas>
+
+</div>
+<div class="content" *ngIf="isMobile">
+  <a href="{{story.videoUrl|video}}"><h4>Video link</h4></a>
 </div>

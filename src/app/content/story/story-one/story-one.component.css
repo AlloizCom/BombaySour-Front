@@ -29,3 +29,34 @@ canvas {
   width: 100vw;
   height: 100vh;
 }
+
+/*.link{*/
+  /*position: absolute!important;*/
+  /*z-index: 1000000!important;*/
+  /*overflow: visible!important;*/
+/*}*/
+
+.content{
+  position: absolute;
+  z-index: 9999999999999999999999;
+  height: 30%;
+  width: 80vw;
+  left: 10vw;
+  color: black;
+  top: 68vh ;
+}
+.content>a>h4{
+  position: absolute!important;
+  z-index: 99999999999999999999999!important;
+  line-height: 1em !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  font-style: normal !important;
+  font-size: 45px !important;
+  color: black !important;
+  font-family: helvetica-w01-light, helvetica-w02-light, sans-serif !important;
+}
+
+a{
+  text-decoration: none !important;
+}

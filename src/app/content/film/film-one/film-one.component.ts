@@ -70,6 +70,8 @@ export class FilmOneComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
+    this.isMobile = this.deviceService.isMobile();
+    console.log(this.deviceService.getDeviceInfo());
     this.width = window.innerWidth;
     this.height = window.innerHeight;
   }
@@ -120,40 +122,83 @@ export class FilmOneComponent implements OnInit, OnDestroy, AfterViewInit {
 
     mainHeight = containerHeight;
     mainWidth = containerWidth;
-    if (canvas.width < containerWidth) {
-      // let onePX = contentWidth / containerWidth;
-      // mainWidth = canvas.width * onePX;
-      // mainX = ((containerWidth - mainWidth) / 2) * onePX;
 
 
-      let coef = contentHeight / contentWidth;
-
-      let onePX = contentWidth / containerWidth;
-      mainWidth = canvas.width * coef;
-      mainHeight = canvas.height * coef;
-
-      mainX = ((containerWidth - mainWidth) / 2) * coef;
-
-    } else {
-      mainWidth = contentWidth;
-    }
-    if (canvas.height < containerHeight) {
-      // let onePX = contentHeight / containerHeight;
-      // mainHeight = canvas.height * onePX;
-      // mainY = ((containerHeight - mainHeight) / 2) * onePX;
 
 
-      let onePX = contentHeight / containerHeight;
-      let coef = contentHeight / contentWidth;
+    //12.11.2018
 
-      mainHeight = (canvas.height * coef);
-      mainWidth = (canvas.width * coef);
-      mainY = ((containerHeight - mainHeight) / 2) * coef;
+      let scalingCoefWidth = containerWidth/contentWidth;
+      let scalingCoefHeight = containerHeight/contentHeight;
+
+      mainWidth = canvas.width / scalingCoefWidth;
+      mainHeight = canvas.height / scalingCoefHeight;
 
 
-    } else {
-      mainHeight = contentHeight;
-    }
+if(this._animationState=='middle') {
+    mainY = (containerHeight/scalingCoefHeight-mainHeight)/2;
+  mainX = (containerWidth/scalingCoefWidth-mainWidth)/2;
+}
+
+
+    // if (canvas.width < containerWidth) {
+    //   // let onePX = contentWidth / containerWidth;
+    //   // mainWidth = canvas.width * onePX;
+    //   // mainX = ((containerWidth - mainWidth) / 2) * onePX;
+    //   let coef = contentHeight / contentWidth;
+    //   let onePX = contentWidth / containerWidth;
+    //   mainWidth = canvas.width * coef;
+    //   mainHeight = canvas.height * coef;
+    //   mainX = ((containerWidth - mainWidth) / (2+(onePX*coef)) )* coef;
+    // } else {
+    //   // mainWidth = contentWidth;
+    // }
+    // if (canvas.height < containerHeight) {
+    //   // let onePX = contentHeight / containerHeight;
+    //   // mainHeight = canvas.height * onePX;
+    //   // mainY = ((containerHeight - mainHeight) / 2) * onePX;
+    //   let onePX = contentHeight / containerHeight;
+    //   let coef = contentHeight / contentWidth;
+    //   mainHeight = (canvas.height * coef);
+    //   mainWidth = (canvas.width * coef);
+    //   mainY = ((containerHeight - mainHeight) / 2 * coef) * coef;
+    //   mainX = ((containerWidth - mainWidth)/2 * coef) * coef;
+    //
+    // } else {
+    //   // mainHeight = contentHeight;
+    //   // mainWidth = contentWidth;
+    // }
+    //
+    //
+    // if ((contentWidth >= canvas.width || contentHeight >= canvas.height)) {
+    //   let scalingCoef = contentHeight / contentWidth;
+    //   let onePX = contentWidth / containerWidth;
+    //   mainWidth = canvas.width * onePX;
+    //   mainHeight = canvas.height * onePX;
+    //   mainX = ((containerWidth - mainWidth) / (2 + (onePX * scalingCoef))) * scalingCoef;
+    //
+    //   if(canvas.width>(1370)){
+    //     let coef = contentHeight / contentWidth;
+    //     let onePX = contentWidth / containerWidth;
+    //     mainWidth = canvas.width * coef;
+    //     mainHeight = canvas.height * coef;
+    //     mainX = ((containerWidth - mainWidth) / (2+(onePX*coef)) )* coef;
+    //   }
+    //
+    // }
+
+
+
+
+
+
+
+
+
+
+
+
+
     let onePiece = mainWidth / 5;
     let onePieceCanvas = restWidth / 5;
     let positionVideoOne: Position = new Position();
