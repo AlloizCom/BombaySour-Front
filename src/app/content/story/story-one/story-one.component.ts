@@ -1,20 +1,9 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  EventEmitter, HostListener,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output,
-  ViewChild
-} from '@angular/core';
-import {animate, state, style, transition, trigger} from "@angular/animations";
-import {AppComponent} from "../../../app.component";
-import {Story} from "../../../../shared/models/story";
-import {DeviceDetectorService} from "ngx-device-detector";
-import {ImageService} from "../../../../shared/services/image.service";
-import {t} from '@angular/core/src/render3';
+import {AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
+import {animate, state, style, transition, trigger} from '@angular/animations';
+import {AppComponent} from '../../../app.component';
+import {Story} from '../../../../shared/models/story';
+import {DeviceDetectorService} from 'ngx-device-detector';
+import {ImageService} from '../../../../shared/services/image.service';
 
 @Component({
   selector: 'app-story-one',
@@ -56,12 +45,6 @@ export class StoryOneComponent implements OnInit, AfterViewInit, OnDestroy {
   height = window.innerHeight;
 
   isMobile = false;
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event) {
-    this.width = window.innerWidth;
-    this.height = window.innerHeight;
-  }
   private interval;
   private _inited = false;
 
@@ -81,16 +64,29 @@ export class StoryOneComponent implements OnInit, AfterViewInit, OnDestroy {
       this.pause(value != 'middle');
   }
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.width = window.innerWidth;
+    this.height = window.innerHeight;
+  }
+
   pause(val?: boolean) {
+    if (this.isMobile)
+      return;
     let main = (<HTMLVideoElement>this.mainVideoVC.nativeElement);
     if (val) {
       setTimeout(() => {
         clearInterval(this.interval);
+        this.interval = null;
         main.pause();
       }, 1000);
     } else {
       main.play();
-      this.interval = setInterval((id = this.story.id) => this.doSome.call(this, id), 1000 / 30)
+      if (this.interval) {
+        clearInterval(this.interval);
+        this.interval = null;
+      }
+      this.interval = setInterval((id = this.story.id) => this.doSome.call(this, id), 1000 / 30);
     }
   }
 
@@ -106,44 +102,8 @@ export class StoryOneComponent implements OnInit, AfterViewInit, OnDestroy {
     let mainY = 0;
     let mainWidth = video.videoWidth;
     let mainHeight = video.videoHeight;
-    if (this.deviceService.isMobile()) {
-      mainHeight = image.height;
-      mainWidth = image.width;
-      if (canvas.width < image.width) {
-        let onePX = image.naturalWidth / image.width;
-        mainWidth = canvas.width * onePX;
-        mainX = ((image.width - mainWidth) / 2) * onePX;
-      } else {
-        mainWidth = image.naturalWidth;
-      }
-      if (canvas.height < image.height) {
-        let onePX = image.naturalHeight / image.height;
-        mainHeight = canvas.height * onePX;
-        mainY = ((image.height - mainHeight) / 2) * onePX;
-      } else {
-        mainHeight = image.naturalHeight;
-      }
-    } else {
-      mainHeight = video.height;
-      mainWidth = video.width;
-      if (canvas.width < video.width) {
-        let onePX = video.videoWidth / video.width;
-        mainWidth = canvas.width * onePX;
-        mainX = ((video.width - mainWidth) / 2) * onePX;
-      } else {
-        mainWidth = video.videoWidth;
-      }
-      if (canvas.height < video.height) {
-        let onePX = video.videoWidth / video.height;
-        mainHeight = canvas.height * onePX;
-        mainY = ((video.height - mainHeight) / 2) * onePX;
-      } else {
-        mainHeight = video.videoHeight;
-      }
-    }
 
-
-
+    this.changeContainer(this.width / video.videoWidth, this.height / video.videoHeight, video);
 
     let containerWidth = 0;
     let containerHeight = 0;
@@ -151,22 +111,36 @@ export class StoryOneComponent implements OnInit, AfterViewInit, OnDestroy {
     // let contentHeight = +getComputedStyle(video).videoHeight.replace('px', '');
     let contentWidth = video.videoWidth;
     let contentHeight = video.videoHeight;
+    // containerHeight = this.height;
+    // containerWidth = this.width;
     containerHeight = +getComputedStyle(video).height.replace('px', '');
     containerWidth = +getComputedStyle(video).width.replace('px', '');
 
-    let scalingCoefWidth = containerWidth/contentWidth;
-    let scalingCoefHeight = containerHeight/contentHeight;
+
+    let scalingCoefWidth = containerWidth / contentWidth;
+    let scalingCoefHeight = containerHeight / contentHeight;
+
+    // console.log(scalingCoefWidth, scalingCoefHeight);
+    // console.log(containerWidth, containerHeight);
+    // console.log(contentWidth, contentHeight);
+    // console.log('-------------------------------------');
+
+    // if(scalingCoefHeight == 1 || scalingCoefWidth == 1 ){
+    //   containerHeight = containerHeight/2;
+    //   containerWidth = containerWidth/2;
+    //   scalingCoefWidth = containerWidth / contentWidth;
+    //   scalingCoefHeight = containerHeight / contentHeight;
+    //
+    // }
+
 
     mainWidth = canvas.width / scalingCoefWidth;
     mainHeight = canvas.height / scalingCoefHeight;
 
-    if(this._animationState=='middle') {
-      mainY = (containerHeight/scalingCoefHeight-mainHeight)/2;
-      mainX = (containerWidth/scalingCoefWidth-mainWidth)/2;
+    if (this._animationState == 'middle') {
+      mainY = (containerHeight / scalingCoefHeight - mainHeight) / 2;
+      mainX = (containerWidth / scalingCoefWidth - mainWidth) / 2;
     }
-
-
-
 
 
     let onePiece = mainWidth / 5;
@@ -204,11 +178,16 @@ export class StoryOneComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit() {
     this._imageService.findOne(this.story.id, 'film').subscribe(value => {
       this.poster = value.body;
-      this.interval = setInterval((id = this.story.id) => this.doSome.call(this, id), 1000 / 30)
+      if (this.interval) {
+        clearInterval(this.interval);
+        this.interval = null;
+      }
+      this.interval = setInterval((id = this.story.id) => this.doSome.call(this, id), 1000 / 30);
     });
   }
 
   ngOnDestroy(): void {
+    console.log('destroy');
     clearInterval(this.interval);
   }
 
@@ -216,9 +195,12 @@ export class StoryOneComponent implements OnInit, AfterViewInit, OnDestroy {
     (<HTMLVideoElement>this.mainVideoVC.nativeElement).addEventListener('canplay', () => {
       this.loaded.emit(true);
       this.playing = true;
-    });
-    (<HTMLVideoElement>this.mainVideoVC.nativeElement).addEventListener('loaded', () => {
-      this.loaded.emit(true);
+      let video = (<HTMLVideoElement>this.mainVideoVC.nativeElement);
+      let width = this.width / video.videoWidth;
+      let height = this.height / video.videoHeight;
+
+      this.changeContainer(width, height, video);
+
     });
     setTimeout(() => {
       if (!this.playing)
@@ -236,6 +218,34 @@ export class StoryOneComponent implements OnInit, AfterViewInit, OnDestroy {
         });
       }
     }
+  }
+
+  private changeContainer(width, height, video) {
+    let coef = video.videoWidth / video.videoHeight;
+    if (width < 1 || height < 1) {
+      video.style.minWidth = '';
+      video.style.minHeight = '';
+      if (width < height) {
+        video.style.height = `100vh`;
+        video.style.width = `${+getComputedStyle(video).height.replace('px', '') * coef}px`;
+      } else if (width > height) {
+        video.style.hidth = `${coef / +getComputedStyle(video).width.replace('px', '')}px`;
+        video.style.width = `100vw`;
+      }else{
+        video.style.minWidth = '100vw';
+        video.style.minHeight = '100vh';
+      }
+    }
+    console.log(`
+         video.videoWidth : ${video.videoWidth}
+         video.videoHeight: ${video.videoHeight}
+         video :min ${getComputedStyle(video).minHeight} ${getComputedStyle(video).minWidth} 
+                max ${getComputedStyle(video).maxHeight} ${getComputedStyle(video).maxWidth}
+                actual ${getComputedStyle(video).height} ${getComputedStyle(video).width}
+         ${video.videoWidth / video.videoHeight} : ${+getComputedStyle(video).width.replace('px', '') / +getComputedStyle(video).height.replace('px', '')}
+         width : ${width}
+         height : ${height}
+        `);
   }
 
   private draw(context, video, mainX: number, mainY: number, mainWidth, mainHeight, canvas, divWidthPXABS, positionVideoOne: Position, positionVideoTwo: Position) {

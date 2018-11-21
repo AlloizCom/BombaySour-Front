@@ -1,20 +1,9 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  EventEmitter,
-  HostListener,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output,
-  ViewChild
-} from '@angular/core';
-import {animate, state, style, transition, trigger} from "@angular/animations";
-import {AppComponent} from "../../../app.component";
-import {Film} from "../../../../shared/models/film";
-import {DeviceDetectorService} from "ngx-device-detector";
-import {ImageService} from "../../../../shared/services/image.service";
+import {AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
+import {animate, state, style, transition, trigger} from '@angular/animations';
+import {AppComponent} from '../../../app.component';
+import {Film} from '../../../../shared/models/film';
+import {DeviceDetectorService} from 'ngx-device-detector';
+import {ImageService} from '../../../../shared/services/image.service';
 
 @Component({
   selector: 'app-film-one',
@@ -71,7 +60,6 @@ export class FilmOneComponent implements OnInit, OnDestroy, AfterViewInit {
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.isMobile = this.deviceService.isMobile();
-    console.log(this.deviceService.getDeviceInfo());
     this.width = window.innerWidth;
     this.height = window.innerHeight;
   }
@@ -83,17 +71,24 @@ export class FilmOneComponent implements OnInit, OnDestroy, AfterViewInit {
     if (val) {
       setTimeout(() => {
         clearInterval(this.interval);
+        this.interval = null;
         main.pause();
       }, 1000);
     } else {
       if (!this.deviceService.isMobile())
         main.play();
-      this.interval = setInterval((id = this.film.id) => this.doSome.call(this, id), 1000 / 30)
+      if(this.interval){
+        clearInterval(this.interval);
+        this.interval = null;
+      }
+      this.interval = setInterval((id = this.film.id) => this.doSome.call(this, id), 1000 / 30);
     }
   }
 
   doSome(id: number) {
     let canvas = (<HTMLCanvasElement>document.getElementById('canvas' + id));
+    if(!canvas)
+      return;
     let divWidthPX = +getComputedStyle(canvas.parentElement).transform.split(',')[4];
     let divWidthPXABS = Math.abs(divWidthPX);
     let restWidth = (window.innerWidth - divWidthPXABS);
@@ -120,84 +115,28 @@ export class FilmOneComponent implements OnInit, OnDestroy, AfterViewInit {
       containerWidth = +getComputedStyle(video).width.replace('px', '');
     }
 
-    mainHeight = containerHeight;
-    mainWidth = containerWidth;
-
-
-
-
     //12.11.2018
 
-      let scalingCoefWidth = containerWidth/contentWidth;
-      let scalingCoefHeight = containerHeight/contentHeight;
+    let scalingCoefWidth = containerWidth / contentWidth;
+    let scalingCoefHeight = containerHeight / contentHeight;
 
-      mainWidth = canvas.width / scalingCoefWidth;
-      mainHeight = canvas.height / scalingCoefHeight;
+    mainWidth = canvas.width / scalingCoefWidth;
+    mainHeight = canvas.height / scalingCoefHeight;
 
+    // console.log(scalingCoefWidth, scalingCoefHeight);
+    // console.log(containerWidth, containerHeight);
+    // console.log(contentWidth, contentHeight);
+    // console.log('-------------------------------------');
+    // console.log(
+    //   `
+    //   canvas ${canvas.width} : ${canvas.height}
+    //   window ${this.width} : ${this.height}
+    //   `);
 
-if(this._animationState=='middle') {
-    mainY = (containerHeight/scalingCoefHeight-mainHeight)/2;
-  mainX = (containerWidth/scalingCoefWidth-mainWidth)/2;
-}
-
-
-    // if (canvas.width < containerWidth) {
-    //   // let onePX = contentWidth / containerWidth;
-    //   // mainWidth = canvas.width * onePX;
-    //   // mainX = ((containerWidth - mainWidth) / 2) * onePX;
-    //   let coef = contentHeight / contentWidth;
-    //   let onePX = contentWidth / containerWidth;
-    //   mainWidth = canvas.width * coef;
-    //   mainHeight = canvas.height * coef;
-    //   mainX = ((containerWidth - mainWidth) / (2+(onePX*coef)) )* coef;
-    // } else {
-    //   // mainWidth = contentWidth;
-    // }
-    // if (canvas.height < containerHeight) {
-    //   // let onePX = contentHeight / containerHeight;
-    //   // mainHeight = canvas.height * onePX;
-    //   // mainY = ((containerHeight - mainHeight) / 2) * onePX;
-    //   let onePX = contentHeight / containerHeight;
-    //   let coef = contentHeight / contentWidth;
-    //   mainHeight = (canvas.height * coef);
-    //   mainWidth = (canvas.width * coef);
-    //   mainY = ((containerHeight - mainHeight) / 2 * coef) * coef;
-    //   mainX = ((containerWidth - mainWidth)/2 * coef) * coef;
-    //
-    // } else {
-    //   // mainHeight = contentHeight;
-    //   // mainWidth = contentWidth;
-    // }
-    //
-    //
-    // if ((contentWidth >= canvas.width || contentHeight >= canvas.height)) {
-    //   let scalingCoef = contentHeight / contentWidth;
-    //   let onePX = contentWidth / containerWidth;
-    //   mainWidth = canvas.width * onePX;
-    //   mainHeight = canvas.height * onePX;
-    //   mainX = ((containerWidth - mainWidth) / (2 + (onePX * scalingCoef))) * scalingCoef;
-    //
-    //   if(canvas.width>(1370)){
-    //     let coef = contentHeight / contentWidth;
-    //     let onePX = contentWidth / containerWidth;
-    //     mainWidth = canvas.width * coef;
-    //     mainHeight = canvas.height * coef;
-    //     mainX = ((containerWidth - mainWidth) / (2+(onePX*coef)) )* coef;
-    //   }
-    //
-    // }
-
-
-
-
-
-
-
-
-
-
-
-
+    if (this._animationState == 'middle') {
+      mainY = (containerHeight / scalingCoefHeight - mainHeight) / 2;
+      mainX = (containerWidth / scalingCoefWidth - mainWidth) / 2;
+    }
 
     let onePiece = mainWidth / 5;
     let onePieceCanvas = restWidth / 5;
@@ -230,12 +169,13 @@ if(this._animationState=='middle') {
   ngOnInit() {
     this._imageService.findOne(this.film.id, 'film').subscribe(value => {
       this.poster = value.body;
-      this.interval = setInterval((id = this.film.id) => this.doSome.call(this, id), 1000 / 30)
+      this.interval = setInterval((id = this.film.id) => this.doSome.call(this, id), 1000 / 30);
     });
   }
 
   ngOnDestroy(): void {
     clearInterval(this.interval);
+    this.interval = null;
   }
 
   ngAfterViewInit(): void {

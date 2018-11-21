@@ -1,7 +1,7 @@
-import {Component, HostListener, OnInit} from '@angular/core';
-import {ImageService} from "../../../shared/services/image.service";
-import {Story} from "../../../shared/models/story";
-import {StoryService} from "../../../shared/services/story.service";
+import {Component, OnInit} from '@angular/core';
+import {ImageService} from '../../../shared/services/image.service';
+import {Story} from '../../../shared/models/story';
+import {StoryService} from '../../../shared/services/story.service';
 
 @Component({
   selector: 'app-story',
@@ -15,7 +15,6 @@ export class StoryComponent implements OnInit {
   playing: boolean = true;
   loadedFirst = false;
   hideArrow: boolean = false;
-
 
 
   constructor(private _service: ImageService, private _storyService: StoryService) {
@@ -36,17 +35,18 @@ export class StoryComponent implements OnInit {
     this.playing = true;
     setTimeout(() => this.playing = false, 1000);
   }
-  hide(){
+
+  hide() {
     this.hideArrow = false;
-    setTimeout(()=>{this.hideArrow= true; console.log(this.hideArrow)}, 5000);
+    setTimeout(() => this.hideArrow = true, 5000);
   }
 
-  loaded(event){
+  loaded(event) {
     this.loadedFirst = event;
   }
 
   ngOnInit(): void {
-    setTimeout(()=>{this.hideArrow= true; console.log(this.hideArrow)}, 5000);
+    setTimeout(() => this.hideArrow = true, 5000);
   }
 
 }
