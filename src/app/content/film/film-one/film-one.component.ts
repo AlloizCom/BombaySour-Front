@@ -77,7 +77,7 @@ export class FilmOneComponent implements OnInit, OnDestroy, AfterViewInit {
     } else {
       if (!this.deviceService.isMobile())
         main.play();
-      if(this.interval){
+      if (this.interval) {
         clearInterval(this.interval);
         this.interval = null;
       }
@@ -87,7 +87,7 @@ export class FilmOneComponent implements OnInit, OnDestroy, AfterViewInit {
 
   doSome(id: number) {
     let canvas = (<HTMLCanvasElement>document.getElementById('canvas' + id));
-    if(!canvas)
+    if (!canvas)
       return;
     let divWidthPX = +getComputedStyle(canvas.parentElement).transform.split(',')[4];
     let divWidthPXABS = Math.abs(divWidthPX);
@@ -99,6 +99,7 @@ export class FilmOneComponent implements OnInit, OnDestroy, AfterViewInit {
     let mainY = 0;
     let mainWidth = 0;
     let mainHeight = 0;
+    this.changeContainer(this.width / video.videoWidth, this.height / video.videoHeight, video);
     let contentWidth = 0;
     let contentHeight = 0;
     let containerWidth = 0;
@@ -206,6 +207,36 @@ export class FilmOneComponent implements OnInit, OnDestroy, AfterViewInit {
         });
       }
     }
+  }
+
+  private changeContainer(width, height, video) {
+    let coef = video.videoWidth / video.videoHeight;
+    // if (width < 1 && height < 1) {
+      video.style.minWidth = '';
+      video.style.minHeight = '';
+      if (width < height) {
+        video.style.height = `100vh`;
+        video.style.width = `${+getComputedStyle(video).height.replace('px', '') * coef}px`;
+      } else if (width > height) {
+        // console.log(`height => ${coef}/${+getComputedStyle(video).width.replace('px', '')} = ${coef / +getComputedStyle(video).width.replace('px', '')}`);
+        video.style.height = `${+getComputedStyle(video).width.replace('px', '') / coef}px`;
+        video.style.width = `100vw`;
+      } else {
+        video.style.minWidth = '100vw';
+        video.style.minHeight = '100vh';
+      }
+    // }
+    // console.log(`
+    //      video.videoWidth : ${video.videoWidth}
+    //      video.videoHeight: ${video.videoHeight}
+    //      video :      h  |  w
+    //             min ${getComputedStyle(video).minHeight} ${getComputedStyle(video).minWidth}
+    //             max ${getComputedStyle(video).maxHeight} ${getComputedStyle(video).maxWidth}
+    //             actual ${getComputedStyle(video).height} ${getComputedStyle(video).width}
+    //      ${video.videoWidth / video.videoHeight} : ${+getComputedStyle(video).width.replace('px', '') / +getComputedStyle(video).height.replace('px', '')}
+    //      width : ${width}
+    //      height : ${height}
+    //     `);
   }
 
   private draw(context, video, mainX: number, mainY: number, mainWidth, mainHeight, canvas, divWidthPXABS, positionVideoOne: Position, positionVideoTwo: Position) {
